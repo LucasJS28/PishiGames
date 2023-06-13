@@ -21,6 +21,9 @@ if ($permiso !== "Trabajador") {
     <title>Document</title>
 </head>
 <body>
-    
+    <div>
+        Bienvenido: <?php echo $permiso;?> <a href="cerrarsesion.php">Cerrar Sesion</a>
+    </div>
+
 </body>
 </html>

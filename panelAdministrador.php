@@ -38,7 +38,7 @@ $usuarios = $conexion->obtenerUsuarios();
 </head>
 <body>
     <div>
-        Bienvenido: <?php echo $permiso;?>
+        Bienvenido: <?php echo $permiso;?> <a href="cerrarsesion.php">Cerrar Sesion</a>
     </div>
 
     <h1>Registro de Trabajadores</h1>
