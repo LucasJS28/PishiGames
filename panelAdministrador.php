@@ -1,5 +1,4 @@
 <?php
-require_once "Conexion.php";
 session_start();
 if (!isset($_SESSION["Puesto"])) {
     header("Location: index.php");
@@ -10,6 +9,9 @@ if ($permiso !== "Administrador") {
     header("Location: index.php");
     exit();
 }
+
+require_once "Conexion.php";
+
 if ($_POST) {
     $correo = $_POST["correo"];
     $contrasena = $_POST["contrasena"];
@@ -24,7 +26,8 @@ if ($_POST) {
         echo "Error al registrar el usuario";
     }
 }
-
+$conexion = new Conexion();
+$usuarios = $conexion->obtenerUsuarios();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,7 +41,7 @@ if ($_POST) {
         Bienvenido: <?php echo $permiso;?>
     </div>
 
-    <h1>Registro de Usuario</h1>
+    <h1>Registro de Trabajadores</h1>
     <form action="panelAdministrador.php" method="POST">
         <label for="correo">Correo electrónico:</label>
         <input type="email" name="correo" id="correo" required>
@@ -55,5 +58,32 @@ if ($_POST) {
         <br>
         <input type="submit" value="Registrarse">
     </form>
+    <br>
+    <br>
+    <h2>Usuarios Registrados</h2>
+    <table>
+        <tr>
+            <th>Correo Electrónico</th>
+            <th>Rol</th>
+        </tr>
+        <?php foreach ($usuarios as $usuario) { ?>
+            <tr>
+                <td><?php echo $usuario['correoUsuario']; ?></td>
+                <td><?php 
+                    if ($usuario['ID_Rol']=="1") {
+                        echo "Administrador";
+                    }
+                    if ($usuario['ID_Rol']=="2") {
+                        echo "Trabajador";
+                    }
+                    if ($usuario['ID_Rol']=="3") {
+                        echo "Jefe";
+                    }
+                    if ($usuario['ID_Rol']=="4") {
+                        echo "Usuario";
+                    }; ?></td>
+            </tr>
+        <?php } ?>
+    </table>
 </body>
 </html>

@@ -40,5 +40,23 @@
             
             return $consulta->rowCount() > 0;
         }
+
+        public function obtenerUsuarios() {
+            $sql = "SELECT * FROM usuarios";
+            $consulta = $this->prepare($sql);
+            $consulta->execute();
+            
+            return $consulta->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        public function modificarRol($correoUsuario, $rol) {
+            $sql = "UPDATE usuarios SET ID_Rol = :rol WHERE correoUsuario = :correoUsuario";
+            $consulta = $this->prepare($sql);
+            $consulta->bindParam(':rol', $rol);
+            $consulta->bindParam(':correoUsuario', $correoUsuario);
+            $consulta->execute();
+            
+            return $consulta->rowCount() > 0;
+        }
     }
 ?>

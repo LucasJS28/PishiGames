@@ -47,8 +47,8 @@
         
         <label for="passUsuario">Contraseña:</label>
         <input type="password" id="passUsuario" name="passUsuario" required><br><br>
-        
         <input type="submit" value="Iniciar sesión">
+        <p>No tienes Cuenta? <a href="registroUsuarios.php">Registrate</a></p>
     </form>
 </body>
 </html>
