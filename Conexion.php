@@ -29,5 +29,16 @@
                 return false; // Si las credenciales son incorrectas devuelve false
             }
         }
+
+        public function register($correoUsuario, $passUsuario, $rol) {
+            $sql = "INSERT INTO usuarios (correoUsuario, passUsuario, ID_Rol) VALUES (:correoUsuario, :passUsuario, :rol)";
+            $consulta = $this->prepare($sql);
+            $consulta->bindParam(':correoUsuario', $correoUsuario);
+            $consulta->bindParam(':passUsuario', $passUsuario);
+            $consulta->bindParam(':rol', $rol);
+            $consulta->execute();
+            
+            return $consulta->rowCount() > 0;
+        }
     }
 ?>
