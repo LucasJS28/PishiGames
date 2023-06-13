@@ -1,7 +1,7 @@
 <?php
-     require_once('Conexion.php');
-    
-     if (isset($_POST['correoUsuario']) && isset($_POST['passUsuario'])) {
+    require_once('Conexion.php');
+    session_start();
+    if (isset($_POST['correoUsuario']) && isset($_POST['passUsuario'])) {
          $correoUsuario = $_POST['correoUsuario'];
          $passUsuario = $_POST['passUsuario'];
          
@@ -11,13 +11,16 @@
          if ($idRol !== false) {
              switch ($idRol) {
                  case 1:
-                     header("Location: pagina1.php");
+                     header("Location: panelAdministrador.php");
+                     $_SESSION["Puesto"]="Administrador";
                      break;
                  case 2:
-                     header("Location: pagina2.php");
+                     header("Location: panelTrabajador.php");
+                     $_SESSION["Puesto"]="Trabajador";
                      break;
                  case 3:
-                     header("Location: pagina3.php");
+                     header("Location: panelJefe.php");
+                     $_SESSION["Puesto"]="Jefe";
                      break;
                  default:
                      echo "ID_Rol no válido.";
