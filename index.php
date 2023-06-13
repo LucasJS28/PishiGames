@@ -23,7 +23,6 @@
                      $_SESSION["Puesto"]="Jefe";
                      break;
                  default:
-                     echo "ID_Rol no válido.";
                      break;
              }
              exit;

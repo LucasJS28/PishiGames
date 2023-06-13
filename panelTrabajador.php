@@ -6,7 +6,7 @@ if (!isset($_SESSION["Puesto"])) {
 }
 $permiso = $_SESSION["Puesto"];
 if ($permiso !== "Trabajador") {
-    header("Location: index.php.php");
+    header("Location: index.php");
     exit();
 }
 
