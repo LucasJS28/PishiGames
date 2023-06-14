@@ -22,6 +22,10 @@
                      header("Location: panelJefe.php");
                      $_SESSION["Puesto"]="Jefe";
                      break;
+                case 4:
+                    header("Location: tienda.php");
+                    $_SESSION["Puesto"]="Usuario";
+                    break;
                  default:
                      break;
              }

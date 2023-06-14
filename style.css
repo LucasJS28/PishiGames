@@ -1,0 +1,66 @@
+.listaJuegos {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Estilo para cada juego */
+.Juegos {
+    width: 300px;
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Estilo para la imagen del juego */
+.Juegos .imagen {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    margin: 10px auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Estilo para los títulos de los juegos */
+.Juegos .titulo {
+    margin-top: 0;
+}
+
+/* Estilo para las descripciones de los juegos */
+.Juegos .descripcion {
+    margin-bottom: 5px;
+}
+
+/* Estilo para los precios de los juegos */
+.Juegos .precio {
+    margin-bottom: 5px;
+}
+
+/* Estilo para los enlaces */
+a {
+    text-decoration: none;
+    color: blue;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.Juegos .boton-agregar {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.Juegos .boton-agregar:hover {
+    background-color: #45a049;
+}
