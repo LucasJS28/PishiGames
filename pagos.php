@@ -1,13 +1,15 @@
-<?php 
-    session_start();
-    if (!isset($_SESSION["Puesto"])) {
-        header("Location: index.php");
-        exit();
-    } else {
-        echo "<script>alert('Recuerde Iniciar Sesion para Efectuar el Pago');</script>";
-        header("location: carrito.php");
-        exit();
-    }
+<?php
+session_start();
+
+if (!isset($_SESSION["Puesto"])) {
+    header("Location: index.php");
+    echo "<script>alert('Recuerde Iniciar Sesion para Efectuar el Pago');</script>";
+    exit();
+}
+
+if (isset($_GET['total'])) {
+    $total = $_GET['total'];
+}
 ?>
 
 <!DOCTYPE html>
@@ -18,6 +20,11 @@
     <title>Document</title>
 </head>
 <body>
-    
 </body>
 </html>
+
+
+
+
+
+

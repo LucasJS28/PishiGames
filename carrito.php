@@ -179,7 +179,7 @@ if (isset($_GET['id']) && isset($_GET['action'])) {
     <br>
     <br>
     <br>
-    <a class="button" href="pagos.php">Comprar Carrito</a>
+    <a class="button" href="pagos.php?total=<?php echo $total; ?>">Comprar Carrito</a>
     <a class="button" href="tienda.php">Volver a la tienda</a>
 </body>
 
