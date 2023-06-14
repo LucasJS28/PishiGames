@@ -20,5 +20,13 @@ class Productos {
 
         return $consulta->rowCount() > 0;
     }
+
+    public function mostrarPedidosxUsuario($idUsuario){
+        $sql = "SELECT * FROM pedidos WHERE idUsuario = :idUsuario";
+        $consulta = $this->conexion->prepare($sql);
+        $consulta->bindParam(':idUsuario', $idUsuario);
+        $consulta->execute();
+        return $consulta->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 ?>

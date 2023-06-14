@@ -5,6 +5,7 @@ require_once 'conexiones/crudProductos.php';
 
 // Crear una instancia de la clase Productos
 $productos = new Productos();
+$idUsuario = isset($_SESSION['idUsuario']) ? $_SESSION['idUsuario'] : null;
 
 // Obtener la lista de juegos agregados
 $listaJuegos = $productos->mostrarProductos();
@@ -55,7 +56,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['agregarCarrito'])) {
 </head>
 
 <body>
-    <a style="position:fixed;top:20px;right:20px" href="index.php">Iniciar Sesion</a>
+<?php if (!$idUsuario) : ?>
+        <a style="position:fixed;top:20px;right:20px" href="index.php">Iniciar Sesión</a>
+    <?php else : ?>
+        <a style="position:fixed;top:20px;right:20px" href="cerrarsesion.php">Cerrar Sesión</a>
+    <?php endif; ?>
     <a style="position:fixed;top:20px;right:190px" href="carrito.php">🛒 Carrito</a>
     <h2 style="text-align: center;">Bienvenido a la Tienda de PishiGames</h2>
     <h3 style="text-align: center;">Juegos disponibles</h3>

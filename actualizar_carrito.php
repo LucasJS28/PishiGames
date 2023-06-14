@@ -1,6 +1,7 @@
 <?php
 session_start(); // Iniciar sesión (si aún no está iniciada)
 
+// Procesar las acciones de quitar, aumentar y eliminar del carrito
 if (isset($_GET['id']) && isset($_GET['action'])) {
     $idJuego = $_GET['id'];
     $action = $_GET['action'];
@@ -26,8 +27,8 @@ if (isset($_GET['id']) && isset($_GET['action'])) {
             unset($_SESSION['carrito'][$idJuego]);
         }
     }
-}
 
-header('Location: carrito.php'); // Redirigir de vuelta a la página del carrito
-exit();
+    header('Location: carrito.php'); // Redirigir de vuelta a la página del carrito
+    exit();
+}
 ?>

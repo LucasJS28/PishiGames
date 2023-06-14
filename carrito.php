@@ -66,10 +66,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['comprar'])) {
         $idUsuario = $_SESSION['idUsuario'];
-        $fechaPedido = date("Y-m-d");
+        $fechaPedido = date("Y-m-d H:i:s");
         $estado = "Pendiente";
-        $detalles = ""; // Aquí deberías obtener los detalles de los productos del carrito
+        $detalles = ""; // Aquí se almacenarán los detalles de los productos del carrito
         $total = $_POST['total'];
+
+        // Construir la cadena de detalles con el título y la cantidad de cada producto
+        foreach ($carrito as $idJuego => $juego) {
+            $titulo = $juego['titulo'];
+            $cantidad = $juego['cantidad'];
+            $detalles .= "$titulo x$cantidad, ";
+        }
+
+        // Eliminar la coma y el espacio final de la cadena de detalles
+        $detalles = rtrim($detalles, ", ");
 
         // Insertar el pedido en la base de datos
         $query = "INSERT INTO Pedidos (idUsuario, fechaPedido, estado, detalles, total) VALUES ($idUsuario, '$fechaPedido', '$estado', '$detalles', $total)";
@@ -93,94 +103,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrito de compras</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-
-        h2 {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        th,
-        td {
-            padding: 10px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #f2f2f2;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-
-        tfoot {
-            font-weight: bold;
-        }
-
-        p {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        a.button {
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            text-align: center;
-            text-decoration: none;
-            font-size: 16px;
-            border-radius: 4px;
-            margin-right: 10px;
-            float: right;
-        }
-
-        a.button.add {
-            background-color: #2196F3;
-            width: 20px;
-            height: 20px;
-        }
-
-        a.button.remove {
-            background-color: #FF5722;
-            width: 20px;
-            height: 20px;
-        }
-
-        a.button.delete {
-            background-color: #F44336;
-        }
-
-        .product-image {
-            width: 100px;
-            height: auto;
-        }
-    </style>
+    <link rel="stylesheet" href="estilos/style.css">
 </head>
 
 <body>
-    <h2>Carrito de compras</h2>
-
+    <h2 class="heading">Carrito de compras</h2>
+    <?php if (isset($_SESSION['idUsuario'])) : ?>
+            <form method="POST" action="historialPedidos.php">
+                <a style="position:fixed;top:20px;right:20px" href="historialPedidos.php">Ir al Historial de Pedidos</a>
+            </form>
+        <?php else : ?>
+            <p class="centered-text"><a href="index.php">Debes iniciar sesión ver tu Historial de Compras</a></p>
+        <?php endif; ?>
     <?php if (!empty($carrito)) : ?>
-        <table>
+        <table class="table">
             <thead>
-                <tr>
-                    <th>Producto</th>
-                    <th>Imagen</th>
-                    <th>Descripción</th>
-                    <th>Precio</th>
-                    <th>Cantidad</th>
-                    <th>Subtotal</th>
-                    <th>Acciones</th>
+                <tr class="table-row">
+                    <th class="table-header">Producto</th>
+                    <th class="table-header">Imagen</th>
+                    <th class="table-header">Descripción</th>
+                    <th class="table-header">Precio</th>
+                    <th class="table-header">Cantidad</th>
+                    <th class="table-header">Subtotal</th>
+                    <th class="table-header">Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -190,27 +135,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $subtotal = $juego['precio'] * $juego['cantidad'];
                     $total += $subtotal;
                 ?>
-                    <tr>
-                        <td><?php echo $juego['titulo']; ?></td>
-                        <td><img class="product-image" src="<?php echo $juego['imagen']; ?>" alt="<?php echo $juego['titulo']; ?>"></td>
-                        <td><?php echo $juego['descripcion']; ?></td>
-                        <td><?php echo $juego['precio']; ?></td>
-                        <td>
+                    <tr class="table-row">
+                        <td class="table-cell"><?php echo $juego['titulo']; ?></td>
+                        <td class="table-cell"><img class="product-image" src="<?php echo $juego['imagen']; ?>" alt="<?php echo $juego['titulo']; ?>"></td>
+                        <td class="table-cell"><?php echo $juego['descripcion']; ?></td>
+                        <td class="table-cell"><?php echo $juego['precio']; ?></td>
+                        <td class="table-cell">
                             <a class="button remove" href="actualizar_carrito.php?id=<?php echo $idJuego; ?>&action=remove">-</a>
                             <?php echo $juego['cantidad']; ?>
                             <a class="button add" href="actualizar_carrito.php?id=<?php echo $idJuego; ?>&action=add">+</a>
                         </td>
-                        <td><?php echo $subtotal; ?></td>
-                        <td>
+                        <td class="table-cell"><?php echo $subtotal; ?></td>
+                        <td class="table-cell">
                             <a class="button delete" href="actualizar_carrito.php?id=<?php echo $idJuego; ?>&action=delete">Eliminar</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
             <tfoot>
-                <tr>
-                    <td colspan="6">Total</td>
-                    <td><?php echo $total; ?></td>
+                <tr class="table-row">
+                    <td class="table-cell" colspan="6">Total</td>
+                    <td class="table-cell"><?php echo $total; ?></td>
                 </tr>
             </tfoot>
         </table>
@@ -221,11 +166,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <button class="button" type="submit" name="comprar">Realizar compra</button>
             </form>
         <?php else : ?>
-            <p><a href="index.php">Debes iniciar sesión para realizar la compra.</a></p>
+            <p class="centered-text"><a href="index.php">Debes iniciar sesión para realizar la compra.</a></p>
         <?php endif; ?>
 
     <?php else : ?>
-        <p>No hay productos en el carrito.</p>
+        <p class="centered-text">No hay productos en el carrito.</p>
     <?php endif; ?>
 
     <a class="button" href="tienda.php">Volver a la tienda</a>
