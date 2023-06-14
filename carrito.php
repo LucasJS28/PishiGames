@@ -1,11 +1,10 @@
 <?php
 session_start(); // Iniciar sesión (si aún no está iniciada)
 
-require_once 'conexiones/crudProductos.php';
+require_once 'conexiones/conexion.php';
 
-// Crear una instancia de la clase Productos
-$productos = new Productos();
-
+// Crear una instancia de la clase de conexión existente
+$conexion = new Conexion();
 // Verificar si se ha agregado algún producto al carrito
 if (isset($_SESSION['carrito'])) {
     $carrito = $_SESSION['carrito'];
@@ -42,6 +41,48 @@ if (isset($_GET['id']) && isset($_GET['action'])) {
 
     header('Location: carrito.php'); // Redirigir de vuelta a la página del carrito
     exit();
+}
+
+// Verificar si se ha enviado el formulario de inserción de productos
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['titulo']) && isset($_POST['descripcion']) && isset($_POST['precio']) && isset($_POST['imagen'])) {
+        $titulo = $_POST['titulo'];
+        $descripcion = $_POST['descripcion'];
+        $precio = $_POST['precio'];
+        $imagen = $_POST['imagen'];
+
+        // Insertar el producto en la base de datos
+        $insertado = $productos->insertarProducto($titulo, $descripcion, $precio, $imagen);
+
+        if ($insertado) {
+            echo "Producto insertado correctamente.";
+        } else {
+            echo "Error al insertar el producto.";
+        }
+    }
+}
+
+// Verificar si se ha enviado el formulario de compra
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['comprar'])) {
+        $idUsuario = $_SESSION['idUsuario'];
+        $fechaPedido = date("Y-m-d");
+        $estado = "Pendiente";
+        $detalles = ""; // Aquí deberías obtener los detalles de los productos del carrito
+        $total = $_POST['total'];
+
+        // Insertar el pedido en la base de datos
+        $query = "INSERT INTO Pedidos (idUsuario, fechaPedido, estado, detalles, total) VALUES ($idUsuario, '$fechaPedido', '$estado', '$detalles', $total)";
+        $insertado = $conexion->query($query);
+
+        if ($insertado) {
+            echo "Pedido realizado correctamente.";
+            unset($_SESSION['carrito']); // Vaciar el carrito después de hacer la compra
+            $_SESSION['carrito'] = array();
+        } else {
+            echo "Error al realizar el pedido.";
+        }
+    }
 }
 ?>
 
@@ -173,13 +214,20 @@ if (isset($_GET['id']) && isset($_GET['action'])) {
                 </tr>
             </tfoot>
         </table>
+
+        <?php if (isset($_SESSION['idUsuario'])) : ?>
+            <form method="POST" action="carrito.php">
+                <input type="hidden" name="total" value="<?php echo $total; ?>">
+                <button class="button" type="submit" name="comprar">Realizar compra</button>
+            </form>
+        <?php else : ?>
+            <p><a href="index.php">Debes iniciar sesión para realizar la compra.</a></p>
+        <?php endif; ?>
+
     <?php else : ?>
-        <p>No se ha agregado ningún producto al carrito.</p>
+        <p>No hay productos en el carrito.</p>
     <?php endif; ?>
-    <br>
-    <br>
-    <br>
-    <a class="button" href="pagos.php?total=<?php echo $total; ?>">Comprar Carrito</a>
+
     <a class="button" href="tienda.php">Volver a la tienda</a>
 </body>
 
