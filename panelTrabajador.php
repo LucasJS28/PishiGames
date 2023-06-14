@@ -5,11 +5,10 @@ if (!isset($_SESSION["Puesto"])) {
     exit();
 }
 $permiso = $_SESSION["Puesto"];
-if ($permiso !== "Trabajador") {
+if ($permiso !== "Trabajador" && $permiso !== "Administrador") {
     header("Location: index.php");
     exit();
 }
-
 require_once 'conexiones/crudProductos.php';
 if (isset($_POST['titulo']) && isset($_POST['descripcion']) && isset($_POST['precio']) && isset($_POST['stock']) && isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
     $titulo = $_POST['titulo'];
@@ -42,7 +41,12 @@ if (isset($_POST['titulo']) && isset($_POST['descripcion']) && isset($_POST['pre
 </head>
 <body>
     <div>
-        Bienvenido: <?php echo $permiso;?> <a href="cerrarsesion.php">Cerrar Sesion</a>
+        Bienvenido: <?php echo $permiso;?> <a href="cerrarsesion.php">Cerrar Sesion</a><br>
+        <?php 
+            if ($permiso == "Administrador") {
+                echo "<a href='panelAdministrador.php'>Volver al Panel de Administracion</a>";
+            }
+        ?>
     </div>
     <h1>Agregar Productos</h1>
     <form action="panelTrabajador.php" method="post" enctype="multipart/form-data">

@@ -42,17 +42,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="estilos/style.css">
 </head>
 <body>
-    <h2>Iniciar sesión</h2>
-    <form action="index.php" method="POST">
+    <form action="index.php" method="POST" class="formu">
+        <h2 id="titulo">Iniciar sesión</h2>
         <label for="correoUsuario">Correo electrónico:</label>
         <input type="email" id="correoUsuario" name="correoUsuario" required><br><br>
         
         <label for="passUsuario">Contraseña:</label>
         <input type="password" id="passUsuario" name="passUsuario" required><br><br>
         <input type="submit" value="Iniciar sesión">
-        <p>No tienes Cuenta? <a href="registroUsuarios.php">Registrate</a></p>
+        <p>No tienes Cuenta? <a href="registroUsuarios.php">Registrate</a></p><br>
+        <a href="tienda.php">Volver a la Tienda</a>
     </form>
 </body>
 </html>

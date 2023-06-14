@@ -38,7 +38,8 @@ $usuarios = $conexion->obtenerUsuarios();
 </head>
 <body>
     <div>
-        Bienvenido: <?php echo $permiso;?> <a href="cerrarsesion.php">Cerrar Sesion</a>
+        Bienvenido: <?php echo $permiso;?> <a href="cerrarsesion.php">Cerrar Sesion</a><br>
+        <a href="panelTrabajador.php">Ir al Registro de Productos</a>
     </div>
 
     <h1>Registro de Trabajadores</h1>
@@ -61,7 +62,7 @@ $usuarios = $conexion->obtenerUsuarios();
     <br>
     <br>
     <h2>Usuarios Registrados</h2>
-    <table>
+    <table border="1">
         <tr>
             <th>Correo Electrónico</th>
             <th>Rol</th>

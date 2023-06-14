@@ -36,11 +36,17 @@
 
         }
 
-
-        public function actualizarProducto(){
-
-
+        public function actualizarProducto($id, $precio) {
+            try {
+                $sql = "UPDATE videojuego SET precio = :precio WHERE idJuego = :id";
+                $consulta = $this->conexion->prepare($sql);
+                $consulta->bindParam(':id', $id);
+                $consulta->bindParam(':precio', $precio);
+                $consulta->execute();
+                return true;
+            } catch (PDOException $e) {
+                return false;
+            }
         }
-
     }
 ?>
