@@ -20,7 +20,7 @@
 /* Estilo para la imagen del juego */
 .Juegos .imagen {
     width: 200px;
-    height: 200px;
+    height: 290px;
     object-fit: cover;
     margin: 10px auto;
     border: 1px solid #ccc;
