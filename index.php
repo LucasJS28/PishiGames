@@ -1,5 +1,5 @@
 <?php
-    require_once('Conexion.php');
+    require_once "conexiones/Conexion.php";
     session_start();
     if (isset($_POST['correoUsuario']) && isset($_POST['passUsuario'])) {
          $correoUsuario = $_POST['correoUsuario'];

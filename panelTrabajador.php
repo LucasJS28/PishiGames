@@ -10,7 +10,7 @@ if ($permiso !== "Trabajador") {
     exit();
 }
 
-require_once 'crudProductos.php';
+require_once 'conexiones/crudProductos.php';
 if (isset($_POST['titulo']) && isset($_POST['descripcion']) && isset($_POST['precio']) && isset($_POST['stock']) && isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
     $titulo = $_POST['titulo'];
     $descripcion = $_POST['descripcion'];

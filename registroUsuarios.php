@@ -1,5 +1,5 @@
 <?php 
-require_once "Conexion.php";
+require_once "conexiones/Conexion.php";
 
 if ($_POST) {
     $correo = $_POST["correo"];

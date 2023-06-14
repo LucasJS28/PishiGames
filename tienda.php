@@ -10,7 +10,7 @@ if ($permiso !== "Usuario") {
     exit();
 }
 
-require_once('crudProductos.php');
+require_once 'conexiones/crudProductos.php';
 // Crear una instancia de la clase Productos
 $productos = new Productos();
 
@@ -25,7 +25,7 @@ $listaJuegos = $productos->mostrarProductos();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="estilos/style.css">
 </head>
 
 <body>
