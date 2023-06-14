@@ -35,6 +35,13 @@
 
 
         }
+        public function obtenerProducto($id) {
+            $sql = "SELECT * FROM videojuego WHERE idJuego = :id";
+            $consulta = $this->conexion->prepare($sql);
+            $consulta->bindParam(':id', $id);
+            $consulta->execute();
+            return $consulta->fetch(PDO::FETCH_ASSOC);
+        }
 
         public function actualizarProducto($id, $precio) {
             try {
