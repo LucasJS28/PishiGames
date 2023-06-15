@@ -1,3 +1,58 @@
+/* Estilos de la Pagina Principal */
+body{
+    background-attachment: fixed;
+    margin:0;
+    background-size: 100%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)), url(../fondos/FondoPrincipal.jpg);
+    color:white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Estilos del Navegador */
+nav{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 1)), url(../fondos/FondoPrincipal.jpg);
+    height: 70px;
+    width: auto;
+    border-bottom: 1px solid rgb(126, 6, 6);
+}
+
+nav img{
+    width: 120px;
+    margin: 5px 0px 5px 10px;
+}
+/* Ajustando el nav */
+.lista{
+    width: 500px;
+    margin-right: 100px;
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-between;
+    float: right;
+}
+
+.lista li{
+    list-style: none;
+}
+.lista li a{
+    color: rgb(230, 28, 28);
+    text-decoration: none;
+    list-style: none;
+}
+
+.lista li a:hover{
+    padding: 5px;
+    color: rgb(255, 0, 0);
+    transform: scale(1.5);
+    transition: 1.2s;
+    border-radius: 30px;
+    border: 1px solid white;
+}
+.lista li a:not(hover){
+    transform: scale(1.0);
+    transition: 1.5s;
+}
+
+/* Estilo Juegos tienda principal */
 .listaJuegos {
     list-style: none;
     padding: 0;
@@ -7,42 +62,43 @@
     justify-content: center;
 }
 
-/* Estilo para cada juego */
+
 .Juegos {
     width: 300px;
     margin: 10px;
     padding: 10px;
     text-align: center;
-    border: 1px solid #ccc;
+    border: 1px solid #ff0000;
     border-radius: 5px;
 }
 
-/* Estilo para la imagen del juego */
+
 .Juegos .imagen {
     width: 200px;
     height: 290px;
     object-fit: cover;
-    margin: 10px auto;
-    border: 1px solid #ccc;
+    margin: 20px auto;
+    border: 1px solid #ff0000;
     border-radius: 5px;
+    position: relative;
 }
 
-/* Estilo para los títulos de los juegos */
+
 .Juegos .titulo {
     margin-top: 0;
+    font-style: italic;
 }
 
-/* Estilo para las descripciones de los juegos */
 .Juegos .descripcion {
     margin-bottom: 5px;
 }
 
-/* Estilo para los precios de los juegos */
+
 .Juegos .precio {
     margin-bottom: 5px;
 }
 
-/* Estilo para los enlaces */
+
 a {
     text-decoration: none;
     color: blue;
@@ -65,23 +121,8 @@ a:hover {
     background-color: #45a049;
 }
 
-/* CSS de el Login */
-.formu{
-    width: 250px;
-    margin: 0 auto;
-}
-
-.formu #titulo{
-    color: red;
-    text-align: center;
-}
-
 body {
     font-family: Arial, sans-serif;
-}
-
-.welcome {
-    margin-bottom: 20px;
 }
 
 h2 {
@@ -97,6 +138,23 @@ label {
     margin-bottom: 5px;
 }
 
+.descripcion{
+    font-style: normal;
+    font-size: 15px;
+    color: antiquewhite;
+    height: 120px;
+    width: 100%;
+    
+}
+.titulo{
+    padding-top: 10px;
+    color: #ff0000;
+    border-bottom: 1px solid red;
+}
+.precio{
+    color:yellow;
+    padding-bottom: 10px;  
+}
 input[type="text"],
 select {
     margin-bottom: 10px;
@@ -105,12 +163,13 @@ select {
 
 input[type="submit"] {
     padding: 5px 10px;
-    background-color: #4CAF50;
+    background-color: #c70000;
     color: white;
     border: none;
     cursor: pointer;
 }
 
+/* Estilos del carro */
 img {
     margin-top: 20px;
 }
@@ -125,37 +184,56 @@ img {
 }
 
 .table {
+    background-color: rgb(97, 5, 5);
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+    border: 5px solid red;
+    width: 1500px;
+    margin: 0 auto;
+    margin-bottom: 50px;
+    margin-top: 50px;
 }
 
-.table-header,
-.table-cell {
+.table-header,.table-cell {
     padding: 10px;
     text-align: left;
 }
 
 .table-header {
-    background-color: #f2f2f2;
+    background-color: #b40000;
+    border-right: 3px solid rgb(255, 0, 0);
 }
 
 .table-row:nth-child(even) {
-    background-color: #f9f9f9;
+    background-color: #ffee00;
 }
 
 .table-footer {
     font-weight: bold;
 }
 
-.centered-text {
-    text-align: center;
-    margin-top: 20px;
+.table-cell{
+    border: 3px solid rgb(255, 0, 0);
 }
 
+.centered-text {
+    text-align: center;
+    margin-top: 50px;
+    padding: 20px;
+    width: 500px;
+    margin: 0 auto;
+    border: 2px solid red;
+    border-radius: 30px;
+}
+.centered-text a {
+    color: yellow;
+}
+/* Botones de compra y volver a tienda en el carro */
 .button {
     padding: 10px 20px;
-    background-color: #4CAF50;
+    background-color: rgb(165, 3, 3);
+    border: 3px solid rgb(255, 0, 0);
     color: white;
     text-align: center;
     text-decoration: none;
@@ -165,6 +243,7 @@ img {
     float: right;
 }
 
+/* Botones de sumar cantidad o restar */
 .button.add {
     background-color: #2196F3;
     width: 20px;
@@ -185,3 +264,19 @@ img {
     width: 100px;
     height: auto;
 }
+
+/* Estilo boton de ir al historial de pedidos */
+.HistorialPedidos{
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    margin-top: -50px;
+    background-color: #cf2222;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 4px;
+    margin-right: 10px;
+    float: right;
+}
+

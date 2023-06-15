@@ -1,6 +1,6 @@
 <?php
-session_start(); // Iniciar sesión (si aún no está iniciada)
-
+session_start();
+include 'nav.php';  
 require_once 'conexiones/conexion.php';
 
 // Crear una instancia de la clase de conexión existente
@@ -107,13 +107,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
-    <h2 class="heading">Carrito de compras</h2>
-    <?php if (isset($_SESSION['idUsuario'])) : ?>
+    <h2 class="heading">Carrito de compras</h2><?php if (isset($_SESSION['idUsuario'])) : ?>
             <form method="POST" action="historialPedidos.php">
-                <a style="position:fixed;top:20px;right:20px" href="historialPedidos.php">Ir al Historial de Pedidos</a>
+                <a class="HistorialPedidos"  href="historialPedidos.php">Ir al Historial de Pedidos</a>
             </form>
         <?php else : ?>
-            <p class="centered-text"><a href="index.php">Debes iniciar sesión ver tu Historial de Compras</a></p>
+           <style>.HistorialPedidos{display: none; }</style>
         <?php endif; ?>
     <?php if (!empty($carrito)) : ?>
         <table class="table">

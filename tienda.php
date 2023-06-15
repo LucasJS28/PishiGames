@@ -1,6 +1,6 @@
 <?php
-session_start(); // Iniciar sesión (si aún no está iniciada)
-
+session_start();
+include 'nav.php';  
 require_once 'conexiones/crudProductos.php';
 
 // Crear una instancia de la clase Productos
@@ -56,25 +56,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['agregarCarrito'])) {
 </head>
 
 <body>
-    <?php if (!$idUsuario) : ?>
-        <a style="position:fixed;top:20px;right:20px" href="index.php">Iniciar Sesión</a>
-    <?php else : ?>
-        <a style="position:fixed;top:20px;right:20px" href="cerrarsesion.php">Cerrar Sesión</a>
-    <?php endif; ?>
-    <a style="position:fixed;top:20px;right:190px" href="carrito.php">🛒 Carrito</a>
     <h2 style="text-align: center;">Bienvenido a la Tienda de PishiGames</h2>
     <h3 style="text-align: center;">Juegos disponibles</h3>
     <ul class="listaJuegos">
         <?php foreach ($listaJuegos as $juego) : ?>
             <li class="Juegos">
-                <h4 class="titulo"><?php echo $juego['titulo']; ?></h4>
-                <p class="descripcion"><?php echo $juego['descripcion']; ?></p>
-                <img class="imagen" src="<?php echo $juego['imagen']; ?>" alt="Imagen del juego">
-                <p class="precio">Precio: <?php echo $juego['precio']; ?></p>
-                <form action="" method="post">
-                    <input type="hidden" name="idJuego" value="<?php echo $juego['idJuego']; ?>">
-                    <input type="submit" name="agregarCarrito" value="Agregar al Carrito">
-                </form>
+                <div class="juego-container">
+                    <h4 class="titulo"><?php echo $juego['titulo']; ?></h4>
+                    <p class="descripcion"><?php echo $juego['descripcion']; ?></p>
+                    <img class="imagen" src="<?php echo $juego['imagen']; ?>" alt="Imagen del juego">
+                    <p class="precio">Precio: <?php echo $juego['precio']; ?></p>
+                    <form action="" method="post">
+                        <input type="hidden" name="idJuego" value="<?php echo $juego['idJuego']; ?>">
+                        <input type="submit" name="agregarCarrito" value="Agregar al Carrito">
+                    </form>
+                </div>
             </li>
         <?php endforeach; ?>
     </ul>

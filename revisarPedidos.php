@@ -3,7 +3,7 @@ session_start();
 require_once 'conexiones/pedidos.php';
 $pedidos = new Productos();
 $idUsuario = $_SESSION['idUsuario'];
-
+$todosLosPedidos = $pedidos->mostrarPedidos();
 if (!isset($_SESSION["Puesto"])) {
     header("Location: index.php");
     exit();
