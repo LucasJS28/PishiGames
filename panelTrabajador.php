@@ -46,7 +46,8 @@ if (isset($_POST['titulo']) && isset($_POST['descripcion']) && isset($_POST['pre
             if ($permiso == "Administrador") {
                 echo "<a href='panelAdministrador.php'>Volver al Panel de Administracion</a>";
             }
-        ?>
+        ?><br>
+        <a href="revisarPedidos.php">ver Pedidos</a>
     </div>
     <h1>Agregar Productos</h1>
     <form action="panelTrabajador.php" method="post" enctype="multipart/form-data">

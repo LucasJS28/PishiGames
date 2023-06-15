@@ -28,5 +28,32 @@ class Productos {
         $consulta->execute();
         return $consulta->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function mostrarPedidos(){
+        $sql = "SELECT * FROM pedidos";
+        $consulta = $this->conexion->prepare($sql);
+        $consulta->execute();
+        return $consulta->fetchAll(PDO::FETCH_ASSOC);
+
+    }
+
+    public function actualizarEstadoPedido($idPedido, $estado) {
+        $sql = "UPDATE pedidos SET estado = :estado WHERE idPedido = :idPedido";
+        $consulta = $this->conexion->prepare($sql);
+        $consulta->bindParam(':estado', $estado);
+        $consulta->bindParam(':idPedido', $idPedido);
+        $consulta->execute();
+    
+        return $consulta->rowCount() > 0;
+    }
+    
+    public function eliminarPedido($idPedido) {
+        $sql = "DELETE FROM pedidos WHERE idPedido = :idPedido";
+        $consulta = $this->conexion->prepare($sql);
+        $consulta->bindParam(':idPedido', $idPedido);
+        $consulta->execute();
+    
+        return $consulta->rowCount() > 0;
+    }
 }
 ?>

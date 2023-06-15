@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['agregarCarrito'])) {
 </head>
 
 <body>
-<?php if (!$idUsuario) : ?>
+    <?php if (!$idUsuario) : ?>
         <a style="position:fixed;top:20px;right:20px" href="index.php">Iniciar Sesión</a>
     <?php else : ?>
         <a style="position:fixed;top:20px;right:20px" href="cerrarsesion.php">Cerrar Sesión</a>
