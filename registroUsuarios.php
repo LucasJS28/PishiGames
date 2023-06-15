@@ -35,14 +35,15 @@ if ($_POST) {
 <body>
     <section>
         <h2>Registro de Usuarios</h2>
-        <p>Ya tienes Cuenta? <a href="index.php">!!Ir al inicio de Sesion!</a></p>
+        <p>¿Ya tienes cuenta? <a href="index.php">¡Ir al inicio de sesión!</a></p>
         <form action="registroUsuarios.php" method="POST" class="formu">
-            <input type="email" id="correo" name="correo" placeholder="Ingrese su Correo Electronico:" required><br>
-            <br><input type="password" name="contrasena" id="contrasena"  placeholder="Ingrese su contraseña:" required><br>
-            <br><input type="password" id="repecontra" name="repecontra" placeholder="Repita su Contraseña:" required><br>
+            <input type="email" id="correo" name="correo" placeholder="Ingrese su correo electrónico:" required><br>
+            <input type="password" name="contrasena" id="contrasena" placeholder="Ingrese su contraseña:" required><br>
+            <input type="password" id="repecontra" name="repecontra" placeholder="Repita su Contraseña:" required><br>
             <input type="hidden" name="rol" value="4">
-            <br><input type="checkbox" id="terminos" required><label for="terminos">Acepto los Terminos y Condiciones</label>
-            <br><br><input type="submit" id="iniciar" value="Registrate">
+            <input type="checkbox" id="terminos" required>
+            <label for="terminos">Acepto los Términos y Condiciones</label><br>
+            <input type="submit" id="iniciar" value="Regístrate">
         </form>
     </section>
     <article>

@@ -1,42 +1,49 @@
 * {
     box-sizing: border-box;
-}   
-/* Aca estan los estilos del Iniciar/Registrar */
-section{
+}
+
+section {
     width: 600px;
     height: auto;
     float: right;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 1)),url(fondo/fondologin.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 1)), url(fondo/fondologin.jpg);
     min-height: 867px;
 }
 
-section h2,p{
+section h2,
+p {
     padding-top: 20px;
     color: white;
-    text-align: center
+    text-align: center;
 }
-section a{
+
+section a {
     color: red;
 }
-section form input{
-    width: 230px;
+
+section form input {
+    width: 100%;
     height: 30px;
 }
+
 section form {
-    
     width: 400px;
     margin: 30px auto;
     text-align: center;
 }
-#terminos{
+
+#terminos {
+    display: inline-block;
+    margin-right: 5px;
     width: 20px;
 }
 
-section label{
+section label {
+    display: inline-block;
     color: white;
 }
 
-#iniciar{
+#iniciar {
     background-color: #FAD318;
     color: black;
     font-size: 15px;
@@ -44,27 +51,25 @@ section label{
     font-style: italic;
 }
 
-/* Estilos Titulo Principal Pagina Login/Register */
-article{
+article {
     width: auto;
     height: auto;
 }
 
-article h2{
+article h2 {
     margin-top: 20%;
     text-align: center;
     font-size: 40px;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 800;
 }
-/* Color de Fondo Login/Register/Recuperar */
-body{
+
+body {
     background-color: antiquewhite;
 }
 
-/* Media Query para Cambiar el tamaño del Section */
-@media (max-width:1390px){
-    section{
+@media (max-width: 1390px) {
+    section {
         min-height: 690px;
     }
 }
