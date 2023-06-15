@@ -3,7 +3,15 @@ session_start();
 require_once 'conexiones/pedidos.php';
 $pedidos = new Productos();
 $idUsuario = $_SESSION['idUsuario'];
-
+if (!isset($_SESSION["Puesto"])) {
+    header("Location: index.php");
+    exit();
+}
+$permiso = $_SESSION["Puesto"];
+if ($permiso !== "Trabajador" && $permiso !== "Administrador") {
+    header("Location: index.php");
+    exit();
+}
 // Obtener todos los pedidos
 $todosLosPedidos = $pedidos->mostrarPedidos();
 
@@ -73,6 +81,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </style>
 </head>
 <body>
+    <div>
+        Bienvenido: <?php echo $permiso;?> <a href="cerrarsesion.php">Cerrar Sesion</a><br>
+        <?php 
+            if ($permiso == "Administrador") {
+                echo "<a href='panelAdministrador.php'>Volver al Panel de Administracion</a>";
+            }
+        ?><br>
+        <a href="panelTrabajador.php">Volver al Añadir Productos</a>
+    </div>
     <h1>Listado de Pedidos</h1>
     <?php 
     if (count($todosLosPedidos) > 0): ?>
