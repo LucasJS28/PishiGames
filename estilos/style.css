@@ -70,6 +70,7 @@ nav img{
     text-align: center;
     border: 1px solid #ff0000;
     border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.7);
 }
 
 
@@ -206,7 +207,7 @@ img {
 }
 
 .table-row:nth-child(even) {
-    background-color: #ffee00;
+    background-color: #b31010;
 }
 
 .table-footer {

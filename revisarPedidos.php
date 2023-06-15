@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once 'conexiones/pedidos.php';
-$pedidos = new Productos();
+$pedidos = new Pedidos();
 $idUsuario = $_SESSION['idUsuario'];
 $todosLosPedidos = $pedidos->mostrarPedidos();
 if (!isset($_SESSION["Puesto"])) {

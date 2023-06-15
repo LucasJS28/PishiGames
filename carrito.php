@@ -1,10 +1,13 @@
 <?php
 session_start();
-include 'nav.php';  
+include 'nav.php';
 require_once 'conexiones/conexion.php';
+require_once 'conexiones/crudproductos.php';
+require_once 'conexiones/pedidos.php';
 
 // Crear una instancia de la clase de conexión existente
 $conexion = new Conexion();
+
 // Verificar si se ha agregado algún producto al carrito
 if (isset($_SESSION['carrito'])) {
     $carrito = $_SESSION['carrito'];
@@ -43,58 +46,62 @@ if (isset($_GET['id']) && isset($_GET['action'])) {
     exit();
 }
 
-// Verificar si se ha enviado el formulario de inserción de productos
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['titulo']) && isset($_POST['descripcion']) && isset($_POST['precio']) && isset($_POST['imagen'])) {
-        $titulo = $_POST['titulo'];
-        $descripcion = $_POST['descripcion'];
-        $precio = $_POST['precio'];
-        $imagen = $_POST['imagen'];
-
-        // Insertar el producto en la base de datos
-        $insertado = $productos->insertarProducto($titulo, $descripcion, $precio, $imagen);
-
-        if ($insertado) {
-            echo "Producto insertado correctamente.";
-        } else {
-            echo "Error al insertar el producto.";
-        }
-    }
-}
-
+// Crear una instancia de la clase Productos
+$productos = new Productos();
 // Verificar si se ha enviado el formulario de compra
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['comprar'])) {
-        $idUsuario = $_SESSION['idUsuario'];
-        $fechaPedido = date("Y-m-d H:i:s");
-        $estado = "Pendiente";
-        $detalles = ""; // Aquí se almacenarán los detalles de los productos del carrito
-        $total = $_POST['total'];
+        $suficienteStock = true; // Bandera para verificar si hay suficiente stock
 
-        // Construir la cadena de detalles con el título y la cantidad de cada producto
         foreach ($carrito as $idJuego => $juego) {
-            $titulo = $juego['titulo'];
             $cantidad = $juego['cantidad'];
-            $detalles .= "$titulo x$cantidad, ";
+            // Verificar si hay suficiente stock antes de restar el stock
+            if (!$productos->verificarStock($idJuego, $cantidad)) {
+                $suficienteStock = false;
+                echo "No hay suficiente stock disponible para el producto: " . $juego['titulo'] . "<br>";
+            }
         }
 
-        // Eliminar la coma y el espacio final de la cadena de detalles
-        $detalles = rtrim($detalles, ", ");
+        if ($suficienteStock) {
+            foreach ($carrito as $idJuego => $juego) {
+                $cantidad = $juego['cantidad'];
+                $productos->restarStock($idJuego, $cantidad);
+            }
 
-        // Insertar el pedido en la base de datos
-        $query = "INSERT INTO Pedidos (idUsuario, fechaPedido, estado, detalles, total) VALUES ($idUsuario, '$fechaPedido', '$estado', '$detalles', $total)";
-        $insertado = $conexion->query($query);
+            $idUsuario = $_SESSION['idUsuario'];
+            $fechaPedido = date("Y-m-d H:i:s");
+            $estado = "Pendiente";
+            $detalles = ""; // Aquí se almacenarán los detalles de los productos del carrito
+            $total = $_POST['total'];
 
-        if ($insertado) {
-            echo "Pedido realizado correctamente.";
-            unset($_SESSION['carrito']); // Vaciar el carrito después de hacer la compra
-            $_SESSION['carrito'] = array();
+            // Construir la cadena de detalles con el título y la cantidad de cada producto
+            foreach ($carrito as $idJuego => $juego) {
+                $titulo = $juego['titulo'];
+                $cantidad = $juego['cantidad'];
+                $detalles .= "$titulo x$cantidad, ";
+            }
+
+            // Eliminar la coma y el espacio final de la cadena de detalles
+            $detalles = rtrim($detalles, ", ");
+
+            // Insertar el pedido en la base de datos
+            $query = "INSERT INTO Pedidos (idUsuario, fechaPedido, estado, detalles, total) VALUES ($idUsuario, '$fechaPedido', '$estado', '$detalles', $total)";
+            $insertado = $conexion->query($query);
+
+            if ($insertado) {
+                echo "Pedido realizado correctamente.";
+                unset($_SESSION['carrito']); // Vaciar el carrito después de hacer la compra
+                $_SESSION['carrito'] = array();
+            } else {
+                echo "Error al realizar el pedido.";
+            }
         } else {
-            echo "Error al realizar el pedido.";
+            echo "No se pudo realizar el pedido debido a problemas de stock.";
         }
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

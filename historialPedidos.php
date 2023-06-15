@@ -1,3 +1,7 @@
+<?php 
+
+    include 'nav.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,13 +16,14 @@
     <h2 class="heading">Lista de Pedidos</h2>
 
     <?php
+    
     session_start();
     require_once 'conexiones/pedidos.php';
-    $productos = new Productos();
+    $pedido = new Pedidos();
     $idUsuario = $_SESSION['idUsuario'];
 
     // Llamar a la función mostrarPedidosxUsuario para obtener los pedidos del usuario
-    $pedidos = $productos->mostrarPedidosxUsuario($idUsuario);
+    $pedidos = $pedido->mostrarPedidosxUsuario($idUsuario);
 
     if (!empty($pedidos)) :
     ?>

@@ -1,7 +1,7 @@
 <?php 
 require_once 'conexion.php';
 
-class Productos {
+class Pedidos {
     private $conexion;
     
     public function __construct() {

@@ -55,5 +55,26 @@
                 return false;
             }
         }
+
+        public function restarStock($idJuego, $cantidad) {
+            $sql = "UPDATE videojuego SET stock = stock - :cantidad WHERE idJuego = :idJuego";
+            $consulta = $this->conexion->prepare($sql);
+            $consulta->bindParam(':cantidad', $cantidad);
+            $consulta->bindParam(':idJuego', $idJuego);
+            $consulta->execute();
+        
+            return $consulta->rowCount() > 0;
+        }
+
+        public function verificarStock($idJuego, $cantidad) {
+            $sql = "SELECT COUNT(*) FROM videojuego WHERE idJuego = :idJuego AND stock >= :cantidad";
+            $consulta = $this->conexion->prepare($sql);
+            $consulta->bindParam(':idJuego', $idJuego);
+            $consulta->bindParam(':cantidad', $cantidad);
+            $consulta->execute();
+            $resultado = $consulta->fetchColumn();
+        
+            return $resultado > 0;
+        }
     }
 ?>
