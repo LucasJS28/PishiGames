@@ -28,12 +28,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Obtener todos los pedidos actualizados
         $todosLosPedidos = $pedidos->mostrarPedidos();
     } elseif (isset($_POST['idPedidoCancelar'])) {
-        $idPedido = $_POST['idPedidoCancelar'];
+        $idPedidoCancelar = $_POST['idPedidoCancelar'];
         
         // Agrega una validación adicional antes de cancelar el pedido
-        if (isset($_POST['confirmacion']) && $_POST['confirmacion'] === 'si') {
+        if (isset($_POST['confirmacion_'.$idPedidoCancelar]) && $_POST['confirmacion_'.$idPedidoCancelar] === 'si') {
             // Eliminar el pedido
-            $pedidos->eliminarPedido($idPedido);
+            $pedidos->eliminarPedido($idPedidoCancelar);
             
             // Obtener todos los pedidos actualizados
             $todosLosPedidos = $pedidos->mostrarPedidos();
@@ -125,7 +125,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <td><?= $pedido['idUsuario'] ?></td>
                     <td><?= $pedido['fechaPedido'] ?></td>
                     <td>
-                        <form method="POST" action="">
+                        <form method="POST" action="revisarPedidos.php">
                             <input type="hidden" name="idPedido" value="<?= $pedido['idPedido'] ?>">
                             <select name="estado" class="status-select" onchange="this.form.submit()">
                                 <option value="Pendiente" <?= ($pedido['estado'] === 'Pendiente') ? 'selected' : '' ?>>Pendiente</option>
@@ -137,10 +137,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <td><?= $pedido['detalles'] ?></td>
                     <td><?= $pedido['total'] ?></td>
                     <td>
-                        <form method="POST" action="">
+                        <form method="POST" action="revisarPedidos.php">
                             <input type="hidden" name="idPedidoCancelar" value="<?= $pedido['idPedido'] ?>">
-                            <button type="submit" class="cancel-button" onclick="return confirmarEliminacion()">Cancelar</button>
-                            <input type="hidden" name="confirmacion" id="confirmacion" value="">
+                            <button type="submit" class="cancel-button" onclick="return confirmarEliminacion(<?= $pedido['idPedido'] ?>)">Cancelar</button>
+                            <input type="hidden" name="confirmacion_<?= $pedido['idPedido'] ?>" id="confirmacion_<?= $pedido['idPedido'] ?>" value="">
                         </form>
                     </td>
 
@@ -152,10 +152,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php endif; ?>
 </body>
 <script>
-    function confirmarEliminacion() {
+    function confirmarEliminacion(idPedido) {
         var respuesta = confirm("¿Estás seguro de que deseas cancelar este pedido?");
         if (respuesta) {
-            document.getElementById("confirmacion").value = "si";
+            document.getElementById("confirmacion_" + idPedido).value = "si";
             return true;
         } else {
             return false;

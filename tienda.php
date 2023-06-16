@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'nav.php';  
+include 'nav.php';
 require_once 'conexiones/crudProductos.php';
 
 // Crear una instancia de la clase Productos
@@ -56,11 +56,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['agregarCarrito'])) {
 </head>
 
 <body>
-    <h2 style="text-align: center;">Bienvenido a la Tienda de PishiGames</h2>
-    <h3 style="text-align: center;">Juegos disponibles</h3>
+    <section id="Bienvenida">
+        <h1 id="titulo">Pishi Games</h1>
+        <h3 id="subtitulo">!!!Estamos para Quedarnos!!! Autor: Lucas Jimenez Sepulveda</h3>
+    </section>
+    <div id="VideoPresentacion">
+        <video controls autoplay src="videos/videoPresentacion.mp4"></video>
+    </div>
+    <div id="contenedorBuscar">
+        <label for="buscar">Buscar Juego</label>
+        <input type="search" name="buscar" id="buscar" placeholder="Ingrese el Nombre del Juego a buscar">
+    </div>
     <ul class="listaJuegos">
         <?php foreach ($listaJuegos as $juego) : ?>
-            <li class="Juegos">
+            <li class="Juegos juego">
                 <div class="juego-container">
                     <h4 class="titulo"><?php echo $juego['titulo']; ?></h4>
                     <p class="descripcion"><?php echo $juego['descripcion']; ?></p>
@@ -75,5 +84,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['agregarCarrito'])) {
         <?php endforeach; ?>
     </ul>
 </body>
-
+<script src="scripts.js" defer></script>
 </html>

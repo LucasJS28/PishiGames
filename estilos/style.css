@@ -169,7 +169,51 @@ input[type="submit"] {
     border: none;
     cursor: pointer;
 }
+/* Estilos de los Titulos de la Pagina Principal */
+#Bienvenida{
+    height: 130px;
+    width: 60%;
+    margin: 50px auto;
+    border-radius:30px;
+    border: 5px solid rgb(255, 0, 0);
 
+}
+
+#titulo{
+    color: rgb(255, 0, 0);
+    text-align: center;
+    font-size: 40px;
+    font-style:oblique;
+}
+
+#subtitulo{
+    color: rgb(255, 255, 255);
+    text-align: center;
+    margin-top: -20px;
+    font-style:italic;
+}
+
+#Titulo2{
+    text-align: center;
+    color: crimson;
+    width: 400px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    border: 1px solid black;
+    border-radius: 30px;
+    padding: 5px;
+}
+
+#VideoPresentacion{
+    margin: 40px auto;
+    width: 900px;
+}
+#VideoPresentacion video{
+    margin: 0 auto;
+    width: 900px;
+    border-radius: 30px;
+    box-shadow: 4px 4px 9px #ee0505;
+}
 /* Estilos del carro */
 img {
     margin-top: 20px;
@@ -321,4 +365,19 @@ iframe{
     text-decoration: none;
     color: red;
     margin-left: 20px;
+}
+
+#buscar{
+    padding: 5px;
+    width: 400px;
+    border-radius: 5px;
+    border: 3px solid red;
+    background-color: black;
+    color: white;
+}
+
+#contenedorBuscar{
+    width: 100%;
+    height: 50px;
+    text-align: center;
 }

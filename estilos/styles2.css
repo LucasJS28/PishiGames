@@ -76,7 +76,7 @@ body {
     text-align: center;
     border: 5px solid white;
     opacity: 0;
-    animation: aparecer 2s ease-in-out;
+    animation: aparecer 5s ease-in-out;
 }
 
 .AlertaBuena{
@@ -91,7 +91,7 @@ body {
     text-align: center;
     border: 3px solid rgb(255, 255, 255);
     opacity: 0;
-    animation: aparecer 2s ease-in-out;
+    animation: aparecer 5s ease-in-out;
 }
 
 .AlertaMala:nth-child(2) {
