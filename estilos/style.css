@@ -376,8 +376,25 @@ iframe{
     color: white;
 }
 
+
+#buscar, label{
+    color: yellow;
+    font-size: 18px;
+    font-style: italic;
+}
+
 #contenedorBuscar{
     width: 100%;
     height: 50px;
+    margin-bottom: 20px;
     text-align: center;
+}
+
+/* Se encarga de la opacidad al no quedar stock */
+
+.sin-stock {
+    opacity: 0.8;
+    pointer-events: none;
+    filter: blur(1.2px);
+    border: 1px dashed #ccc;
 }

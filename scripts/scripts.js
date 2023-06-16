@@ -8,17 +8,20 @@ setTimeout(function() {
     }
 }, 10000);
 
+
 document.getElementById('buscar').addEventListener('input', function() {
     var input = this.value.toLowerCase();
     var juegos = document.getElementsByClassName('juego');
 
     for (var i = 0; i < juegos.length; i++) {
         var titulo = juegos[i].getElementsByClassName('titulo')[0].textContent.toLowerCase();
+        var descripcion = juegos[i].getElementsByClassName('descripcion')[0].textContent.toLowerCase();
 
-        if (titulo.includes(input)) {
+        if (titulo.includes(input) || descripcion.includes(input)) {
             juegos[i].style.display = 'block';
         } else {
             juegos[i].style.display = 'none';
         }
     }
 });
+

@@ -69,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['agregarCarrito'])) {
     </div>
     <ul class="listaJuegos">
         <?php foreach ($listaJuegos as $juego) : ?>
-            <li class="Juegos juego">
+            <li class="Juegos juego <?php echo ($juego['stock'] == 0) ? 'sin-stock' : ''; ?>">
                 <div class="juego-container">
                     <h4 class="titulo"><?php echo $juego['titulo']; ?></h4>
                     <p class="descripcion"><?php echo $juego['descripcion']; ?></p>
@@ -84,5 +84,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['agregarCarrito'])) {
         <?php endforeach; ?>
     </ul>
 </body>
-<script src="scripts.js" defer></script>
+<script src="scripts/scripts.js" defer></script>
+
 </html>
