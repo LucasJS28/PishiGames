@@ -12,12 +12,14 @@ if ($_POST) {
         $registroExitoso = $conexion->register($correo, $contrasena, $rol);
 
         if ($registroExitoso) {
-            echo "Registro exitoso";
+            echo "<div id='alerta' class='AlertaBuena'>Registro exitoso</div>";
         } else {
-            echo "Error al registrar el usuario";
+            echo "<div id='alerta' class='AlertaMala'>Error al registrar el usuario</div>";
+
         }
     } else {
-        echo "Ambas Contraseñas deben ser Identicas";
+        echo "<div id='alerta' class='AlertaMala'>Ambas Contraseñas deben ser Identicas.</div>";
+
     }
 }
 ?>

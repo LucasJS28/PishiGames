@@ -17,7 +17,6 @@ class Pedidos {
         $consulta->bindParam(':detalles', $detalles);
         $consulta->bindParam(':total', $total);
         $consulta->execute();
-
         return $consulta->rowCount() > 0;
     }
 

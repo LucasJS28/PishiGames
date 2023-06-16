@@ -17,7 +17,7 @@ $idUsuario = isset($_SESSION['idUsuario']) ? $_SESSION['idUsuario'] : null;
         <ul class="lista">
             <li><a href="tienda.php">Inicio</a></li>
             <li><a href="carrito.php">🛒 Carrito</a></li>
-            <li><a href="#">Contacto</a></li>
+            <li><a href="contactos.php">Contacto</a></li>
             <?php if (!$idUsuario) : ?>
                 <li><a href="index.php">Iniciar Sesion</a></li>
                 <li><a href="registroUsuarios.php">Registrarse</a></li>

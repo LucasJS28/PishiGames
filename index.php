@@ -39,7 +39,8 @@ if (isset($_POST['correoUsuario']) && isset($_POST['passUsuario'])) {
         }
         exit;
     } else {
-        echo "Credenciales incorrectas. Inténtalo nuevamente.";
+        echo "<div id='alerta' class='AlertaMala'>Credenciales incorrectas. Inténtalo nuevamente.</div>";
+
     }
 }
 ?>

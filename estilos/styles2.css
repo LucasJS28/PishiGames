@@ -1,12 +1,8 @@
-* {
-    box-sizing: border-box;
-}
-
 section {
     width: 600px;
     height: auto;
     float: right;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 1)), url(fondo/fondologin.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 1)), url(../fondos/fondologin.jpg);
     min-height: 867px;
 }
 
@@ -66,6 +62,54 @@ article h2 {
 
 body {
     background-color: antiquewhite;
+}
+
+.AlertaMala{
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ff0000;
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    border: 5px solid white;
+    opacity: 0;
+    animation: aparecer 2s ease-in-out;
+}
+
+.AlertaBuena{
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #006609;
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    border: 3px solid rgb(255, 255, 255);
+    opacity: 0;
+    animation: aparecer 2s ease-in-out;
+}
+
+.AlertaMala:nth-child(2) {
+    top: 35%; /* Ajusta el valor según sea necesario para colocarla encima de la primera alerta buena */
+}
+.AlertaBuena:nth-child(2) {
+    top: 35%; /* Ajusta el valor según sea necesario para colocarla encima de la primera alerta buena */
+}
+@keyframes aparecer {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
 }
 
 @media (max-width: 1390px) {

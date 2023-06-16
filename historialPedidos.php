@@ -1,5 +1,5 @@
 <?php 
-
+    session_start();
     include 'nav.php';
 ?>
 <!DOCTYPE html>
@@ -16,8 +16,6 @@
     <h2 class="heading">Lista de Pedidos</h2>
 
     <?php
-    
-    session_start();
     require_once 'conexiones/pedidos.php';
     $pedido = new Pedidos();
     $idUsuario = $_SESSION['idUsuario'];

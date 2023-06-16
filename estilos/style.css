@@ -232,7 +232,7 @@ img {
 }
 /* Botones de compra y volver a tienda en el carro */
 .button {
-    padding: 10px 20px;
+    padding: 10px 20px !important; 
     background-color: rgb(165, 3, 3);
     border: 3px solid rgb(255, 0, 0);
     color: white;
@@ -247,14 +247,14 @@ img {
 /* Botones de sumar cantidad o restar */
 .button.add {
     background-color: #2196F3;
-    width: 20px;
-    height: 20px;
+    width: 20px !important;
+    height: 20px !important;
 }
 
 .button.remove {
     background-color: #FF5722;
-    width: 20px;
-    height: 20px;
+    width: 20px !important;
+    height: 20px !important;
 }
 
 .button.delete {
@@ -281,3 +281,44 @@ img {
     float: right;
 }
 
+/* Estilos pagina Contacto */
+
+iframe{
+    margin: 0 auto;
+    border-radius: 30px;
+}
+
+.sectContacto{
+    text-align: center;
+}
+
+.sectContacto h2{
+    display: none;
+}
+
+.divContactos h2{
+    text-align: center;
+    margin-top: 50px;
+    padding-bottom: 20px;
+}
+
+.info{
+    width: 1000px;
+    height: 150px;
+    margin: 50px auto;
+    border: 1px solid #ffffff;
+    border-radius: 30px;
+    column-count: 2;
+    padding: 20px;
+}
+
+.info p{
+    font-size: 15px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+
+.info a{
+    text-decoration: none;
+    color: red;
+    margin-left: 20px;
+}

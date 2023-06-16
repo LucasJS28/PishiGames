@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Verificar si hay suficiente stock antes de restar el stock
             if (!$productos->verificarStock($idJuego, $cantidad)) {
                 $suficienteStock = false;
-                echo "No hay suficiente stock disponible para el producto: " . $juego['titulo'] . "<br>";
+                echo "<div id='alerta' class='AlertaMala'>No se pudo realizar el pedido del producto: " . $juego['titulo'] . " debido a problemas de stock.</div>";
             }
         }
 
@@ -89,14 +89,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $insertado = $conexion->query($query);
 
             if ($insertado) {
-                echo "Pedido realizado correctamente.";
+                echo "<div id='alerta' class='AlertaBuena'>Pedido realizado correctamente.</div>";
                 unset($_SESSION['carrito']); // Vaciar el carrito después de hacer la compra
                 $_SESSION['carrito'] = array();
             } else {
-                echo "Error al realizar el pedido.";
+                echo "<div id='alerta' class='AlertaMala'>Error al realizar el pedido.</div>";
             }
         } else {
-            echo "No se pudo realizar el pedido debido a problemas de stock.";
         }
     }
 }
@@ -111,6 +110,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrito de compras</title>
     <link rel="stylesheet" href="estilos/style.css">
+    <script src="scripts/scripts.js" defer></script>
+    <link rel="stylesheet" href="estilos/styles2.css">
+
 </head>
 
 <body>
