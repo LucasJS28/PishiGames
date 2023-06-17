@@ -194,3 +194,14 @@ p.no-pedidos {
     text-align: center;
     margin-top: 20px;
 }
+/* Estilisa la imagen del juego del panel trabajador */
+#imagen-preview{
+    margin: 0 auto;
+    border: 1px solid black;
+    width: 500px;
+}
+#pishiLogo{
+    width: 120px;
+    position: absolute;
+    left: 0;
+}

@@ -24,6 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['agregarCarrito'])) {
     // Verificar si el juego ya está en el carrito
     if (array_key_exists($idJuego, $carrito)) {
         $carrito[$idJuego]['cantidad']++; // Incrementar la cantidad si ya está en el carrito
+        echo "<div id='alerta' class='AlertaBuena'>Se añadió una nueva copia al Carro</div>";
     } else {
         // Obtener los detalles del producto según el ID
         $juego = $productos->obtenerProducto($idJuego);
@@ -37,11 +38,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['agregarCarrito'])) {
                 'precio' => $juego['precio'],
                 'cantidad' => 1
             );
+            echo "<div id='alerta' class='AlertaBuena'>Se añadió al Carrito</div>";
         }
     }
 
     // Guardar el carrito en la sesión
     $_SESSION['carrito'] = $carrito;
+    exit; // Detener la ejecución del resto del código para evitar recargar la página completa
 }
 ?>
 
@@ -51,8 +54,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['agregarCarrito'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Pishi Games</title>
     <link rel="stylesheet" href="estilos/style.css">
+    <script src="scripts/scripts.js" defer></script>
 </head>
 
 <body>
@@ -73,15 +77,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['agregarCarrito'])) {
                     <p class="descripcion"><?php echo $juego['descripcion']; ?></p>
                     <img class="imagen" src="<?php echo $juego['imagen']; ?>" alt="Imagen del juego">
                     <p class="precio">Precio: <?php echo $juego['precio']; ?></p>
-                    <form action="" method="post">
-                        <input type="hidden" name="idJuego" value="<?php echo $juego['idJuego']; ?>">
-                        <input type="submit" name="agregarCarrito" value="Agregar al Carrito">
-                    </form>
+                    <button class="agregar-carrito" data-id="<?php echo $juego['idJuego']; ?>">Agregar al Carrito</button>
                 </div>
             </li>
         <?php endforeach; ?>
     </ul>
+
+    <div id="alerta" class="Alerta"></div> <!-- Elemento para mostrar los mensajes -->
 </body>
-<script src="scripts/scripts.js" defer></script>
 
 </html>

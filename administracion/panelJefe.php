@@ -29,7 +29,6 @@ if ($_POST) {
         echo "<div id='alerta' class='AlertaMala'>Hubo un error al actualizar el precio.</div>";
     }
 } else {
-    // Set default values for the form
     if (!empty($listaProductos)) {
         $firstProduct = $listaProductos[0];
         $precioAnterior = $firstProduct['precio'];

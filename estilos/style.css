@@ -109,7 +109,7 @@ a:hover {
     text-decoration: underline;
 }
 
-.Juegos .boton-agregar {
+.Juegos .agregar-carrito {
     display: inline-block;
     padding: 8px 16px;
     background-color: #4CAF50;
@@ -118,7 +118,7 @@ a:hover {
     border-radius: 4px;
 }
 
-.Juegos .boton-agregar:hover {
+.Juegos .agregar-carrito:hover {
     background-color: #45a049;
 }
 
@@ -397,4 +397,60 @@ iframe{
     pointer-events: none;
     filter: blur(1.2px);
     border: 1px dashed #ccc;
+}
+
+
+
+.AlertaMala{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ff0000;
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    border: 5px solid white;
+    opacity: 0;
+    animation: aparecer 5s ease-in-out;
+}
+
+.AlertaBuena{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #006609;
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    border: 3px solid rgb(255, 255, 255);
+    opacity: 0;
+    animation: aparecer 5s ease-in-out;
+}
+
+.AlertaMala:nth-child(2) {
+    top: 35%; /* Ajusta el valor según sea necesario para colocarla encima de la primera alerta buena */
+}
+.AlertaBuena:nth-child(2) {
+    top: 35%; /* Ajusta el valor según sea necesario para colocarla encima de la primera alerta buena */
+}
+@keyframes aparecer {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@media (max-width: 1390px) {
+    section {
+        min-height: 690px;
+    }
 }

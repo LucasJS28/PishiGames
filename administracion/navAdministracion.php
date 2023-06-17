@@ -14,6 +14,7 @@
         if ($id_rol == "Administrador") {  
             echo '
                 <ul>
+                    <a href="#"><img id="pishiLogo" src="../iconos/iconpishi" alt=""></a>
                     <li><a href="panelAdministrador.php">Agregar trabajador</a></li>
                     <li><a href="panelTrabajador.php">Agregar producto</a></li>
                     <li><a href="../cerrarsesion.php">Cerrar Sesion</a></li>
@@ -22,6 +23,7 @@
         } elseif ($id_rol == "Trabajador") {  
             echo '
                 <ul>
+                <a href="#"><img id="pishiLogo" src="../iconos/iconpishi" alt=""></a>
                     <li><a href="panelTrabajador.php">Agregar producto</a></li>
                     <li><a href="revisarPedidos.php">Ver Pedidos</a></li>
                     <li><a href="../cerrarsesion.php">Cerrar Sesion</a></li>
@@ -30,6 +32,7 @@
         } elseif ($id_rol == "Jefe") {  
             echo '
                 <ul>
+                <a href="#"><img id="pishiLogo" src="../iconos/iconpishi" alt=""></a>
                     <li><a href="panelJefe.php">Ver Precios</a></li>
                     <li><a href="revisarPedidos.php">Ver Pedidos</a></li>
                     <li><a href="../cerrarsesion.php">Cerrar Sesion</a></li>
