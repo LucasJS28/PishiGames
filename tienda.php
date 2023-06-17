@@ -47,10 +47,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['agregarCarrito'])) {
     exit; // Detener la ejecución del resto del código para evitar recargar la página completa
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -58,13 +56,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['agregarCarrito'])) {
     <link rel="stylesheet" href="estilos/style.css">
     <script src="scripts/scripts.js" defer></script>
 </head>
-
 <body>
     <section id="Bienvenida">
         <h1 id="titulo">Pishi Games</h1>
         <h3 id="subtitulo">!!!Estamos para Quedarnos!!! Autor: Lucas Jimenez Sepulveda</h3>
     </section>
-
     <div id="contenedorBuscar">
         <label for="buscar">Buscar Juego</label>
         <input type="search" name="buscar" id="buscar" placeholder="Ingrese el Nombre del Juego a buscar">

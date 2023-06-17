@@ -55,6 +55,5 @@ class Pedidos {
         return $consulta->rowCount() > 0;
     }
 
-    
 }
 ?>
