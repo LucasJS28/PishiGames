@@ -1,0 +1,196 @@
+body{
+    background-attachment: fixed;
+    margin:0;
+    background-size: 100%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)), url(../fondos/fondoadmin.jpg);
+    color:white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar {
+    background-color: rgba(242, 242, 242, 0.671);
+    padding: 10px;
+}
+
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.navbar li {
+    margin-right: 20px;
+}
+
+.navbar li a {
+    text-decoration: none;
+    color: #111;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.navbar li a:hover {
+    background-color: #ccc;
+}
+
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: rgba(242, 242, 242, 0.671);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    color: black;
+  }
+  
+  .heading {
+    text-align: center;
+    color: #333333;
+  }
+  
+  form {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333333;
+  }
+  
+  input,
+  select {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 3px;
+  }
+  
+  input[type="submit"] {
+    background-color: #333333;
+    color: #ffffff;
+    cursor: pointer;
+  }
+  
+  .sub-heading {
+    color: #333333;
+  }
+  
+  .user-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .user-table th,
+  .user-table td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #cccccc;
+  } 
+
+  #roles{
+    color: rgb(0, 0, 0);
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+
+  .heading {
+    text-align: center;
+    color: #333333;
+  }
+  
+  .edit-form {
+    margin-bottom: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 10px;
+  }
+  
+  .form-label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333333;
+  }
+  
+  .form-input {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 3px;
+  }
+  
+  .submit-button {
+    background-color: #333333;
+    color: #ffffff;
+    cursor: pointer;
+  }
+  
+  .game-image {
+    display: block;
+    margin: 20px auto;
+    width: 300px;
+  }
+  
+  #imagen_juego{
+    border: 3px solid black;
+  }
+
+  .container1 {
+    max-width: 1300px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: rgba(242, 242, 242, 0.671);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    color: black;
+}
+
+.heading {
+    text-align: center;
+    color: #333333;
+}
+
+table.user-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table.user-table th,
+table.user-table td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #cccccc;
+}
+
+.status-select,
+.cancel-button {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.status-select {
+    width: 100%;
+    font-size: 14px;
+}
+
+.cancel-button {
+    background-color: #dc3545;
+    color: #fff;
+    cursor: pointer;
+}
+
+.cancel-button:hover {
+    background-color: #c82333;
+}
+
+p.no-pedidos {
+    text-align: center;
+    margin-top: 20px;
+}

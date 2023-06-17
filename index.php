@@ -19,15 +19,15 @@ if (isset($_POST['correoUsuario']) && isset($_POST['passUsuario'])) {
 
         switch ($idRol) {
             case 1:
-                header("Location: panelAdministrador.php");
+                header("Location: administracion/panelAdministrador.php");
                 $_SESSION["Puesto"] = "Administrador";
                 break;
             case 2:
-                header("Location: panelTrabajador.php");
+                header("Location: administracion/panelTrabajador.php");
                 $_SESSION["Puesto"] = "Trabajador";
                 break;
             case 3:
-                header("Location: panelJefe.php");
+                header("Location: administracion/panelJefe.php");
                 $_SESSION["Puesto"] = "Jefe";
                 break;
             case 4:
