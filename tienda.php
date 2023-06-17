@@ -1,7 +1,7 @@
 <?php
 session_start();
 include 'nav.php';
-require_once 'conexiones/crudProductos.php';
+require_once 'conexiones/Productos.php';
 
 // Crear una instancia de la clase Productos
 $productos = new Productos();
@@ -60,9 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['agregarCarrito'])) {
         <h1 id="titulo">Pishi Games</h1>
         <h3 id="subtitulo">!!!Estamos para Quedarnos!!! Autor: Lucas Jimenez Sepulveda</h3>
     </section>
-    <div id="VideoPresentacion">
-        <video controls autoplay src="videos/videoPresentacion.mp4"></video>
-    </div>
+
     <div id="contenedorBuscar">
         <label for="buscar">Buscar Juego</label>
         <input type="search" name="buscar" id="buscar" placeholder="Ingrese el Nombre del Juego a buscar">

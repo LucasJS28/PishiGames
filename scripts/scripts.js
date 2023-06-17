@@ -24,4 +24,3 @@ document.getElementById('buscar').addEventListener('input', function() {
         }
     }
 });
-

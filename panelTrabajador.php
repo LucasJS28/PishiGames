@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once 'conexiones/Productos.php';
 if (!isset($_SESSION["Puesto"])) {
     header("Location: index.php");
     exit();
@@ -9,7 +10,6 @@ if ($permiso !== "Trabajador" && $permiso !== "Administrador") {
     header("Location: index.php");
     exit();
 }
-require_once 'conexiones/crudProductos.php';
 if (isset($_POST['titulo']) && isset($_POST['descripcion']) && isset($_POST['precio']) && isset($_POST['stock']) && isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
     $titulo = $_POST['titulo'];
     $descripcion = $_POST['descripcion'];

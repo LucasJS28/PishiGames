@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'conexiones/crudProductos.php';
+require_once 'conexiones/Productos.php';
 
 if (!isset($_SESSION["Puesto"])) {
     header("Location: index.php");

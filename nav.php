@@ -1,8 +1,6 @@
 <?php  
-require_once 'conexiones/crudProductos.php';
+require_once 'conexiones/Productos.php';
 $idUsuario = isset($_SESSION['idUsuario']) ? $_SESSION['idUsuario'] : null;
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">

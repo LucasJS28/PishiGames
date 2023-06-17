@@ -2,12 +2,12 @@
 session_start();
 include 'nav.php';
 require_once 'conexiones/conexion.php';
-require_once 'conexiones/crudproductos.php';
+require_once 'conexiones/Productos.php';
 require_once 'conexiones/pedidos.php';
 
 // Crear una instancia de la clase de conexión existente
 $conexion = new Conexion();
-
+$productos = new Productos();
 // Verificar si se ha agregado algún producto al carrito
 if (isset($_SESSION['carrito'])) {
     $carrito = $_SESSION['carrito'];
@@ -48,6 +48,7 @@ if (isset($_GET['id']) && isset($_GET['action'])) {
 
 // Crear una instancia de la clase Productos
 $productos = new Productos();
+
 // Verificar si se ha enviado el formulario de compra
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['comprar'])) {
