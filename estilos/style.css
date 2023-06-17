@@ -15,7 +15,18 @@ nav{
     width: auto;
     border-bottom: 1px solid rgb(126, 6, 6);
 }
+.agregar-carrito {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+}
 
+.agregar-carrito:hover {
+    background-color: #45a049;
+}
 nav img{
     width: 120px;
     margin: 5px 0px 5px 10px;
@@ -109,18 +120,6 @@ a:hover {
     text-decoration: underline;
 }
 
-.Juegos .agregar-carrito {
-    display: inline-block;
-    padding: 8px 16px;
-    background-color: #4CAF50;
-    color: white;
-    text-decoration: none;
-    border-radius: 4px;
-}
-
-.Juegos .agregar-carrito:hover {
-    background-color: #45a049;
-}
 
 body {
     font-family: Arial, sans-serif;
@@ -399,9 +398,15 @@ iframe{
     border: 1px dashed #ccc;
 }
 
+.boletaAlerta{
+    text-decoration: none;
+    color: yellow;
+    font-size: 16px;
+    font-weight: 600;
+}
 
 
-.AlertaMala{
+.AlertaMala {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -413,10 +418,10 @@ iframe{
     text-align: center;
     border: 5px solid white;
     opacity: 0;
-    animation: aparecer 5s ease-in-out;
+    animation: aparecer 2s ease-in-out; /* Ajusta la duración de la animación de aparición */
 }
 
-.AlertaBuena{
+.AlertaBuena {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -428,7 +433,7 @@ iframe{
     text-align: center;
     border: 3px solid rgb(255, 255, 255);
     opacity: 0;
-    animation: aparecer 5s ease-in-out;
+    animation: aparecer 2s ease-in-out; /* Ajusta la duración de la animación de aparición */
 }
 
 .AlertaMala:nth-child(2) {
@@ -437,12 +442,16 @@ iframe{
 .AlertaBuena:nth-child(2) {
     top: 35%; /* Ajusta el valor según sea necesario para colocarla encima de la primera alerta buena */
 }
+
 @keyframes aparecer {
     0% {
         opacity: 0;
     }
-    50% {
-        opacity: 1;
+     20% {
+        opacity: 1; /* La alerta aparece rápidamente */
+    }
+    80% {
+        opacity: 1; /* La alerta permanece visible durante 80% de la duración total */
     }
     100% {
         opacity: 0;

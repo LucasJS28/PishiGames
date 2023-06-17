@@ -75,36 +75,44 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $detalles = ""; // Aquí se almacenarán los detalles de los productos del carrito
             $total = $_POST['total'];
 
-            // Construir la cadena de detalles con el título y la cantidad de cada producto
+            // Construir la cadena de detalles de los productos
             foreach ($carrito as $idJuego => $juego) {
                 $titulo = $juego['titulo'];
                 $cantidad = $juego['cantidad'];
-                $detalles .= "$titulo x$cantidad, ";
+                $subtotal = $juego['precio'] * $cantidad;
+
+                $detalles .= "$titulo x  $cantidad ,";
             }
 
-            // Eliminar la coma y el espacio final de la cadena de detalles
-            $detalles = rtrim($detalles, ", ");
-
+            // Crear una instancia de la clase Pedidos
+            $pedidos = new Pedidos();
             // Insertar el pedido en la base de datos
-            $query = "INSERT INTO Pedidos (idUsuario, fechaPedido, estado, detalles, total) VALUES ($idUsuario, '$fechaPedido', '$estado', '$detalles', $total)";
-            $insertado = $conexion->query($query);
-
+            $insertado = $pedidos->realizarPedido($idUsuario, $fechaPedido, $estado, $detalles, $total);
+            $idPedido = $pedidos->obtenerUltimoIdPedido();
             if ($insertado) {
-                echo "<div id='alerta' class='AlertaBuena'>Pedido realizado correctamente.</div>";
-                unset($_SESSION['carrito']); // Vaciar el carrito después de hacer la compra
-                $_SESSION['carrito'] = array();
+                unset($_SESSION['carrito']);
+
+                $_SESSION['pedido'] = array(
+                    'idPedido' => $idPedido,
+                    'fechaPedido' => $fechaPedido,
+                    'estado' => $estado,
+                    'detalles' => $detalles,
+                    'total' => $total
+                );
+
+                $boletaURL = 'generar_boleta.php';
+
+                echo "<div id='alerta' class='AlertaBuena'>El Pedido se Realizó Correctamente. <a class='boletaAlerta'  href='$boletaURL'>Descargar Boleta</a></div>";
             } else {
                 echo "<div id='alerta' class='AlertaMala'>Error al realizar el pedido.</div>";
             }
-        } else {
         }
     }
 }
+
 ?>
-
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
     <meta charset="UTF-8">
@@ -118,12 +126,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <body>
     <h2 class="heading">Carrito de compras</h2><?php if (isset($_SESSION['idUsuario'])) : ?>
-            <form method="POST" action="historialPedidos.php">
-                <a class="HistorialPedidos"  href="historialPedidos.php">Ir al Historial de Pedidos</a>
-            </form>
-        <?php else : ?>
-           <style>.HistorialPedidos{display: none; }</style>
-        <?php endif; ?>
+        <form method="POST" action="historialPedidos.php">
+            <a class="HistorialPedidos" href="historialPedidos.php">Ir al Historial de Pedidos</a>
+        </form>
+    <?php else : ?>
+        <style>
+            .HistorialPedidos {
+                display: none;
+            }
+        </style>
+    <?php endif; ?>
     <?php if (!empty($carrito)) : ?>
         <table class="table">
             <thead>

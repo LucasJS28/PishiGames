@@ -55,5 +55,18 @@ class Pedidos {
         return $consulta->rowCount() > 0;
     }
 
+    public function obtenerUltimoIdPedido() {
+        $sql = "SELECT idPedido FROM pedidos ORDER BY idPedido DESC LIMIT 1";
+        $consulta = $this->conexion->prepare($sql);
+        $consulta->execute();
+    
+        $resultado = $consulta->fetch(PDO::FETCH_ASSOC);
+    
+        if ($resultado) {
+            return $resultado['idPedido'];
+        }
+    
+        return null;
+    }
 }
 ?>

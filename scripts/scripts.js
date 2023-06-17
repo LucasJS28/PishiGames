@@ -1,13 +1,15 @@
 setTimeout(function() {
     var alerta = document.getElementById('alerta');
     if (alerta) {
-        alerta.style.animation = 'desaparecer 5s forwards';
+        alerta.style.animation = 'aparecer 2s forwards'; // Ajusta la duración de la animación de aparición
         setTimeout(function() {
-            alerta.style.display = 'none';
-        }, 10000);
+            alerta.style.animation = 'desaparecer 5s forwards'; // Ajusta la duración de la animación de desaparición
+            setTimeout(function() {
+                alerta.style.display = 'none';
+            }, 5000); // Ajusta el tiempo de espera antes de ocultar el elemento
+        }, 200); // Ajusta el tiempo de espera antes de iniciar la animación de desaparición
     }
 }, 10000);
-
 
 document.getElementById('buscar').addEventListener('input', function() {
     var input = this.value.toLowerCase();
