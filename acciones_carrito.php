@@ -1,5 +1,4 @@
 <?php
-session_start(); // Iniciar sesión (si aún no está iniciada)
 require_once 'conexiones/conexion.php';
 require_once 'conexiones/Productos.php';
 require_once 'conexiones/pedidos.php';

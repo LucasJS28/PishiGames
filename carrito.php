@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include 'nav.php';
     include 'acciones_carrito.php'
 ?>

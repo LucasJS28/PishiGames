@@ -16,27 +16,41 @@ if ($permiso !== "Jefe") {
 }
 
 $precioAnterior = '';
+$stockAnterior = '';
 $imagenJuegoSrc = '';
 if ($_POST) {
     $idJuego = $_POST['juego'];
-    $nuevoPrecio = $_POST['precio_nuevo'];
 
-    $resultado = $productos->actualizarProducto($idJuego, $nuevoPrecio);
+    if (isset($_POST['actualizar_precio'])) {
+        $nuevoPrecio = $_POST['precio_nuevo'];
+        $resultadoPrecio = $productos->actualizarProducto($idJuego, $nuevoPrecio);
 
-    if ($resultado) {
-        echo "<div id='alerta' class='AlertaBuena'>El precio se actualizó correctamente</div>";
-    } else {
-        echo "<div id='alerta' class='AlertaMala'>Hubo un error al actualizar el precio.</div>";
+        if ($resultadoPrecio) {
+            echo "<div id='alerta' class='AlertaBuena'>El precio se actualizó correctamente</div>";
+        } else {
+            echo "<div id='alerta' class='AlertaMala'>Hubo un error al actualizar el precio.</div>";
+        }
+    }
+
+    if (isset($_POST['actualizar_stock'])) {
+        $nuevoStock = $_POST['stock_nuevo'];
+        $resultadoStock = $productos->actualizarStock($idJuego, $nuevoStock);
+
+        if ($resultadoStock) {
+            echo "<div id='alerta' class='AlertaBuena'>El stock se actualizó correctamente</div>";
+        } else {
+            echo "<div id='alerta' class='AlertaMala'>Hubo un error al actualizar el stock.</div>";
+        }
     }
 } else {
     if (!empty($listaProductos)) {
         $firstProduct = $listaProductos[0];
         $precioAnterior = $firstProduct['precio'];
+        $stockAnterior = $firstProduct['stock'];
         $imagenJuegoSrc = '../' . $firstProduct['imagen'];
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -54,43 +68,71 @@ if ($_POST) {
         <form method="POST" action="panelJefe.php" class="edit-form">
             <div class="form-group">
                 <label for="juego" class="form-label">Seleccione un juego:</label>
-                <select name="juego" id="juego" class="form-select">
+                <select name="juego" id="juego" class="form-select" onchange="fillForms()">
                     <?php
                     foreach ($listaProductos as $producto) {
                         $rutaImagen = "../" . $producto['imagen'];
-                        echo '<option value="' . $producto['idJuego'] . '" data-precio="' . $producto['precio'] . '" data-imagen="' . $rutaImagen . '">' . $producto['titulo'] . '</option>';
+                        echo '<option value="' . $producto['idJuego'] . '" data-precio="' . $producto['precio'] . '" data-stock="' . $producto['stock'] . '" data-imagen="' . $rutaImagen . '">' . $producto['titulo'] . '</option>';
                     }
                     ?>
                 </select>
             </div>
-            <div class="form-group">
-                <label for="precio_anterior" class="form-label">Precio anterior:</label>
-                <input type="text" name="precio_anterior" id="precio_anterior" class="form-input" value="<?php echo $precioAnterior; ?>" readonly>
+
+            <div class="section">
+                <h3 class="section-heading">Cambiar Stock</h3>
+                <div class="form-group">
+                    <label for="stock_anterior" class="form-label">Stock anterior:</label>
+                    <input type="text" name="stock_anterior" id="stock_anterior" class="form-input" value="" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="stock_nuevo" class="form-label">Nuevo Stock:</label>
+                    <input type="text" name="stock_nuevo" id="stock_nuevo" class="form-input">
+                </div>
+                <div class="form-group">
+                    <input type="submit" name="actualizar_stock" value="Actualizar Stock" class="submit-button">
+                </div>
             </div>
-            <div class="form-group">
-                <label for="precio_nuevo" class="form-label">Nuevo Precio:</label>
-                <input type="text" name="precio_nuevo" id="precio_nuevo" class="form-input">
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Actualizar" class="submit-button">
+
+            <div class="section">
+                <h3 class="section-heading">Cambiar Precio</h3>
+                <div class="form-group">
+                    <label for="precio_anterior" class="form-label">Precio anterior:</label>
+                    <input type="text" name="precio_anterior" id="precio_anterior" class="form-input" value="" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="precio_nuevo" class="form-label">Nuevo Precio:</label>
+                    <input type="text" name="precio_nuevo" id="precio_nuevo" class="form-input">
+                </div>
+                <div class="form-group">
+                    <input type="submit" name="actualizar_precio" value="Actualizar Precio" class="submit-button">
+                </div>
             </div>
         </form>
 
-        <img id="imagen_juego" src="<?php echo $imagenJuegoSrc; ?>" alt="Imagen del juego" class="game-image" hidden>
+        <div class="image-container">
+            <img id="imagen_juego" src="" alt="Imagen del juego" class="game-image" hidden>
+        </div>
+
+        <script>
+            function fillForms() {
+                var select = document.getElementById('juego');
+                var selectedOption = select.options[select.selectedIndex];
+                var stockAnteriorInput = document.getElementById('stock_anterior');
+                var precioAnteriorInput = document.getElementById('precio_anterior');
+                var imagenJuego = document.getElementById('imagen_juego');
+
+                stockAnteriorInput.value = selectedOption.dataset.stock;
+                precioAnteriorInput.value = selectedOption.dataset.precio;
+                imagenJuego.src = selectedOption.dataset.imagen;
+                imagenJuego.removeAttribute('hidden');
+            }
+
+            // Llenar los formularios al cargar la página con el primer juego
+            window.addEventListener('load', function() {
+                fillForms();
+            });
+        </script>
     </div>
-
-    <script>
-        document.getElementById('juego').addEventListener('change', function() {
-            var select = this;
-            var selectedOption = select.options[select.selectedIndex];
-            var precioAnteriorInput = document.getElementById('precio_anterior');
-            var imagenJuego = document.getElementById('imagen_juego');
-
-            precioAnteriorInput.value = selectedOption.dataset.precio;
-            imagenJuego.src = selectedOption.dataset.imagen;
-            imagenJuego.removeAttribute('hidden');
-        });
-    </script>
 </body>
 
 </html>

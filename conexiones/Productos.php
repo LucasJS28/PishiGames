@@ -75,5 +75,18 @@
         
             return $stock >= $cantidad;
         }
+
+        public function actualizarStock($id, $stock) {
+            try {
+                $sql = "UPDATE videojuego SET stock = :stock WHERE idJuego = :id";
+                $consulta = $this->conexion->prepare($sql);
+                $consulta->bindParam(':id', $id);
+                $consulta->bindParam(':stock', $stock);
+                $consulta->execute();
+                return true;
+            } catch (PDOException $e) {
+                return false;
+            }
+        }
     }
 ?>
