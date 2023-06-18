@@ -1,6 +1,9 @@
 <?php 
 session_start();
+require_once 'conexiones/Productos.php';
 include 'nav.php';
+$productos = new Productos();
+$listaJuegos  = $productos->mostrarProductosmasBaratos();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,5 +23,18 @@ include 'nav.php';
     <div id="VideoPresentacion">
         <video muted controls autoplay src="videos/videoPresentacion.mp4"></video>
     </div>
+    <h1 id="titulo" style="font-size:25px">!!! Nuestros Titulos mas Baratos !!!</h1>
+    <ul class="listaJuegos">
+        <?php foreach ($listaJuegos as $juego){ ?>
+            <li class="Juegos juego <?php echo ($juego['stock'] == 0) ? 'sin-stock' : ''; ?>">
+                <div class="juego-container">
+                    <h4 class="titulo"><?php echo $juego['titulo']; ?></h4>
+                    <p class="descripcion"><?php echo $juego['descripcion']; ?></p>
+                    <img class="imagen" src="<?php echo $juego['imagen']; ?>" alt="Imagen del juego">
+                    <p class="precio">Precio: <?php echo $juego['precio']; ?></p>
+                </div>
+            </li>
+        <?php } ?>
+    </ul>
 </body>
 </html>

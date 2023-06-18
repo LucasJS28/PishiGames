@@ -1,7 +1,6 @@
 <?php
-    session_start();
+    require_once 'acciones_carrito.php';
     include 'nav.php';
-    include 'acciones_carrito.php'
 ?>
 <!DOCTYPE html>
 <html>

@@ -88,5 +88,13 @@
                 return false;
             }
         }
+
+        public function mostrarProductosmasBaratos(){
+            $sql = "SELECT * FROM videojuego WHERE stock > 0 ORDER BY precio ASC LIMIT 3";
+            $consulta = $this->conexion->prepare($sql); 
+            $consulta->execute();
+            return $consulta->fetchAll(PDO::FETCH_ASSOC);
+        }
+        
     }
 ?>
