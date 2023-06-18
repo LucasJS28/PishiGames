@@ -23,25 +23,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['agregarCarrito'])) {
 
     // Verificar si el juego ya está en el carrito
     if (array_key_exists($idJuego, $carrito)) {
-        $carrito[$idJuego]['cantidad']++; // Incrementar la cantidad si ya está en el carrito
-        echo "<div id='alerta' class='AlertaBuena'>Se añadió una nueva copia al Carro</div>";
+        // Verificar si hay suficiente stock antes de incrementar la cantidad
+        if ($productos->verificarStock($idJuego, $carrito[$idJuego]['cantidad'] + 1)) {
+            $carrito[$idJuego]['cantidad']++; // Incrementar la cantidad si hay suficiente stock
+            echo "<div id='alerta' class='AlertaBuena'>Se añadió una nueva copia al Carro</div>";
+        } else {
+            echo "<div id='alerta' class='AlertaMala'>No hay suficiente stock</div>";
+        }
     } else {
         // Obtener los detalles del producto según el ID
         $juego = $productos->obtenerProducto($idJuego);
 
         // Verificar si se encontró el producto
         if ($juego) {
-            $carrito[$idJuego] = array(
-                'titulo' => $juego['titulo'],
-                'descripcion' => $juego['descripcion'],
-                'imagen' => $juego['imagen'],
-                'precio' => $juego['precio'],
-                'cantidad' => 1
-            );
-            echo "<div id='alerta' class='AlertaBuena'>Se añadió al Carrito</div>";
+            // Verificar si hay suficiente stock antes de agregar el producto al carrito
+            if ($productos->verificarStock($idJuego, 1)) {
+                $carrito[$idJuego] = array(
+                    'titulo' => $juego['titulo'],
+                    'descripcion' => $juego['descripcion'],
+                    'imagen' => $juego['imagen'],
+                    'precio' => $juego['precio'],
+                    'cantidad' => 1
+                );
+                echo "<div id='alerta' class='AlertaBuena'>Se añadió al Carrito</div>";
+            } else {
+                echo "<div id='alerta' class='AlertaMala'>No hay suficiente stock</div>";
+            }
         }
     }
-
     // Guardar el carrito en la sesión
     $_SESSION['carrito'] = $carrito;
     exit; // Detener la ejecución del resto del código para evitar recargar la página completa
