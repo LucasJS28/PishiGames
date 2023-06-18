@@ -67,14 +67,13 @@
         }
 
         public function verificarStock($idJuego, $cantidad) {
-            $sql = "SELECT COUNT(*) FROM videojuego WHERE idJuego = :idJuego AND stock >= :cantidad";
+            $sql = "SELECT stock FROM videojuego WHERE idJuego = :idJuego";
             $consulta = $this->conexion->prepare($sql);
             $consulta->bindParam(':idJuego', $idJuego);
-            $consulta->bindParam(':cantidad', $cantidad);
             $consulta->execute();
-            $resultado = $consulta->fetchColumn();
+            $stock = $consulta->fetchColumn();
         
-            return $resultado > 0;
+            return $stock >= $cantidad;
         }
     }
 ?>
