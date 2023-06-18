@@ -8,6 +8,7 @@ require_once 'conexiones/pedidos.php';
 // Crear una instancia de la clase de conexión existente
 $conexion = new Conexion();
 $productos = new Productos();
+$pedidos = new Pedidos();
 // Verificar si se ha agregado algún producto al carrito
 if (isset($_SESSION['carrito'])) {
     $carrito = $_SESSION['carrito'];
@@ -24,7 +25,6 @@ if (isset($_GET['id']) && isset($_GET['action'])) {
         // Restar 1 a la cantidad del producto en el carrito
         if (isset($_SESSION['carrito'][$idJuego])) {
             $_SESSION['carrito'][$idJuego]['cantidad'] -= 1;
-
             // Eliminar el producto si la cantidad es menor o igual a 0
             if ($_SESSION['carrito'][$idJuego]['cantidad'] <= 0) {
                 unset($_SESSION['carrito'][$idJuego]);
@@ -41,19 +41,13 @@ if (isset($_GET['id']) && isset($_GET['action'])) {
             unset($_SESSION['carrito'][$idJuego]);
         }
     }
-
     header('Location: carrito.php'); // Redirigir de vuelta a la página del carrito
     exit();
 }
-
-// Crear una instancia de la clase Productos
-$productos = new Productos();
-
 // Verificar si se ha enviado el formulario de compra
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['comprar'])) {
         $suficienteStock = true; // Bandera para verificar si hay suficiente stock
-
         foreach ($carrito as $idJuego => $juego) {
             $cantidad = $juego['cantidad'];
             // Verificar si hay suficiente stock antes de restar el stock
@@ -62,36 +56,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 echo "<div id='alerta' class='AlertaMala'>No se pudo realizar el pedido del producto: " . $juego['titulo'] . " debido a problemas de stock.</div>";
             }
         }
-
         if ($suficienteStock) {
             foreach ($carrito as $idJuego => $juego) {
                 $cantidad = $juego['cantidad'];
                 $productos->restarStock($idJuego, $cantidad);
             }
-
+            //Consigue Los datos para posteriormente insertarlos en la BDD
             $idUsuario = $_SESSION['idUsuario'];
             $fechaPedido = date("Y-m-d H:i:s");
             $estado = "Pendiente";
             $detalles = ""; // Aquí se almacenarán los detalles de los productos del carrito
             $total = $_POST['total'];
-
             // Construir la cadena de detalles de los productos
             foreach ($carrito as $idJuego => $juego) {
                 $titulo = $juego['titulo'];
                 $cantidad = $juego['cantidad'];
                 $subtotal = $juego['precio'] * $cantidad;
-
                 $detalles .= "$titulo x  $cantidad ,";
             }
-
-            // Crear una instancia de la clase Pedidos
-            $pedidos = new Pedidos();
             // Insertar el pedido en la base de datos
             $insertado = $pedidos->realizarPedido($idUsuario, $fechaPedido, $estado, $detalles, $total);
             $idPedido = $pedidos->obtenerUltimoIdPedido();
             if ($insertado) {
                 unset($_SESSION['carrito']);
-
                 $_SESSION['pedido'] = array(
                     'idPedido' => $idPedido,
                     'fechaPedido' => $fechaPedido,
@@ -99,10 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     'detalles' => $detalles,
                     'total' => $total
                 );
-
-                $boletaURL = 'generar_boleta.php';
-
-                echo "<div id='alerta' class='AlertaBuena'>El Pedido se Realizó Correctamente. <a class='boletaAlerta'  href='$boletaURL'>Descargar Boleta</a></div>";
+                echo "<div id='alerta' class='AlertaBuena'>El Pedido se Realizó Correctamente. <a class='boletaAlerta'  href='generar_boleta.php'>Descargar Boleta</a></div>";
             } else {
                 echo "<div id='alerta' class='AlertaMala'>Error al realizar el pedido.</div>";
             }
@@ -121,22 +105,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="estilos/style.css">
     <script src="scripts/scripts.js" defer></script>
     <link rel="stylesheet" href="estilos/styles2.css">
-
 </head>
 
 <body>
-    <h2 class="heading">Carrito de compras</h2><?php if (isset($_SESSION['idUsuario'])) : ?>
+    <h2 class="heading">Carrito de compras</h2>
+
+    <?php if (isset($_SESSION['idUsuario'])) { ?>
         <form method="POST" action="historialPedidos.php">
             <a class="HistorialPedidos" href="historialPedidos.php">Ir al Historial de Pedidos</a>
         </form>
-    <?php else : ?>
-        <style>
-            .HistorialPedidos {
-                display: none;
-            }
-        </style>
-    <?php endif; ?>
-    <?php if (!empty($carrito)) : ?>
+    <?php } ?>
+
+    <style>
+        <?php if (!isset($_SESSION['idUsuario'])) { ?>.HistorialPedidos {
+            display: none;
+        }
+
+        <?php } ?>
+    </style>
+
+    <?php if (!empty($carrito)) { ?>
         <table class="table">
             <thead>
                 <tr class="table-row">
@@ -152,7 +140,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <tbody>
                 <?php
                 $total = 0;
-                foreach ($carrito as $idJuego => $juego) :
+                foreach ($carrito as $idJuego => $juego) {
                     $subtotal = $juego['precio'] * $juego['cantidad'];
                     $total += $subtotal;
                 ?>
@@ -171,7 +159,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <a class="button delete" href="actualizar_carrito.php?id=<?php echo $idJuego; ?>&action=delete">Eliminar</a>
                         </td>
                     </tr>
-                <?php endforeach; ?>
+                <?php } ?>
             </tbody>
             <tfoot>
                 <tr class="table-row">
@@ -181,18 +169,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </tfoot>
         </table>
 
-        <?php if (isset($_SESSION['idUsuario'])) : ?>
+        <?php if (isset($_SESSION['idUsuario'])) { ?>
             <form method="POST" action="carrito.php">
                 <input type="hidden" name="total" value="<?php echo $total; ?>">
                 <button class="button" type="submit" name="comprar">Realizar compra</button>
             </form>
-        <?php else : ?>
+        <?php } else { ?>
             <p class="centered-text"><a href="index.php">Debes iniciar sesión para realizar la compra.</a></p>
-        <?php endif; ?>
+        <?php } ?>
 
-    <?php else : ?>
+    <?php } else { ?>
         <p class="centered-text">No hay productos en el carrito.</p>
-    <?php endif; ?>
+    <?php } ?>
 
     <a class="button" href="tienda.php">Volver a la tienda</a>
 </body>

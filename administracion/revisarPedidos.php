@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 
 
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <div class="container1">
         <h1 class="heading">Listado de Pedidos</h1>
-        <?php if (count($todosLosPedidos) > 0) : ?>
+        <?php if (count($todosLosPedidos) > 0) { ?>
             <table class="user-table">
                 <tr>
                     <th>ID Pedido</th>
@@ -70,36 +70,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <th>Acciones</th>
                 </tr>
 
-                <?php foreach ($todosLosPedidos as $pedido) : ?>
+                <?php foreach ($todosLosPedidos as $pedido) { ?>
                     <tr>
-                        <td><?= $pedido['idPedido'] ?></td>
-                        <td><?= $pedido['idUsuario'] ?></td>
-                        <td><?= $pedido['fechaPedido'] ?></td>
+                        <td><?php echo $pedido['idPedido']; ?></td>
+                        <td><?php echo $pedido['idUsuario']; ?></td>
+                        <td><?php echo $pedido['fechaPedido']; ?></td>
                         <td>
                             <form method="POST" action="revisarPedidos.php">
-                                <input type="hidden" name="idPedido" value="<?= $pedido['idPedido'] ?>">
+                                <input type="hidden" name="idPedido" value="<?php echo $pedido['idPedido']; ?>">
                                 <select name="estado" class="status-select" onchange="this.form.submit()">
-                                    <option value="Pendiente" <?= ($pedido['estado'] === 'Pendiente') ? 'selected' : '' ?>>Pendiente</option>
-                                    <option value="En proceso" <?= ($pedido['estado'] === 'En proceso') ? 'selected' : '' ?>>En proceso</option>
-                                    <option value="Completado" <?= ($pedido['estado'] === 'Completado') ? 'selected' : '' ?>>Completado</option>
+                                    <option value="Pendiente" <?php if ($pedido['estado'] === 'Pendiente') echo 'selected'; ?>>Pendiente</option>
+                                    <option value="En proceso" <?php if ($pedido['estado'] === 'En proceso') echo 'selected'; ?>>En proceso</option>
+                                    <option value="Completado" <?php if ($pedido['estado'] === 'Completado') echo 'selected'; ?>>Completado</option>
                                 </select>
                             </form>
                         </td>
-                        <td><?= $pedido['detalles'] ?></td>
-                        <td><?= $pedido['total'] ?></td>
+                        <td><?php echo $pedido['detalles']; ?></td>
+                        <td><?php echo $pedido['total']; ?></td>
                         <td>
                             <form method="POST" action="revisarPedidos.php">
-                                <input type="hidden" name="idPedidoCancelar" value="<?= $pedido['idPedido'] ?>">
-                                <button type="submit" class="cancel-button" onclick="return confirmarEliminacion(<?= $pedido['idPedido'] ?>)">Cancelar</button>
-                                <input type="hidden" name="confirmacion_<?= $pedido['idPedido'] ?>" id="confirmacion_<?= $pedido['idPedido'] ?>" value="">
+                                <input type="hidden" name="idPedidoCancelar" value="<?php echo $pedido['idPedido']; ?>">
+                                <button type="submit" class="cancel-button" onclick="return confirmarEliminacion(<?php echo $pedido['idPedido']; ?>)">Cancelar</button>
+                                <input type="hidden" name="confirmacion_<?php echo $pedido['idPedido']; ?>" id="confirmacion_<?php echo $pedido['idPedido']; ?>" value="">
                             </form>
                         </td>
                     </tr>
-                <?php endforeach; ?>
+                <?php } ?>
             </table>
-        <?php else : ?>
+        <?php } else { ?>
             <p class="no-pedidos">No se encontraron pedidos.</p>
-        <?php endif; ?>
+        <?php } ?>
     </div>
 
     <script>

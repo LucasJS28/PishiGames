@@ -1,6 +1,11 @@
 <?php 
     session_start();
     include 'nav.php';
+    require_once 'conexiones/pedidos.php';
+    $pedido = new Pedidos();
+    $idUsuario = $_SESSION['idUsuario'];
+    // Llamar a la función mostrarPedidosxUsuario para obtener los pedidos del usuario
+    $pedidos = $pedido->mostrarPedidosxUsuario($idUsuario);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,14 +21,7 @@
     <h2 class="heading">Lista de Pedidos</h2>
 
     <?php
-    require_once 'conexiones/pedidos.php';
-    $pedido = new Pedidos();
-    $idUsuario = $_SESSION['idUsuario'];
-
-    // Llamar a la función mostrarPedidosxUsuario para obtener los pedidos del usuario
-    $pedidos = $pedido->mostrarPedidosxUsuario($idUsuario);
-
-    if (!empty($pedidos)) :
+    if (!empty($pedidos)) {
     ?>
         <table class="table">
             <thead>
@@ -36,7 +34,7 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($pedidos as $pedido) : ?>
+                <?php foreach ($pedidos as $pedido) { ?>
                     <tr class="table-row">
                         <td class="table-cell"><?php echo $pedido['idPedido']; ?></td>
                         <td class="table-cell"><?php echo $pedido['fechaPedido']; ?></td>
@@ -44,12 +42,12 @@
                         <td class="table-cell"><?php echo $pedido['detalles']; ?></td>
                         <td class="table-cell"><?php echo $pedido['total']; ?></td>
                     </tr>
-                <?php endforeach; ?>
+                <?php } ?>
             </tbody>
         </table>
-    <?php else : ?>
+    <?php } else { ?>
         <p class="centered-text">No hay pedidos disponibles.</p>
-    <?php endif; ?>
+    <?php } ?>
 
     <a class="button" href="carrito.php">Volver al Carrito de Compras</a>
 </body>

@@ -27,7 +27,6 @@ if (isset($_GET['id']) && isset($_GET['action'])) {
             unset($_SESSION['carrito'][$idJuego]);
         }
     }
-
     header('Location: carrito.php'); // Redirigir de vuelta a la página del carrito
     exit();
 }

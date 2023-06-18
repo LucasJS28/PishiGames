@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['agregarCarrito'])) {
         <input type="search" name="buscar" id="buscar" placeholder="Ingrese el Nombre del Juego a buscar">
     </div>
     <ul class="listaJuegos">
-        <?php foreach ($listaJuegos as $juego) : ?>
+        <?php foreach ($listaJuegos as $juego){ ?>
             <li class="Juegos juego <?php echo ($juego['stock'] == 0) ? 'sin-stock' : ''; ?>">
                 <div class="juego-container">
                     <h4 class="titulo"><?php echo $juego['titulo']; ?></h4>
@@ -76,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['agregarCarrito'])) {
                     <button class="agregar-carrito" data-id="<?php echo $juego['idJuego']; ?>">Agregar al Carrito</button>
                 </div>
             </li>
-        <?php endforeach; ?>
+        <?php } ?>
     </ul>
 
     <div id="alerta" class="Alerta"></div> <!-- Elemento para mostrar los mensajes -->
