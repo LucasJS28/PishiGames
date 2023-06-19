@@ -1,6 +1,6 @@
 <?php
-    require_once 'acciones_carrito.php';
-    include 'nav.php';
+require_once 'acciones_carrito.php';
+include 'nav.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -10,7 +10,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrito de compras</title>
     <link rel="stylesheet" href="estilos/style.css">
-    <script src="scripts/scripts.js" defer></script>
     <link rel="stylesheet" href="estilos/styles2.css">
 </head>
 
@@ -27,6 +26,7 @@
         <?php if (!isset($_SESSION['idUsuario'])) { ?>.HistorialPedidos {
             display: none;
         }
+
         <?php } ?>
     </style>
 
@@ -45,7 +45,7 @@
             </thead>
             <tbody>
                 <?php
-                $total = 0;
+                $total = 0; // Agregar esta línea para inicializar $total
                 foreach ($carrito as $idJuego => $juego) {
                     $subtotal = $juego['precio'] * $juego['cantidad'];
                     $total += $subtotal;
@@ -76,10 +76,31 @@
         </table>
 
         <?php if (isset($_SESSION['idUsuario'])) { ?>
-            <form method="POST" action="carrito.php">
+            <form class="formulario-compra" method="POST" action="carrito.php">
                 <input type="hidden" name="total" value="<?php echo $total; ?>">
-                <button class="button" type="submit" name="comprar">Realizar compra</button>
+                <button id="realizar-compra" class="button" type="submit" name="comprar">Realizar compra</button>
             </form>
+            <div id="modal-overlay" class="modal-overlay"></div>
+            <div id="modal-content" class="formulario-popup">
+                <form class="formulario-compra" method="POST" action="carrito.php">
+                    <br>
+                    <h3>Formulario de Compra</h3>
+                    <label for="total">Total a Pagar</label>
+                    <input name="total" value="<?php echo $total; ?>">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombre" name="nombre" class="txtnombre" required>
+                    <label for="direccion">Numero de Tarjeta</label>
+                    <input type="text" id="tarjeta" name="tarjeta" class="txtTarjeta" required>
+                    <label for="ciudad">CVV</label>
+                    <input type="text" id="CVV" name="CVV" class="CVV" required>
+                    <label for="pais">Codigo Postal</label>
+                    <input type="text" id="cPostal" name="cPostal" class="cPostal" required>
+                    <button id="realizarr-compra" type="submit" name="comprar">Realizar compra</button>
+                    <button id="cancelar-compra" type="button">Cancelar compra</button>
+                    <br>
+                    <br>
+                </form>
+            </div>
         <?php } else { ?>
             <p class="centered-text"><a href="index.php">Debes iniciar sesión para realizar la compra.</a></p>
         <?php } ?>
@@ -89,6 +110,34 @@
     <?php } ?>
 
     <a class="button" href="tienda.php">Volver a la tienda</a>
+
+    <script>
+        // JavaScript para mostrar y ocultar el modal
+        document.addEventListener("DOMContentLoaded", function() {
+            var modalOverlay = document.getElementById("modal-overlay");
+            var modalContent = document.getElementById("modal-content");
+            var realizarCompraButton = document.getElementById("realizar-compra");
+            var cancelarCompraButton = document.getElementById("cancelar-compra");
+
+            realizarCompraButton.addEventListener("click", function(e) {
+                e.preventDefault();
+                modalOverlay.classList.add("active");
+                modalContent.classList.add("active");
+            });
+
+            cancelarCompraButton.addEventListener("click", function() {
+                modalOverlay.classList.remove("active");
+                modalContent.classList.remove("active");
+            });
+
+            modalOverlay.addEventListener("click", function() {
+                modalOverlay.classList.remove("active");
+                modalContent.classList.remove("active");
+            });
+        });
+    </script>
+
 </body>
 
 </html>
+

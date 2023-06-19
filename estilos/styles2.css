@@ -100,6 +100,68 @@ body {
 .AlertaBuena:nth-child(2) {
     top: 35%; /* Ajusta el valor según sea necesario para colocarla encima de la primera alerta buena */
 }
+
+
+/* Estilos Formulario de Compra */
+
+.formulario-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 30px;
+    max-width: 400px;
+    width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 9999;
+    border: 5px solid red;
+}
+
+.formulario-popup.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.formulario-compra {
+    background-color: #170C14;
+    color: red;
+    text-align: center;
+    border-radius: 30px;
+}
+
+.formulario-compra label {
+    color: red;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.formulario-compra input[type="text"] {
+    width: 70%;
+    padding: 5px;
+    margin-bottom: 10px;
+    border-radius: 3px;
+}
+
+.formulario-compra button#cancelar-compra {
+    background-color: #f44336;
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+}
+.formulario-compra button#realizarr-compra {
+    background-color: green;
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+
+}
+
+.centered-text {
+    text-align: center;
+}
+
 @keyframes aparecer {
     0% {
         opacity: 0;
