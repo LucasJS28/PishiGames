@@ -21,7 +21,7 @@ $listaJuegos  = $productos->mostrarProductosmasBaratos();
         <h3 id="subtitulo">!!!Estamos para Quedarnos!!! Autor: Lucas Jimenez Sepulveda</h3>
     </section>
     <div id="VideoPresentacion">
-        <video muted controls autoplay src="videos/videoPresentacion.mp4"></video>
+        <video muted controls autoplay loop src="videos/videoPresentacion.mp4"></video>
     </div>
     <h1 id="titulo" style="font-size:25px">!!! Nuestros Titulos mas Baratos !!!</h1>
     <ul class="listaJuegos">

@@ -14,7 +14,7 @@ if ($_POST) {
         if ($registroExitoso) {
             echo "<div id='alerta' class='AlertaBuena'>Registro exitoso</div>";
         } else {
-            echo "<div id='alerta' class='AlertaMala'>Error al registrar el usuario</div>";
+            echo "<div id='alerta' class='AlertaMala'>El correo esta siendo Usado por otro Usuario</div>";
 
         }
     } else {

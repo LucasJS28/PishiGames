@@ -205,11 +205,11 @@ input[type="submit"] {
 
 #VideoPresentacion{
     margin: 40px auto;
-    width: 900px;
+    width: 700px;
 }
 #VideoPresentacion video{
     margin: 0 auto;
-    width: 900px;
+    width: 700px;
     border-radius: 30px;
     box-shadow: 4px 4px 9px #ee0505;
 }
@@ -229,11 +229,10 @@ img {
 
 .table {
     background-color: rgb(97, 5, 5);
-    width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
     border: 5px solid red;
-    width: 1500px;
+    width: 70%;
     margin: 0 auto;
     margin-bottom: 50px;
     margin-top: 50px;
@@ -443,6 +442,21 @@ iframe{
 .AlertaBuena:nth-child(2) {
     top: 35%; /* Ajusta el valor según sea necesario para colocarla encima de la primera alerta buena */
 }
+
+.stock{
+    font-size: 14px;
+    float: right;
+    position: absolute;
+    color: rgb(255, 0, 0);
+}
+
+#titulosinStock{
+    text-align: center;
+    color: red;
+    font-size: 22px;
+    font-style: italic;
+}
+
 
 @keyframes aparecer {
     0% {

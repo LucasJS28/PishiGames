@@ -25,12 +25,17 @@
     
 
         public function mostrarProductos(){
-            $sql = "SELECT * FROM videojuego";
+            $sql = "SELECT * FROM videojuego WHERE stock >0";
             $consulta = $this->conexion->prepare($sql); 
             $consulta->execute();
             return $consulta->fetchAll(PDO::FETCH_ASSOC);
         }
-
+        public function mostrarProductosSinStock(){
+            $sql = "SELECT * FROM videojuego WHERE stock = 0";
+            $consulta = $this->conexion->prepare($sql); 
+            $consulta->execute();
+            return $consulta->fetchAll(PDO::FETCH_ASSOC);
+        }
         public function eliminarProducto(){
 
 
