@@ -51,6 +51,7 @@
     <link rel="stylesheet" href="../estilos/stylesAdm.css">
 </head>
 <body>
+    <!-- Llama la funcion que hace aparecer el Nav segun el Rol -->
     <div class="navbar">
         <?php mostrar_menu($_SESSION['Puesto']); ?>
     </div>

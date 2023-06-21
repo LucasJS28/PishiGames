@@ -4,15 +4,14 @@ include 'navAdministracion.php';
 require_once "../conexiones/pedidos.php";
 $pedidos = new Pedidos();
 
+/* Revisa que el Puesto sea segun los Permisos para entrar a la Pagina */
 $idUsuario = $_SESSION['idUsuario'];
 $todosLosPedidos = $pedidos->mostrarPedidos();
 if (!isset($_SESSION["Puesto"])) {
     header("Location:../index.php");
     exit();
 }
-
 $permiso = $_SESSION["Puesto"];
-
 if ($permiso !== "Trabajador" && $permiso !== "Administrador" && $permiso !== "Jefe") {
     header("Location:../index.php");
     exit();
@@ -23,15 +22,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['idPedido'])) {
         $idPedido = $_POST['idPedido'];
         $estado = $_POST['estado'];
-
         // Actualizar el estado del pedido
         $pedidos->actualizarEstadoPedido($idPedido, $estado);
-
         // Obtener todos los pedidos actualizados
         $todosLosPedidos = $pedidos->mostrarPedidos();
     } elseif (isset($_POST['idPedidoCancelar'])) {
         $idPedidoCancelar = $_POST['idPedidoCancelar'];
-        
         // Agrega una validación adicional antes de cancelar el pedido
         if (isset($_POST['confirmacion_'.$idPedidoCancelar]) && $_POST['confirmacion_'.$idPedidoCancelar] === 'si') {
             // Eliminar el pedido
@@ -43,8 +39,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -58,6 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <div class="container1">
         <h1 class="heading">Listado de Pedidos</h1>
+        <!-- Revisa si se realzaron encuentros en la base de datos para luego mostrarlos -->
         <?php if (count($todosLosPedidos) > 0) { ?>
             <table class="user-table">
                 <tr>
@@ -102,6 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php } ?>
     </div>
 
+    <!-- Crea un popup de confirmacion para Eliminar de la base de datos -->
     <script>
         function confirmarEliminacion(idPedido) {
             var respuesta = confirm("¿Estás seguro de que deseas cancelar este pedido?");

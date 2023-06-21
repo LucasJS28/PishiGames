@@ -1,38 +1,39 @@
 <?php
 session_start();
 include 'navAdministracion.php';
+require_once "../conexiones/Conexion.php";
+
+$conexion = new Conexion();
+$usuarios = $conexion->obtenerUsuarios();
+
+/* Verifica que exista un usuario logeado */
 if (!isset($_SESSION["Puesto"])) {
     header("Location:../index.php");
     exit();
 }
+
+/* Verifica que el Usuario sea un administrador en caso de no serlo lo reenvia al login */
 $permiso = $_SESSION["Puesto"];
 if ($permiso !== "Administrador") {
     header("Location:../index.php");
     exit();
 }
 
-require_once "../conexiones/Conexion.php";
-
+/* Realiza el Registro de Usuarios administradores jefes o trabajadores a la Base de Datos */
 if ($_POST) {
     $correo = $_POST["correo"];
     $contrasena = $_POST["contrasena"];
     $rol = $_POST["rol"];
-
-    $conexion = new Conexion();
     $registroExitoso = $conexion->register($correo, $contrasena, $rol);
-
     if ($registroExitoso) {
         echo "<div id='alerta' class='AlertaBuena'>Registro Realizado Correctamente</div>";
     } else {
         echo "<div id='alerta' class='AlertaMala'>Error al Realizar el Registro</div>";
     }
 }
-$conexion = new Conexion();
-$usuarios = $conexion->obtenerUsuarios();
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -74,6 +75,8 @@ $usuarios = $conexion->obtenerUsuarios();
           <td>
             <?php echo $usuario['correoUsuario']; ?>
           </td>
+
+          <!-- Transforma el ID_Rol en el Rol asignado para mayor entiendimiento del Usuario -->
           <td id="roles">
             <?php 
               if ($usuario['ID_Rol'] == "1") {

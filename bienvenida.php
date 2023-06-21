@@ -2,6 +2,7 @@
 session_start();
 require_once 'conexiones/Productos.php';
 include 'nav.php';
+/* Crea el objeto de tipo producto y llama al metodo para mostrar todos los Productos Baratos */
 $productos = new Productos();
 $listaJuegos  = $productos->mostrarProductosmasBaratos();
 ?>
@@ -15,16 +16,20 @@ $listaJuegos  = $productos->mostrarProductosmasBaratos();
     <script src="scripts/scripts.js" defer></script>
 </head>
 <body>
-<body>
+    <!-- Tiulo de la Pagina Principal -->
     <section id="Bienvenida">
         <h1 id="titulo">Pishi Games</h1>
         <h3 id="subtitulo">!!!Estamos para Quedarnos!!! Autor: Lucas Jimenez Sepulveda</h3>
     </section>
+
+    <!-- Video de la Pagina Principal -->
     <div id="VideoPresentacion">
         <video muted controls autoplay loop src="videos/videoPresentacion.mp4"></video>
     </div>
-    <h1 id="titulo" style="font-size:25px">!!! Nuestros Titulos mas Baratos !!!</h1>
+    <h1 id="titulo" style="font-size:25px">!!! Ofertas del Dia de Hoy !!!</h1>
     <ul class="listaJuegos">
+
+    <!-- Muestra los juegos con el precio mas bajo que tengan stock -->
         <?php foreach ($listaJuegos as $juego){ ?>
             <li class="Juegos juego <?php echo ($juego['stock'] == 0) ? 'sin-stock' : ''; ?>">
                 <div class="juego-container">

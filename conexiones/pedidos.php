@@ -1,14 +1,18 @@
-<?php 
+<?php
 require_once 'conexion.php';
 
-class Pedidos {
+class Pedidos
+{
     private $conexion;
-    
-    public function __construct() {
+
+    public function __construct()
+    {
         $this->conexion = new Conexion(); // Crear una instancia de la clase de conexión existente
     }
 
-    public function realizarPedido($idUsuario, $fechaPedido, $estado, $detalles, $total) {
+    // Función para realizar un pedido
+    public function realizarPedido($idUsuario, $fechaPedido, $estado, $detalles, $total)
+    {
         $sql = "INSERT INTO pedidos (idUsuario, fechaPedido, estado, detalles, total) VALUES (:idUsuario, :fechaPedido, :estado, :detalles, :total)";
         $consulta = $this->conexion->prepare($sql);
         $consulta->bindParam(':idUsuario', $idUsuario);
@@ -20,7 +24,9 @@ class Pedidos {
         return $consulta->rowCount() > 0;
     }
 
-    public function mostrarPedidosxUsuario($idUsuario){
+    // Función para mostrar los pedidos de un usuario específico
+    public function mostrarPedidosxUsuario($idUsuario)
+    {
         $sql = "SELECT * FROM pedidos WHERE idUsuario = :idUsuario";
         $consulta = $this->conexion->prepare($sql);
         $consulta->bindParam(':idUsuario', $idUsuario);
@@ -28,45 +34,51 @@ class Pedidos {
         return $consulta->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function mostrarPedidos(){
+    // Función para mostrar todos los pedidos
+    public function mostrarPedidos()
+    {
         $sql = "SELECT * FROM pedidos";
         $consulta = $this->conexion->prepare($sql);
         $consulta->execute();
         return $consulta->fetchAll(PDO::FETCH_ASSOC);
-
     }
 
-    public function actualizarEstadoPedido($idPedido, $estado) {
+    // Función para actualizar el estado de un pedido
+    public function actualizarEstadoPedido($idPedido, $estado)
+    {
         $sql = "UPDATE pedidos SET estado = :estado WHERE idPedido = :idPedido";
         $consulta = $this->conexion->prepare($sql);
         $consulta->bindParam(':estado', $estado);
         $consulta->bindParam(':idPedido', $idPedido);
         $consulta->execute();
-    
+
         return $consulta->rowCount() > 0;
     }
-    
-    public function eliminarPedido($idPedido) {
+
+    // Función para eliminar un pedido
+    public function eliminarPedido($idPedido)
+    {
         $sql = "DELETE FROM pedidos WHERE idPedido = :idPedido";
         $consulta = $this->conexion->prepare($sql);
         $consulta->bindParam(':idPedido', $idPedido);
         $consulta->execute();
-    
+
         return $consulta->rowCount() > 0;
     }
 
-    public function obtenerUltimoIdPedido() {
+    // Función para obtener el último ID de pedido registrado en la base de datos
+    public function obtenerUltimoIdPedido()
+    {
         $sql = "SELECT idPedido FROM pedidos ORDER BY idPedido DESC LIMIT 1";
         $consulta = $this->conexion->prepare($sql);
         $consulta->execute();
-    
+
         $resultado = $consulta->fetch(PDO::FETCH_ASSOC);
-    
+
         if ($resultado) {
             return $resultado['idPedido'];
         }
-    
+
         return null;
     }
 }
-?>

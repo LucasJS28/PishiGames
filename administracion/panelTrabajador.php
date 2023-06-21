@@ -4,6 +4,7 @@ include 'navAdministracion.php';
 require_once "../conexiones/Productos.php";
 $productos = new Productos();
 
+/* Revisa que el Puesto sea segun los Permisos para entrar a la Pagina */
 if (!isset($_SESSION["Puesto"])) {
     header("Location:../index.php");
     exit();
@@ -13,6 +14,8 @@ if ($permiso !== "Trabajador" && $permiso !== "Administrador") {
     header("Location:../index.php");
     exit();
 }
+
+/* Revisa que los Formularios esten llenos para poder realizar la insersion en la Base de Datos */
 if (isset($_POST['titulo']) && isset($_POST['descripcion']) && isset($_POST['precio']) && isset($_POST['stock']) && isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
     $titulo = $_POST['titulo'];
     $descripcion = $_POST['descripcion'];
@@ -20,6 +23,7 @@ if (isset($_POST['titulo']) && isset($_POST['descripcion']) && isset($_POST['pre
     $stock = $_POST['stock'];
     $imagen = $_FILES['imagen']['name'];
     $imagen_temporal = $_FILES['imagen']['tmp_name'];
+    /* Guarda la Ruta de la imagen en la Base de Datos */
     $ruta_imagen = 'imagenesjuegos/' . $imagen;
     //En este código, $ruta_destino obtiene la ruta absoluta real del directorio raíz del sitio utilizando la función realpath('../'). Luego, se concatena con $ruta_imagen 
     $ruta_destino = realpath('../') . '/' . $ruta_imagen;
@@ -27,8 +31,6 @@ if (isset($_POST['titulo']) && isset($_POST['descripcion']) && isset($_POST['pre
     
     // Crear una instancia de la clase Productos y agregar el producto
     $agregado = $productos->agregarProductos($titulo, $descripcion, $precio, $stock, $ruta_imagen);
-
-    
     if ($agregado) {
         echo "<div id='alerta' class='AlertaBuena'>El Producto se Agrego Correctamente</div>";
     } else {
@@ -77,6 +79,7 @@ if (isset($_POST['titulo']) && isset($_POST['descripcion']) && isset($_POST['pre
         </form>
     </div>
 
+    <!-- Muestra la imagen al momento de ser seleccionado -->
     <script>
         document.getElementById('imagen').addEventListener('change', function(event) {
             var input = event.target;
