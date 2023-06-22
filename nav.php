@@ -13,15 +13,15 @@ $idUsuario = isset($_SESSION['idUsuario']) ? $_SESSION['idUsuario'] : null;
 <nav>
         <a href="tienda.php"><img src="iconos/iconpishi" alt=""></a>
         <ul class="lista">
-            <li><a href="bienvenida.php">Inicio</a></li>
-            <li><a href="tienda.php">Tienda</a></li>
-            <li><a href="carrito.php">Carrito</a></li>
-            <li><a href="contactos.php">Contacto</a></li>
+            <li><img class="icono" src="iconos/logoinicio.png" alt=""> <a href="bienvenida.php">Inicio</a></li>
+            <li><img class="icono" src="iconos/logotienda.png" alt=""> <a href="tienda.php">Tienda</a></li>
+            <li><img class="icono" src="iconos/logocarro.png" alt=""> <a href="carrito.php">Carrito</a></li>
+            <li><img class="icono" src="iconos/logocontacto.png" alt=""><a href="contactos.php">Contacto</a></li>
             <?php if (!$idUsuario) : ?>
-                <li><a href="index.php">Iniciar Sesion</a></li>
-                <li><a href="registroUsuarios.php">Registrarse</a></li>
+                <li><img class="icono" src="iconos/logoiniciosesion.png" alt=""><a href="index.php">Iniciar Sesion</a></li>
+                <li><img class="icono" src="iconos/logoregistro.png" alt=""><a href="registroUsuarios.php">Registrarse</a></li>
             <?php else : ?>
-                <li><a href="cerrarsesion.php">Cerrar Sesion</a></li>
+                <li><img class="icono" src="iconos/logocerrarsesion.png" alt=""><a href="cerrarsesion.php">Cerrar Sesion</a></li>
             <?php endif; ?>
         </ul>
     </nav>

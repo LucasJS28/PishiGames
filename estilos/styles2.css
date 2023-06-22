@@ -173,9 +173,3 @@ body {
         opacity: 0;
     }
 }
-
-@media (max-width: 1390px) {
-    section {
-        min-height: 690px;
-    }
-}

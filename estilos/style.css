@@ -38,12 +38,24 @@ nav img {
 
 /* Ajustando el nav */
 .lista {
-  width: 800px; 
+  width: 1000px;
   margin-right: 20px;
   margin-top: 25px;
   display: flex;
   justify-content: space-between;
-  float: right;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.icono {
+  width: 25px;
+  height: 25px;
+}
+
+.lista li {
+  display: flex;
+  align-items: center;
 }
 
 .lista li {
@@ -53,7 +65,7 @@ nav img {
 .lista li a {
   color: rgb(255, 0, 0);
   text-decoration: none;
-  margin: 0 10px; 
+  margin: 0 10px;
   transition: color 0.3s;
   padding: 0 10px;
 }
@@ -115,10 +127,6 @@ a {
 
 a:hover {
   text-decoration: underline;
-}
-
-body {
-  font-family: Arial, sans-serif;
 }
 
 h2 {
@@ -206,11 +214,6 @@ input[type="submit"] {
 img {
   margin-top: 20px;
 }
-
-.body {
-  font-family: Arial, sans-serif;
-}
-
 .heading {
   text-align: center;
   margin-top: 20px;
@@ -463,5 +466,3 @@ label {
     opacity: 0;
   }
 }
-
-
