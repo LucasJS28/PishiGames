@@ -13,7 +13,6 @@ $pedidos = new Pedidos();
 if (isset($_GET['id']) && isset($_GET['action'])) {
     $idJuego = $_GET['id'];
     $action = $_GET['action'];
-
     if ($action == 'remove') {
         // Restar 1 a la cantidad del producto en el carrito
         if (isset($_SESSION['carrito'][$idJuego])) {

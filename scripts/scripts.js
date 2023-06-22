@@ -66,4 +66,23 @@ for (var i = 0; i < agregarCarritoButtons.length; i++) {
 }
 
 
+/* script para eliminar -1 de stock cuando se presiona agregar al carro */
 
+var botonesAgregarCarrito = document.getElementsByClassName("agregar-carrito");
+
+  // Recorrer cada botón y agregar el evento de clic
+  for (var i = 0; i < botonesAgregarCarrito.length; i++) {
+    botonesAgregarCarrito[i].addEventListener("click", function() {
+      // Obtener el elemento <p> del stock correspondiente al botón presionado
+      var stockSeleccionado = this.parentNode.querySelector(".stock");
+      // Obtener el valor actual del stock
+      var stock = parseInt(stockSeleccionado.innerText.split(" ")[1]);
+      // Verificar si hay suficiente stock para restar 1
+      if (stock >= 1) {
+        // Restar 1 al stock
+        stock--;
+        // Actualizar el contenido del elemento <p> con el nuevo stock
+        stockSeleccionado.innerText = "Stock: " + stock;
+      }
+    });
+  }

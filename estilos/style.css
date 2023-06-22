@@ -1,479 +1,467 @@
 /* Estilos de la Pagina Principal */
-body{
-    background-attachment: fixed;
-    margin:0;
-    background-size: 100%;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)), url(../fondos/FondoPrincipal.jpg);
-    color:white;
-    font-family: Arial, Helvetica, sans-serif;
+body {
+  background-attachment: fixed;
+  margin: 0;
+  background-size: 100%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)),
+    url(../fondos/FondoPrincipal.jpg);
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 /* Estilos del Navegador */
-nav{
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 1)), url(../fondos/FondoPrincipal.jpg);
-    height: 70px;
-    width: auto;
-    border-bottom: 1px solid rgb(126, 6, 6);
+nav {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 1)),
+    url(../fondos/FondoPrincipal.jpg);
+  height: 70px;
+  width: auto;
+  border-bottom: 1px solid rgb(126, 6, 6);
 }
+
 .agregar-carrito {
-    display: inline-block;
-    padding: 8px 16px;
-    background-color: #4CAF50;
-    color: white;
-    text-decoration: none;
-    border-radius: 4px;
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #4caf50;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
 }
 
 .agregar-carrito:hover {
-    background-color: #45a049;
+  background-color: #45a049;
 }
-nav img{
-    width: 120px;
-    margin: 5px 0px 5px 10px;
+
+nav img {
+  width: 120px;
+  margin: 5px 0px 5px 10px;
 }
+
 /* Ajustando el nav */
-.lista{
-    width: 500px;
-    margin-right: 100px;
-    margin-top: 25px;
-    display: flex;
-    justify-content: space-between;
-    float: right;
+.lista {
+  width: 800px; 
+  margin-right: 20px;
+  margin-top: 25px;
+  display: flex;
+  justify-content: space-between;
+  float: right;
 }
 
-.lista li{
-    list-style: none;
-}
-.lista li a{
-    color: rgb(230, 28, 28);
-    text-decoration: none;
-    list-style: none;
+.lista li {
+  list-style: none;
 }
 
-.lista li a:hover{
-    padding: 5px;
-    color: rgb(255, 0, 0);
-    transform: scale(1.5);
-    transition: 1.2s;
-    border-radius: 30px;
-    border: 1px solid white;
-}
-.lista li a:not(hover){
-    transform: scale(1.0);
-    transition: 1.5s;
+.lista li a {
+  color: rgb(255, 0, 0);
+  text-decoration: none;
+  margin: 0 10px; 
+  transition: color 0.3s;
+  padding: 0 10px;
 }
 
+.lista li a:hover {
+  color: yellow;
+  background-color: #333;
+  padding: 5px 10px;
+  border-radius: 5px;
+  text-decoration: none;
+}
 /* Estilo Juegos tienda principal */
 .listaJuegos {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
-
 
 .Juegos {
-    width: 300px;
-    margin: 10px;
-    padding: 10px;
-    text-align: center;
-    border: 1px solid #ff0000;
-    border-radius: 5px;
-    background-color: rgba(0, 0, 0, 0.7);
+  width: 300px;
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #ff0000;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.7);
 }
-
 
 .Juegos .imagen {
-    width: 200px;
-    height: 290px;
-    object-fit: cover;
-    margin: 20px auto;
-    border: 1px solid #ff0000;
-    border-radius: 5px;
-    position: relative;
+  width: 200px;
+  height: 290px;
+  object-fit: cover;
+  margin: 20px auto;
+  border: 1px solid #ff0000;
+  border-radius: 5px;
+  position: relative;
 }
 
-
 .Juegos .titulo {
-    margin-top: 0;
-    font-style: italic;
+  margin-top: 0;
+  font-style: italic;
 }
 
 .Juegos .descripcion {
-    margin-bottom: 5px;
+  margin-bottom: 5px;
 }
-
 
 .Juegos .precio {
-    margin-bottom: 5px;
+  margin-bottom: 5px;
 }
 
-
 a {
-    text-decoration: none;
-    color: blue;
+  text-decoration: none;
+  color: blue;
 }
 
 a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
-
 body {
-    font-family: Arial, sans-serif;
+  font-family: Arial, sans-serif;
 }
 
 h2 {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .edit-form {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 label {
-    display: block;
-    margin-bottom: 5px;
+  display: block;
+  margin-bottom: 5px;
 }
 
-.descripcion{
-    font-style: normal;
-    font-size: 15px;
-    color: antiquewhite;
-    height: 120px;
-    width: 100%;
-    
+.descripcion {
+  font-style: normal;
+  font-size: 15px;
+  color: antiquewhite;
+  height: 120px;
+  width: 100%;
 }
-.titulo{
-    padding-top: 10px;
-    color: #ff0000;
-    border-bottom: 1px solid red;
+.titulo {
+  padding-top: 10px;
+  color: #ff0000;
+  border-bottom: 1px solid red;
 }
-.precio{
-    color:yellow;
-    padding-bottom: 10px;  
-}
-input[type="text"],
-select {
-    margin-bottom: 10px;
-    width: 200px;
+.precio {
+  color: yellow;
+  padding-bottom: 10px;
 }
 
 input[type="submit"] {
-    padding: 5px 10px;
-    background-color: #c70000;
-    color: white;
-    border: none;
-    cursor: pointer;
+  padding: 5px 10px;
+  background-color: #c70000;
+  color: white;
+  border: none;
+  cursor: pointer;
 }
 /* Estilos de los Titulos de la Pagina Principal */
-#Bienvenida{
-    height: 130px;
-    width: 60%;
-    margin: 50px auto;
-    border-radius:30px;
-    border: 5px solid rgb(255, 0, 0);
-
+#Bienvenida {
+  height: 130px;
+  width: 60%;
+  margin: 50px auto;
+  border-radius: 30px;
+  border: 5px solid rgb(255, 0, 0);
 }
 
-#titulo{
-    color: rgb(255, 0, 0);
-    text-align: center;
-    font-size: 40px;
-    font-style:oblique;
+#titulo {
+  color: rgb(255, 0, 0);
+  text-align: center;
+  font-size: 40px;
+  font-style: oblique;
 }
 
-#subtitulo{
-    color: rgb(255, 255, 255);
-    text-align: center;
-    margin-top: -20px;
-    font-style:italic;
+#subtitulo {
+  color: rgb(255, 255, 255);
+  text-align: center;
+  margin-top: -20px;
+  font-style: italic;
 }
 
-#Titulo2{
-    text-align: center;
-    color: crimson;
-    width: 400px;
-    margin: 0 auto;
-    margin-bottom: 20px;
-    border: 1px solid black;
-    border-radius: 30px;
-    padding: 5px;
+#Titulo2 {
+  text-align: center;
+  color: crimson;
+  width: 400px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  border: 1px solid black;
+  border-radius: 30px;
+  padding: 5px;
 }
 
-#VideoPresentacion{
-    margin: 40px auto;
-    width: 700px;
+#VideoPresentacion {
+  margin: 40px auto;
+  width: 700px;
 }
-#VideoPresentacion video{
-    margin: 0 auto;
-    width: 700px;
-    border-radius: 30px;
-    box-shadow: 4px 4px 9px #ee0505;
+#VideoPresentacion video {
+  margin: 0 auto;
+  width: 700px;
+  border-radius: 30px;
+  box-shadow: 4px 4px 9px #ee0505;
 }
 /* Estilos del carro */
 img {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 .body {
-    font-family: Arial, sans-serif;
+  font-family: Arial, sans-serif;
 }
 
 .heading {
-    text-align: center;
-    margin-top: 20px;
+  text-align: center;
+  margin-top: 20px;
 }
 
 .table {
-    background-color: rgb(97, 5, 5);
-    border-collapse: collapse;
-    margin-top: 20px;
-    border: 5px solid red;
-    width: 70%;
-    margin: 0 auto;
-    margin-bottom: 50px;
-    margin-top: 50px;
+  background-color: rgb(97, 5, 5);
+  border-collapse: collapse;
+  margin-top: 20px;
+  border: 5px solid red;
+  width: 70%;
+  margin: 0 auto;
+  margin-bottom: 50px;
+  margin-top: 50px;
 }
 
-.table-header,.table-cell {
-    padding: 10px;
-    text-align: left;
+.table-header,
+.table-cell {
+  padding: 10px;
+  text-align: left;
 }
 
 .table-header {
-    background-color: #b40000;
-    border-right: 3px solid rgb(255, 0, 0);
+  background-color: #b40000;
+  border-right: 3px solid rgb(255, 0, 0);
 }
 
 .table-row:nth-child(even) {
-    background-color: #b31010;
+  background-color: #b31010;
 }
 
 .table-footer {
-    font-weight: bold;
+  font-weight: bold;
 }
 
-.table-cell{
-    border: 3px solid rgb(255, 0, 0);
+.table-cell {
+  border: 3px solid rgb(255, 0, 0);
 }
 
 .centered-text {
-    text-align: center;
-    margin-top: 50px;
-    padding: 20px;
-    width: 500px;
-    margin: 0 auto;
-    border: 2px solid red;
-    border-radius: 30px;
+  text-align: center;
+  margin-top: 50px;
+  padding: 20px;
+  width: 500px;
+  margin: 0 auto;
+  border: 2px solid red;
+  border-radius: 30px;
 }
 .centered-text a {
-    color: yellow;
+  color: yellow;
 }
 /* Botones de compra y volver a tienda en el carro */
 .button {
-    padding: 10px 20px !important; 
-    background-color: rgb(165, 3, 3);
-    border: 3px solid rgb(255, 0, 0);
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
-    border-radius: 4px;
-    margin-right: 10px;
-    float: right;
+  padding: 10px 20px !important;
+  background-color: rgb(165, 3, 3);
+  border: 3px solid rgb(255, 0, 0);
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  border-radius: 4px;
+  margin-right: 10px;
+  float: right;
 }
 
 /* Botones de sumar cantidad o restar */
 .button.add {
-    background-color: #2196F3;
-    width: 20px !important;
-    height: 20px !important;
+  background-color: #2196f3;
+  width: 20px !important;
+  height: 20px !important;
 }
 
 .button.remove {
-    background-color: #FF5722;
-    width: 20px !important;
-    height: 20px !important;
+  background-color: #ff5722;
+  width: 20px !important;
+  height: 20px !important;
 }
 
 .button.delete {
-    background-color: #F44336;
+  background-color: #f44336;
 }
 
 .product-image {
-    width: 100px;
-    height: auto;
+  width: 100px;
+  height: auto;
 }
 
 /* Estilo boton de ir al historial de pedidos */
-.HistorialPedidos{
-    padding: 10px 20px;
-    margin-bottom: 20px;
-    margin-top: -50px;
-    background-color: #cf2222;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
-    border-radius: 4px;
-    margin-right: 10px;
-    float: right;
+.HistorialPedidos {
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  margin-top: -50px;
+  background-color: #cf2222;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  border-radius: 4px;
+  margin-right: 10px;
+  float: right;
 }
 
 /* Estilos pagina Contacto */
 
-iframe{
-    margin: 0 auto;
-    border-radius: 30px;
+iframe {
+  margin: 0 auto;
+  border-radius: 30px;
 }
 
-.sectContacto{
-    text-align: center;
+.sectContacto {
+  text-align: center;
 }
 
-.sectContacto h2{
-    display: none;
+.sectContacto h2 {
+  display: none;
 }
 
-.divContactos h2{
-    text-align: center;
-    margin-top: 50px;
-    padding-bottom: 20px;
+.divContactos h2 {
+  text-align: center;
+  margin-top: 50px;
+  padding-bottom: 20px;
 }
 
-.info{
-    width: 1000px;
-    height: 150px;
-    margin: 50px auto;
-    border: 1px solid #ffffff;
-    border-radius: 30px;
-    column-count: 2;
-    padding: 20px;
+.info {
+  width: 1000px;
+  height: 150px;
+  margin: 50px auto;
+  border: 1px solid #ffffff;
+  border-radius: 30px;
+  column-count: 2;
+  padding: 20px;
 }
 
-.info p{
-    font-size: 15px;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+.info p {
+  font-size: 15px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
-.info a{
-    text-decoration: none;
-    color: red;
-    margin-left: 20px;
+.info a {
+  text-decoration: none;
+  color: red;
+  margin-left: 20px;
 }
 
-#buscar{
-    padding: 5px;
-    width: 400px;
-    border-radius: 5px;
-    border: 3px solid red;
-    background-color: black;
-    color: white;
+#buscar {
+  padding: 5px;
+  width: 400px;
+  border-radius: 5px;
+  border: 3px solid red;
+  background-color: black;
+  color: white;
 }
 
-
-#buscar, label{
-    color: yellow;
-    font-size: 18px;
-    font-style: italic;
+#buscar,
+label {
+  color: yellow;
+  font-size: 18px;
+  font-style: italic;
 }
 
-#contenedorBuscar{
-    margin-top: 50px;
-    width: 100%;
-    height: 50px;
-    margin-bottom: 30px;
-    text-align: center;
+#contenedorBuscar {
+  margin-top: 50px;
+  width: 100%;
+  height: 50px;
+  margin-bottom: 30px;
+  text-align: center;
 }
 
 /* Se encarga de la opacidad al no quedar stock */
 
 .sin-stock {
-    opacity: 0.8;
-    pointer-events: none;
-    border: 1px dashed #ccc;
+  opacity: 0.8;
+  pointer-events: none;
+  border: 1px dashed #ccc;
 }
 
 .sin-stock .agregar-carrito {
-    background-color: red;
+  background-color: red;
 }
 
-
-
-.boletaAlerta{
-    text-decoration: none;
-    color: yellow;
-    font-size: 16px;
-    font-weight: 600;
+.boletaAlerta {
+  text-decoration: none;
+  color: yellow;
+  font-size: 16px;
+  font-weight: 600;
 }
-
 
 .AlertaMala {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #ff0000;
-    color: #ffffff;
-    padding: 10px;
-    border-radius: 5px;
-    text-align: center;
-    border: 5px solid white;
-    opacity: 0;
-    animation: aparecer 2s ease-in-out; /* Ajusta la duración de la animación de aparición */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ff0000;
+  color: #ffffff;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  border: 5px solid white;
+  opacity: 0;
+  animation: aparecer 2s ease-in-out; /* Ajusta la duración de la animación de aparición */
 }
 
 .AlertaBuena {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #006609;
-    color: #ffffff;
-    padding: 10px;
-    border-radius: 5px;
-    text-align: center;
-    border: 3px solid rgb(255, 255, 255);
-    opacity: 0;
-    animation: aparecer 2s ease-in-out; /* Ajusta la duración de la animación de aparición */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #006609;
+  color: #ffffff;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  border: 3px solid rgb(255, 255, 255);
+  opacity: 0;
+  animation: aparecer 2s ease-in-out; /* Ajusta la duración de la animación de aparición */
 }
 
 .AlertaMala:nth-child(2) {
-    top: 35%; /* Ajusta el valor según sea necesario para colocarla encima de la primera alerta buena */
+  top: 35%; /* Ajusta el valor según sea necesario para colocarla encima de la primera alerta buena */
 }
 .AlertaBuena:nth-child(2) {
-    top: 35%; /* Ajusta el valor según sea necesario para colocarla encima de la primera alerta buena */
+  top: 35%; /* Ajusta el valor según sea necesario para colocarla encima de la primera alerta buena */
 }
 
-.stock{
-    font-size: 14px;
-    float: right;
-    position: absolute;
-    color: rgb(255, 0, 0);
+.stock {
+  font-size: 14px;
+  float: right;
+  position: absolute;
+  color: rgb(255, 0, 0);
 }
 
-#titulosinStock{
-    text-align: center;
-    color: red;
-    font-size: 22px;
-    font-style: italic;
+#titulosinStock {
+  text-align: center;
+  color: red;
+  font-size: 22px;
+  font-style: italic;
 }
-
 
 @keyframes aparecer {
-    0% {
-        opacity: 0;
-    }
-     20% {
-        opacity: 1; /* La alerta aparece rápidamente */
-    }
-    80% {
-        opacity: 1; /* La alerta permanece visible durante 80% de la duración total */
-    }
-    100% {
-        opacity: 0;
-    }
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1; /* La alerta aparece rápidamente */
+  }
+  80% {
+    opacity: 1; /* La alerta permanece visible durante 80% de la duración total */
+  }
+  100% {
+    opacity: 0;
+  }
 }
+
+
