@@ -28,6 +28,15 @@ class Productos
     }
 
 
+    // Funcion para Mostrar todos los Productos registrados
+    public function mostrarTodosProductos()
+    {
+        $sql = "SELECT * FROM videojuego";
+        $consulta = $this->conexion->prepare($sql);
+        $consulta->execute();
+        return $consulta->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
     // Función para mostrar todos los productos disponibles en stock
     public function mostrarProductos()
     {

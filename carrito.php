@@ -12,24 +12,22 @@ include 'nav.php';
     <link rel="stylesheet" href="estilos/style.css">
     <link rel="stylesheet" href="estilos/styles2.css">
 </head>
-
 <body>
     <h2 class="heading">Carrito de compras</h2>
-
+    <!-- Habilita el boton de historial de pedidos si es que el usuario tiene una sesion iniciaca -->
     <?php if (isset($_SESSION['idUsuario'])) { ?>
         <form method="POST" action="historialPedidos.php">
             <a class="HistorialPedidos" href="historialPedidos.php">Ir al Historial de Pedidos</a>
         </form>
     <?php } ?>
-
     <style>
-        <?php if (!isset($_SESSION['idUsuario'])) { ?>.HistorialPedidos {
-            display: none;
+        <?php if (!isset($_SESSION['idUsuario'])) { ?>
+            .HistorialPedidos {
+                display: none;
         }
-
         <?php } ?>
     </style>
-
+    <!-- Muestra los Productos que fueron Añadidos al Carro -->
     <?php if (!empty($carrito)) { ?>
         <table class="table">
             <thead>
@@ -56,14 +54,13 @@ include 'nav.php';
                         <td class="table-cell"><?php echo $juego['descripcion']; ?></td>
                         <td class="table-cell"><?php echo $juego['precio']; ?></td>
                         <td class="table-cell">
+                            <!-- se envía una solicitud a "acciones_carrito.php" con los parámetros "id" y "action" establecidos en los valores correspondientes -->
                             <a class="button remove" href="acciones_carrito.php?id=<?php echo $idJuego; ?>&action=remove">-</a>
                             <?php echo $juego['cantidad']; ?>
                             <a class="button add" href="acciones_carrito.php?id=<?php echo $idJuego; ?>&action=add">+</a>
                         </td>
                         <td class="table-cell"><?php echo $subtotal; ?></td>
-                        <td class="table-cell">
-                            <a class="button delete" href="acciones_carrito.php?id=<?php echo $idJuego; ?>&action=delete">Eliminar</a>
-                        </td>
+                        <td class="table-cell"><a class="button delete" href="acciones_carrito.php?id=<?php echo $idJuego; ?>&action=delete">Eliminar</a></td>
                     </tr>
                 <?php } ?>
             </tbody>
@@ -75,6 +72,7 @@ include 'nav.php';
             </tfoot>
         </table>
 
+        <!-- Crea el formulario de venta para posteriormente hacerlo aparecer o desaparecer -->
         <?php if (isset($_SESSION['idUsuario'])) { ?>
             <form class="formulario-compra" method="POST" action="carrito.php">
                 <input type="hidden" name="total" value="<?php echo $total; ?>">

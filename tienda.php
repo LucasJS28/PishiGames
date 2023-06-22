@@ -98,7 +98,7 @@
                         <img class="imagen" src="<?php echo $juego['imagen']; ?>" alt="Imagen del juego">
                         <p class="precio">Precio: <?php echo $juego['precio']; ?></p>
                         <p class="stock">Stock: 0</p>
-                        <button class="agregar-carrito" data-id="<?php echo $juego['idJuego']; ?>">Agregar al Carrito</button>
+                        <button class="agregar-carrito" data-id="<?php echo $juego['idJuego']; ?>">Producto sin Stock</button>
                     </div>
                 </li>
             <?php } ?>

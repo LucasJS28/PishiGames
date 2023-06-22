@@ -3,6 +3,7 @@
     include 'nav.php';
     require_once 'conexiones/pedidos.php';
     $pedido = new Pedidos();
+    /* Consigue el IDUsuario cuando se realiza el inicio de sesion */
     $idUsuario = $_SESSION['idUsuario'];
     // Llamar a la función mostrarPedidosxUsuario para obtener los pedidos del usuario
     $pedidos = $pedido->mostrarPedidosxUsuario($idUsuario);
@@ -20,6 +21,7 @@
 <body>
     <h2 class="heading">Lista de Pedidos</h2>
 
+    <!-- Primero Pregunta si hay objetos añadidos en el carrito -->
     <?php
     if (!empty($pedidos)) {
     ?>
@@ -33,6 +35,7 @@
                     <th class="table-header">Total</th>
                 </tr>
             </thead>
+            <!-- Crea un ciclo para buscar cada uno de los Detalles de los pedidos -->
             <tbody>
                 <?php foreach ($pedidos as $pedido) { ?>
                     <tr class="table-row">

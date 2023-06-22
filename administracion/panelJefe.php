@@ -3,7 +3,7 @@ session_start();
 include 'navAdministracion.php';
 require_once "../conexiones/Productos.php";
 $productos = new Productos();
-$listaProductos = $productos->mostrarProductos();
+$listaProductos = $productos->mostrarTodosProductos();
 
 /* Revisa que el Puesto sea segun los Permisos para entrar a la Pagina */
 if (!isset($_SESSION["Puesto"])) {

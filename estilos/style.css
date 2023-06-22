@@ -394,9 +394,14 @@ iframe{
 .sin-stock {
     opacity: 0.8;
     pointer-events: none;
-    filter: blur(1.2px);
     border: 1px dashed #ccc;
 }
+
+.sin-stock .agregar-carrito {
+    background-color: red;
+}
+
+
 
 .boletaAlerta{
     text-decoration: none;
