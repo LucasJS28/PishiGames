@@ -75,7 +75,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['agregarCarrito'])) {
     </div>
     <ul class="listaJuegos">
         <?php foreach ($listaJuegos as $juego) { ?>
-            <li class="Juegos juego <?php echo ($juego['stock'] == 0) ? 'sin-stock' : ''; ?>">
+            <!-- Verifica si hay stock y en caso de no tener le genera la clase juego-sin-stock -->
+            <li class="Juegos juego <?php echo ($juego['stock'] == 0); ?>">
                 <div class="juego-container">
                     <h4 class="titulo"><?php echo $juego['titulo']; ?></h4>
                     <p class="descripcion"><?php echo $juego['descripcion']; ?></p>
@@ -91,6 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['agregarCarrito'])) {
     <h2 id="titulosinStock">Juegos sin Stock</h2>
     <ul class="listaJuegos">
         <?php foreach ($listaJuegosSinStock as $juego) { ?>
+            <!-- Verifica si hay stock y en caso de no tener le genera la clase juego-sin-stock -->
             <li class="Juegos juego <?php echo ($juego['stock'] == 0) ? 'sin-stock' : ''; ?>">
                 <div class="juego-container">
                     <h4 class="titulo"><?php echo $juego['titulo']; ?></h4>

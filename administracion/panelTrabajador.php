@@ -81,15 +81,25 @@ if (isset($_POST['titulo']) && isset($_POST['descripcion']) && isset($_POST['pre
 
     <!-- Muestra la imagen al momento de ser seleccionado -->
     <script>
+        // Escucha el evento 'change' del elemento 'imagen'
         document.getElementById('imagen').addEventListener('change', function(event) {
             var input = event.target;
+            
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
+                
+                // Cuando se complete la lectura del archivo
                 reader.onload = function(e) {
                     var imagePreview = document.getElementById('imagen-preview');
+                    
+                    // Establece la fuente de la imagen de vista previa
                     imagePreview.src = e.target.result;
+                    
+                    // Muestra la imagen de vista previa
                     imagePreview.style.display = 'block';
                 }
+                
+                // Lee el archivo como una URL de datos
                 reader.readAsDataURL(input.files[0]);
             }
         });

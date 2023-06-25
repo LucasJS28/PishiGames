@@ -22,11 +22,12 @@ if ($permiso !== "Administrador") {
 /* Realiza el Registro de Usuarios administradores jefes o trabajadores a la Base de Datos */
 if ($_POST) {
     $correo = $_POST["correo"];
-    $contrasena = $_POST["contrasena"];
+    $contrasena = $_POST["contrasena"]; 
     $rol = $_POST["rol"];
     $registroExitoso = $conexion->register($correo, $contrasena, $rol);
     if ($registroExitoso) {
         echo "<div id='alerta' class='AlertaBuena'>Registro Realizado Correctamente</div>";
+        header("Location: panelAdministrador.php"); // Redirecciona a la página actualizada
     } else {
         echo "<div id='alerta' class='AlertaMala'>Error al Realizar el Registro</div>";
     }
