@@ -140,16 +140,6 @@ p.no-pedidos {
   border: 3px solid black;
 }
 
-.container1 {
-  max-width: 1300px;
-  margin: 50px auto;
-  padding: 20px;
-  background-color: rgba(242, 242, 242, 0.671);
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-  color: black;
-}
-
-
 table.tabla-principal {
   width: 100%;
   border-collapse: collapse;

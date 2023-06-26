@@ -66,12 +66,12 @@ if ($_POST) {
 </head>
 
 <body>
-    <div class="container1">
+    <div class="contenedor">
         <h2 class="titulo">Editar Juego</h2>
-        <form method="POST" action="panelJefe.php" class="edit-form">
+        <form method="POST" action="panelJefe.php">
             <div class="formularios">
                 <label for="juego" class="formularios-label">Seleccione un juego:</label>
-                <select name="juego" id="juego" class="form-select" onchange="fillForms()">
+                <select name="juego" id="juego" onchange="fillForms()">
                     <?php
                     foreach ($listaProductos as $producto) {
                         $rutaImagen = "../" . $producto['imagen'];
