@@ -3,12 +3,13 @@ class Conexion extends PDO
 {
     private $usuario = "root";
     private $contra = "";
-
+    private $db = "empresa";
+    private $host = "localhost";
     public function __construct()
     {
         try {
             // Establecer la conexión con la base de datos utilizando PDO
-            parent::__construct("mysql:dbname=empresa;host=localhost;charset=utf8", $this->usuario, $this->contra);
+            parent::__construct("mysql:host=$this->host;dbname=$this->db;charset=utf8", $this->usuario, $this->contra);
         } catch (PDOException $e) {
             echo ("Error: " . $e->getMessage());
             exit;
@@ -69,5 +70,14 @@ class Conexion extends PDO
     
         return $consulta->rowCount() > 0;
     }
-    
+
+    public function eliminarUsuario($correoUsuario)
+    {
+    $sql = "DELETE FROM usuarios WHERE correoUsuario = :correoUsuario";
+    $consulta = $this->prepare($sql);
+    $consulta->bindParam(':correoUsuario', $correoUsuario);
+    $consulta->execute();
+
+    return $consulta->rowCount() > 0;
+}
 }

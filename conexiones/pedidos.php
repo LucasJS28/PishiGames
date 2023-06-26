@@ -78,7 +78,6 @@ class Pedidos
         if ($resultado) {
             return $resultado['idPedido'];
         }
-
         return null;
     }
 }

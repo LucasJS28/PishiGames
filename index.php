@@ -26,6 +26,9 @@ if (isset($_POST['correoUsuario']) && isset($_POST['passUsuario'])) {
             case 4:
                 header("Location: tienda.php");
                 $_SESSION["Puesto"] = "Usuario";
+                if ($_SESSION['carrito']) { //En caso del usuario haber estado usando el carrito y necesita iniciar sesion esto lo enviara al carrito enves de a la tiendaPrincipal
+                    header("Location: carrito.php"); 
+                }
                 break;
             default:
                 break;

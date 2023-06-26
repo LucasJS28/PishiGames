@@ -37,11 +37,23 @@ if (isset($_POST["correoUsuario"]) && isset($_POST["rol"])) {
     $correoUsuario = $_POST["correoUsuario"];
     $rol = $_POST["rol"];
     $modificacionExitosa = $conexion->modificarRol($correoUsuario, $rol);
-
     if ($modificacionExitosa) {
         echo "<div id='alerta' class='AlertaBuena'>Se Modifico el Rol de manera Exitosa</div>";
     } else {
         echo "<div id='alerta' class='AlertaMala'>Error al Modificar el Rol</div>";
+    }
+    header("Location: panelAdministrador.php"); // Redirecciona a la página actualizada
+    exit();
+}
+
+/* Elimina un usuario */
+if (isset($_POST["eliminarUsuario"])) {
+    $correoUsuario = $_POST["eliminarUsuario"];
+    $eliminacionExitosa = $conexion->eliminarUsuario($correoUsuario);
+    if ($eliminacionExitosa) {
+        echo "<div id='alerta' class='AlertaBuena'>Usuario eliminado exitosamente</div>";
+    } else {
+        echo "<div id='alerta' class='AlertaMala'>Error al eliminar el usuario</div>";
     }
     header("Location: panelAdministrador.php"); // Redirecciona a la página actualizada
     exit();
@@ -82,14 +94,15 @@ $usuarios = $conexion->obtenerUsuarios();
         <br>
         <h2 class="titulo-registrados">Usuarios Registrados</h2>
         <div id="buscador">
-        <label for="buscar" id="titulo-buscar">Buscar Correo</label>
-        <input type="search" name="buscar" id="buscar" placeholder="Ingrese el Correo a buscar">
+            <label for="buscar" id="titulo-buscar">Buscar Correo</label>
+            <input type="search" name="buscar" id="buscar" placeholder="Ingrese el Correo a buscar">
         </div>
         <table class="tabla-principal">
             <thead>
                 <tr>
                     <th>Correo Electrónico</th>
                     <th>Rol</th>
+                    <th>Eliminar</th>
                 </tr>
             </thead>
             <tbody>
@@ -107,6 +120,12 @@ $usuarios = $conexion->obtenerUsuarios();
                                     <option value="2" <?php if ($usuario['ID_Rol'] == "2") echo 'selected'; ?>>Trabajador</option>
                                     <option value="4" <?php if ($usuario['ID_Rol'] == "4") echo 'selected'; ?>>Usuario</option>
                                 </select>
+                            </form>
+                        </td>
+                        <td>
+                            <form action="panelAdministrador.php" method="POST">
+                                <input type="hidden" name="eliminarUsuario" value="<?php echo $usuario['correoUsuario']; ?>">
+                                <button type="submit" class="button-eliminar">Eliminar</button>
                             </form>
                         </td>
                     </tr>

@@ -36,14 +36,12 @@ if ($_POST) {
     if (isset($_POST['actualizar_stock'])) {
         $nuevoStock = $_POST['stock_nuevo'];
         $resultadoStock = $productos->actualizarStock($idJuego, $nuevoStock);
-
         if ($resultadoStock) {
             echo "<div id='alerta' class='AlertaBuena'>El stock se actualizó correctamente</div>";
         } else {
             echo "<div id='alerta' class='AlertaMala'>Hubo un error al actualizar el stock.</div>";
         }
     }
-
 /* Muestra un Objeto por defecto al iniciar el formulario */
 } else {
     if (!empty($listaProductos)) {

@@ -18,6 +18,7 @@
                     <li><a href="panelAdministrador.php">Agregar trabajador</a></li>
                     <li><a href="panelTrabajador.php">Agregar producto</a></li>
                     <li><a href="../cerrarsesion.php">Cerrar Sesion</a></li>
+                    <li class="rango">Bienvenido: <span>Administrador<span></li>
                 </ul>
             ';
         } elseif ($rol == "Trabajador") {  
@@ -27,6 +28,7 @@
                     <li><a href="panelTrabajador.php">Agregar producto</a></li>
                     <li><a href="revisarPedidos.php">Ver Pedidos</a></li>
                     <li><a href="../cerrarsesion.php">Cerrar Sesion</a></li>
+                    <li class="rango">Bienvenido: <span>Trabajador<span></li>
                 </ul>
             ';
         } elseif ($rol == "Jefe") {  
@@ -36,6 +38,7 @@
                     <li><a href="panelJefe.php">Ver Precios</a></li>
                     <li><a href="revisarPedidos.php">Ver Pedidos</a></li>
                     <li><a href="../cerrarsesion.php">Cerrar Sesion</a></li>
+                    <li class="rango">Bienvenido: <span>Jefe<span></li>
                 </ul>
             ';
         }

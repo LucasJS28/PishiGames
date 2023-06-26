@@ -76,7 +76,7 @@ if (isset($_POST['titulo'], $_POST['descripcion'], $_POST['precio'], $_POST['sto
                 var reader = new FileReader();
                 reader.onload = function(e) {
                     document.getElementById('imagen-preview').src = e.target.result; //le asigna la ruta de la imagen en el src a el ancla creado
-                    document.getElementById('imagen-preview').style.display = 'block'; //Le cambia el displayu para hacerlo visible
+                    document.getElementById('imagen-preview').style.display = 'block'; //Le cambia el display para hacerlo visible
                 }
                 reader.readAsDataURL(input.files[0]);
             }

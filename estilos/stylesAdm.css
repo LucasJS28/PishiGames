@@ -241,3 +241,29 @@ table.tabla-principal td {
   font-size: 16px;
   font-weight: 600;
 }
+
+.rango{
+  color: yellow !important;
+  position: absolute;
+  top: 2%;
+  right: 0;
+  padding: 15px;
+  border: 3px solid red;
+  border-radius: 30px;
+}
+
+.rango span{
+  color: red;
+  font-weight: 600;
+  font-style: italic;
+}
+
+.button-eliminar{
+  padding: 4px;  
+  border-radius: 10px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 16px;
+  background-color: #dc3545 ;
+  color: white;
+}
