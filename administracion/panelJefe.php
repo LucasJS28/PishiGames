@@ -27,7 +27,6 @@ if ($_POST) {
     if (isset($_POST['actualizar_precio'])) {
         $nuevoPrecio = $_POST['precio_nuevo'];
         $resultadoPrecio = $productos->actualizarProducto($idJuego, $nuevoPrecio);
-
         if ($resultadoPrecio) {
             echo "<div id='alerta' class='AlertaBuena'>El precio se actualizó correctamente</div>";
         } else {
@@ -62,7 +61,8 @@ if ($_POST) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Juego</title>
-    <link rel="stylesheet" href="../estilos/stylesAdm.css">
+    <link rel="stylesheet" href="../estilos/stylesAdm.css"> 
+    <script src="../scripts/scripts.js"></script>
 </head>
 
 <body>

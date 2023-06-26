@@ -1,3 +1,5 @@
+
+//Animaciones para las alertas de errores o mensajes exitosos
 setTimeout(function() {
     var alerta = document.getElementById('alerta');
     if (alerta) {
@@ -11,15 +13,14 @@ setTimeout(function() {
     }
 }, 10000);
 
+//Funcion para el input de buscar
 document.getElementById('buscar').addEventListener('input', function() {
     var input = this.value.toLowerCase();
     var juegos = document.getElementsByClassName('juego');
 
     for (var i = 0; i < juegos.length; i++) {
         var titulo = juegos[i].getElementsByClassName('titulo')[0].textContent.toLowerCase();
-        var descripcion = juegos[i].getElementsByClassName('descripcion')[0].textContent.toLowerCase();
-
-        if (titulo.includes(input) || descripcion.includes(input)) {
+        if (titulo.includes(input)) {
             juegos[i].style.display = 'block';
         } else {
             juegos[i].style.display = 'none';
@@ -86,3 +87,36 @@ var botonesAgregarCarrito = document.getElementsByClassName("agregar-carrito");
       }
     });
   }
+
+
+// PanelJefe.php
+// Funcion para mostrar los datos en el formulario por defecto
+  function fillForms() {
+    var select = document.getElementById('juego');
+    var selectedOption = select.options[select.selectedIndex];
+    var stockAnteriorInput = document.getElementById('stock_anterior');
+    var precioAnteriorInput = document.getElementById('precio_anterior');
+    var imagenJuego = document.getElementById('imagen_juego');
+
+    stockAnteriorInput.value = selectedOption.dataset.stock;
+    precioAnteriorInput.value = selectedOption.dataset.precio;
+    imagenJuego.src = selectedOption.dataset.imagen;
+    imagenJuego.removeAttribute('hidden');
+}
+
+// Llenar los formularios al cargar la página con el primer juego
+window.addEventListener('load', function() {
+    fillForms();
+});
+
+//Esta funcion es para el eliminar pedidos en el panel revisarPedidos.php
+//añade una ventana emergente que pregunta si esta seguro o no de elimianr el producto y devuelve true o false
+function confirmarEliminacion(idPedido) {
+    var respuesta = confirm("¿Estás seguro de que deseas cancelar este pedido?");
+    if (respuesta) {
+        document.getElementById("confirmacion_" + idPedido).value = "si";
+        return true;
+    } else {
+        return false;
+    }
+}

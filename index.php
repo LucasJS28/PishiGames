@@ -2,25 +2,18 @@
 include 'nav.php';  
 require_once "conexiones/Conexion.php";
 session_start();
+$conexion = new Conexion();
+
 if (isset($_POST['correoUsuario']) && isset($_POST['passUsuario'])) {
     $correoUsuario = $_POST['correoUsuario'];
     $passUsuario = $_POST['passUsuario'];
-    $conexion = new Conexion();
-    $idRol = $conexion->login($correoUsuario, $passUsuario);
+    $idRol = $conexion->login($correoUsuario, $passUsuario);/* Usa el metodo para el login que verifica si existe y devuelve true y el valor del idRol del Usuario */
     if ($idRol !== false) {
-        $usuarios = $conexion->obtenerUsuarios();
-        foreach ($usuarios as $usuario) {
-            if ($usuario['correoUsuario'] == $correoUsuario) {
-                $idUsuario = $usuario['idUsuario'];
-                break;
-            }
-        }
-        $_SESSION["idUsuario"] = $idUsuario; // Guardar el ID del usuario en la sesión
-
+        $_SESSION["idUsuario"] = $idRol; // Guardar el ID del usuario en la sesión
         switch ($idRol) {
             case 1:
                 header("Location: administracion/panelAdministrador.php");
-                $_SESSION["Puesto"] = "Administrador";
+                $_SESSION["Puesto"] = "Administrador"; //Asigna el Puesto para Posteriormente Validar que sea inicializado y usarlo en su Nav
                 break;
             case 2:
                 header("Location: administracion/panelTrabajador.php");
@@ -40,7 +33,6 @@ if (isset($_POST['correoUsuario']) && isset($_POST['passUsuario'])) {
         exit;
     } else {
         echo "<div id='alerta' class='AlertaMala'>Credenciales incorrectas. Inténtalo nuevamente.</div>";
-
     }
 }
 ?>

@@ -31,6 +31,7 @@ $listaJuegos  = $productos->mostrarProductosmasBaratos();
 
     <!-- Muestra los juegos con el precio mas bajo que tengan stock -->
         <?php foreach ($listaJuegos as $juego){ ?>
+            <!-- Verifica si hay stock y en caso de no tener le genera la clase juego-sin-stock -->
             <li class="Juegos juego <?php echo ($juego['stock'] == 0) ? 'sin-stock' : ''; ?>">
                 <div class="juego-container">
                     <h4 class="titulo"><?php echo $juego['titulo']; ?></h4>

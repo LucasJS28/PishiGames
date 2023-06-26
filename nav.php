@@ -1,16 +1,18 @@
-<?php  
+<?php
 require_once 'conexiones/Productos.php';
 $idUsuario = isset($_SESSION['idUsuario']) ? $_SESSION['idUsuario'] : null;
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-<nav>
+    <nav>
         <a href="tienda.php"><img src="iconos/iconpishi" alt=""></a>
         <ul class="lista">
             <li><img class="icono" src="iconos/logoinicio.png" alt=""> <a href="bienvenida.php">Inicio</a></li>
@@ -26,4 +28,5 @@ $idUsuario = isset($_SESSION['idUsuario']) ? $_SESSION['idUsuario'] : null;
         </ul>
     </nav>
 </body>
+
 </html>

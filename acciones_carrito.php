@@ -50,7 +50,7 @@ if (isset($_SESSION['carrito'])) {
 
 
 
-//Añade al carro y crea boleta
+//Realiza el pedido y crea la boleta
 
 
 // Verificar si se ha enviado el formulario de compra
@@ -86,6 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Insertar el pedido en la base de datos
             $insertado = $pedidos->realizarPedido($idUsuario, $fechaPedido, $estado, $detalles, $total);
             $idPedido = $pedidos->obtenerUltimoIdPedido();
+            //Funcion creada para enviar los valores en una variable pedido para posteriormente imprimilar en generar_boleta
             if ($insertado) {
                 unset($_SESSION['carrito']);
                 $_SESSION['pedido'] = array(

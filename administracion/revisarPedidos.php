@@ -3,15 +3,14 @@ session_start();
 include 'navAdministracion.php';
 require_once "../conexiones/pedidos.php";
 $pedidos = new Pedidos();
-
-/* Revisa que el Puesto sea segun los Permisos para entrar a la Pagina */
 $idUsuario = $_SESSION['idUsuario'];
+$permiso = $_SESSION["Puesto"];
 $todosLosPedidos = $pedidos->mostrarPedidos();
+
 if (!isset($_SESSION["Puesto"])) {
     header("Location:../index.php");
     exit();
 }
-$permiso = $_SESSION["Puesto"];
 if ($permiso !== "Trabajador" && $permiso !== "Administrador" && $permiso !== "Jefe") {
     header("Location:../index.php");
     exit();
@@ -47,6 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Revisar Pedidos</title>
     <link rel="stylesheet" href="../estilos/stylesAdm.css">
+    <script src="../scripts/scripts.js"></script>
 </head>
 
 <body>
@@ -96,19 +96,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <p class="no-pedidos">No se encontraron pedidos.</p>
         <?php } ?>
     </div>
-
-    <!-- Crea un popup de confirmacion para Eliminar de la base de datos -->
-    <script>
-        function confirmarEliminacion(idPedido) {
-            var respuesta = confirm("¿Estás seguro de que deseas cancelar este pedido?");
-            if (respuesta) {
-                document.getElementById("confirmacion_" + idPedido).value = "si";
-                return true;
-            } else {
-                return false;
-            }
-        }
-    </script>
 </body>
 
 </html>

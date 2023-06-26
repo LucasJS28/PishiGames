@@ -7,11 +7,11 @@
     }
 
     // Obtener el ID_Rol del usuario
-    $id_rol = $_SESSION['Puesto'];
+    $rol = $_SESSION['Puesto'];
 
     // Mostrar el menú en función del ID_Rol
-    function mostrar_menu($id_rol) {
-        if ($id_rol == "Administrador") {  
+    function mostrar_menu($rol) {
+        if ($rol == "Administrador") {  
             echo '
                 <ul>
                     <a href="#"><img id="pishiLogo" src="../iconos/iconpishi" alt=""></a>
@@ -20,7 +20,7 @@
                     <li><a href="../cerrarsesion.php">Cerrar Sesion</a></li>
                 </ul>
             ';
-        } elseif ($id_rol == "Trabajador") {  
+        } elseif ($rol == "Trabajador") {  
             echo '
                 <ul>
                 <a href="#"><img id="pishiLogo" src="../iconos/iconpishi" alt=""></a>
@@ -29,7 +29,7 @@
                     <li><a href="../cerrarsesion.php">Cerrar Sesion</a></li>
                 </ul>
             ';
-        } elseif ($id_rol == "Jefe") {  
+        } elseif ($rol == "Jefe") {  
             echo '
                 <ul>
                 <a href="#"><img id="pishiLogo" src="../iconos/iconpishi" alt=""></a>
@@ -53,7 +53,7 @@
 <body>
     <!-- Llama la funcion que hace aparecer el Nav segun el Rol -->
     <div class="navbar">
-        <?php mostrar_menu($_SESSION['Puesto']); ?>
+        <?php mostrar_menu($_SESSION['Puesto']); ?> <!-- Entrega el valor de la session puesto para entregar un nav u otro -->
     </div>
 </body>
 </html>

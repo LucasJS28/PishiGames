@@ -2,7 +2,6 @@
 session_start();
 include 'navAdministracion.php';
 require_once "../conexiones/Conexion.php";
-
 $conexion = new Conexion();
 $usuarios = $conexion->obtenerUsuarios();
 

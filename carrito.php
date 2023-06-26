@@ -11,7 +11,9 @@ include 'nav.php';
     <title>Carrito de compras</title>
     <link rel="stylesheet" href="estilos/style.css">
     <link rel="stylesheet" href="estilos/styles2.css">
+    <script src="scripts/scripts.js"></script>
 </head>
+
 <body>
     <h2 class="heading">Carrito de compras</h2>
     <!-- Habilita el boton de historial de pedidos si es que el usuario tiene una sesion iniciaca -->
@@ -21,10 +23,10 @@ include 'nav.php';
         </form>
     <?php } ?>
     <style>
-        <?php if (!isset($_SESSION['idUsuario'])) { ?>
-            .HistorialPedidos {
-                display: none;
+        <?php if (!isset($_SESSION['idUsuario'])) { ?>.HistorialPedidos {
+            display: none;
         }
+
         <?php } ?>
     </style>
     <!-- Muestra los Productos que fueron Añadidos al Carro -->
@@ -110,27 +112,30 @@ include 'nav.php';
     <a class="button" href="tienda.php">Volver a la tienda</a>
 
     <script>
-        // JavaScript para mostrar y ocultar el modal
+        // JavaScript para mostrar y ocultar el formulario de compra
         document.addEventListener("DOMContentLoaded", function() {
             var modalOverlay = document.getElementById("modal-overlay");
             var modalContent = document.getElementById("modal-content");
             var realizarCompraButton = document.getElementById("realizar-compra");
             var cancelarCompraButton = document.getElementById("cancelar-compra");
 
+            // Evento de clic para mostrar el formulario de compra
             realizarCompraButton.addEventListener("click", function(e) {
                 e.preventDefault();
-                modalOverlay.classList.add("active");
-                modalContent.classList.add("active");
+                modalOverlay.classList.add("active"); // Agrega la clase "active" al modal-overlay para mostrarlo
+                modalContent.classList.add("active"); // Agrega la clase "active" al modal-content para mostrarlo
             });
 
+            // Evento de clic para cancelar la compra y ocultar el formulario
             cancelarCompraButton.addEventListener("click", function() {
-                modalOverlay.classList.remove("active");
-                modalContent.classList.remove("active");
+                modalOverlay.classList.remove("active"); // Remueve la clase "active" del modal-overlay para ocultarlo
+                modalContent.classList.remove("active"); // Remueve la clase "active" del modal-content para ocultarlo
             });
 
+            // Evento de clic en el fondo del modal para ocultar el formulario
             modalOverlay.addEventListener("click", function() {
-                modalOverlay.classList.remove("active");
-                modalContent.classList.remove("active");
+                modalOverlay.classList.remove("active"); // Remueve la clase "active" del modal-overlay para ocultarlo
+                modalContent.classList.remove("active"); // Remueve la clase "active" del modal-content para ocultarlo
             });
         });
     </script>
@@ -138,4 +143,3 @@ include 'nav.php';
 </body>
 
 </html>
-
