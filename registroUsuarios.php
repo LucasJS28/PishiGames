@@ -39,7 +39,7 @@ if ($_POST) {
             <input type="password" name="contrasena" id="contrasena" placeholder="Ingrese su contraseña:" required><br>
             <input type="password" id="repecontra" name="repecontra" placeholder="Repita su Contraseña:" required><br>
             <input type="checkbox" id="terminos" required>
-            <label for="terminos">Acepto los Términos y Condiciones</label><br>
+            <label for="terminos"><a href="terminosycondiciones.php">Acepto los Términos y Condiciones</a></label><br>
             <input type="submit" id="iniciar" value="Regístrate">
         </form>
     </section>

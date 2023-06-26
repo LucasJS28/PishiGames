@@ -11,34 +11,34 @@
 
     // Mostrar el menú en función del ID_Rol
     function mostrar_menu($rol) {
-        if ($rol == "Administrador") {  
+        if ($rol == "Administrador") {
             echo '
                 <ul>
                     <a href="#"><img id="pishiLogo" src="../iconos/iconpishi" alt=""></a>
-                    <li><a href="panelAdministrador.php">Agregar trabajador</a></li>
-                    <li><a href="panelTrabajador.php">Agregar producto</a></li>
-                    <li><a href="../cerrarsesion.php">Cerrar Sesion</a></li>
-                    <li class="rango">Bienvenido: <span>Administrador<span></li>
+                    <li><a href="panelAdministrador.php"><i class="fas fa-user-plus"></i> Agregar trabajador</a></li>
+                    <li><a href="panelTrabajador.php"><i class="fas fa-plus"></i> Agregar producto</a></li>
+                    <li><a href="../cerrarsesion.php"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+                    <li class="rango">Bienvenido: <span>Administrador</span></li>
                 </ul>
             ';
-        } elseif ($rol == "Trabajador") {  
+        } elseif ($rol == "Trabajador") {
             echo '
                 <ul>
-                <a href="#"><img id="pishiLogo" src="../iconos/iconpishi" alt=""></a>
-                    <li><a href="panelTrabajador.php">Agregar producto</a></li>
-                    <li><a href="revisarPedidos.php">Ver Pedidos</a></li>
-                    <li><a href="../cerrarsesion.php">Cerrar Sesion</a></li>
-                    <li class="rango">Bienvenido: <span>Trabajador<span></li>
+                    <a href="#"><img id="pishiLogo" src="../iconos/iconpishi" alt=""></a>
+                    <li><a href="panelTrabajador.php"><i class="fas fa-plus"></i> Agregar producto</a></li>
+                    <li><a href="revisarPedidos.php"><i class="fas fa-clipboard-list"></i> Ver Pedidos</a></li>
+                    <li><a href="../cerrarsesion.php"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+                    <li class="rango">Bienvenido: <span>Trabajador</span></li>
                 </ul>
             ';
-        } elseif ($rol == "Jefe") {  
+        } elseif ($rol == "Jefe") {
             echo '
                 <ul>
-                <a href="#"><img id="pishiLogo" src="../iconos/iconpishi" alt=""></a>
-                    <li><a href="panelJefe.php">Ver Precios</a></li>
-                    <li><a href="revisarPedidos.php">Ver Pedidos</a></li>
-                    <li><a href="../cerrarsesion.php">Cerrar Sesion</a></li>
-                    <li class="rango">Bienvenido: <span>Jefe<span></li>
+                    <a href="#"><img id="pishiLogo" src="../iconos/iconpishi" alt=""></a>
+                    <li><a href="panelJefe.php"><i class="fas fa-money-bill-wave"></i> Ver Precios</a></li>
+                    <li><a href="revisarPedidos.php"><i class="fas fa-clipboard-list"></i> Ver Pedidos</a></li>
+                    <li><a href="../cerrarsesion.php"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+                    <li class="rango">Bienvenido: <span>Jefe</span></li>
                 </ul>
             ';
         }
@@ -52,6 +52,8 @@
     <script src="../scripts/scripts.js" defer></script>
     <link rel="stylesheet" href="../estilos/styles2.css">
     <link rel="stylesheet" href="../estilos/stylesAdm.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+
 </head>
 <body>
     <!-- Llama la funcion que hace aparecer el Nav segun el Rol -->

@@ -146,6 +146,7 @@ input[type="submit"] { /* Estiliza los botones de Envio */
   font-style: italic;
   border-bottom: 3px solid red !important;
   
+  
 }
 .tabla-principal th,.tabla-principal td {
   padding: 8px;
@@ -234,6 +235,16 @@ table.tabla-principal td {
   position: absolute;
   left: 0;
   top: 10px;
+}
+
+#pishiLogo:hover {
+  width: 160px;
+  transition: 1.5s;
+}
+
+#pishiLogo:not(:hover){
+  width: 120px;
+  transition: 1.5s;
 }
 
 #roles {

@@ -452,6 +452,31 @@ label {
   font-style: italic;
 }
 
+/* Estilos Pagina terminos y Condiciones */
+
+.terminos-contenedor{
+  width: 900px;
+  margin: 0 auto;
+}
+
+.terminos-contenedor li{
+  color: red;
+  border-top: 1px solid red;
+  padding-top: 20px;
+}
+
+.terminos-contenedor p{
+  font-style: italic;
+}
+
+#volver-registro{
+  padding-bottom: 100px;
+  font-size: 17px;
+  color: yellow;
+  margin: 0 auto;
+
+}
+
 @keyframes aparecer {
   0% {
     opacity: 0;

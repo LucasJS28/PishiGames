@@ -71,6 +71,7 @@ class Conexion extends PDO
         return $consulta->rowCount() > 0;
     }
 
+    //Esta funcion Elimina en base al correo usuario para el panelAdministrador
     public function eliminarUsuario($correoUsuario)
     {
     $sql = "DELETE FROM usuarios WHERE correoUsuario = :correoUsuario";
