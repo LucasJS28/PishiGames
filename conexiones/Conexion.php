@@ -69,4 +69,5 @@ class Conexion extends PDO
 
         return $consulta->rowCount() > 0;
     }
+    
 }

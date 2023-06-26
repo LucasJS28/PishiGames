@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
-    <div class="container1">
+    <div class="contenedor-tabla">
         <h1 class="titulo">Listado de Pedidos</h1>
         <!-- Revisa si se realzaron encuentros en la base de datos para luego mostrarlos -->
         <?php if (count($todosLosPedidos) > 0) { ?>

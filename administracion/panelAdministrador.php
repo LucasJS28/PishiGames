@@ -45,7 +45,7 @@ if ($_POST) {
     <h1 class="titulo">Registro de Trabajadores</h1>
     <form action="panelAdministrador.php" method="POST">
       <label for="correo">Correo electrónico:</label>
-      <input type="email" name="correo" id="correo" required>
+      <input type="email" name="correo" id="correo" required >
       <br>
       <label for="contrasena">Contraseña:</label>
       <input type="password" name="contrasena" id="contrasena" required>
