@@ -51,10 +51,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <body>
     <div class="container1">
-        <h1 class="heading">Listado de Pedidos</h1>
+        <h1 class="titulo">Listado de Pedidos</h1>
         <!-- Revisa si se realzaron encuentros en la base de datos para luego mostrarlos -->
         <?php if (count($todosLosPedidos) > 0) { ?>
-            <table class="user-table">
+            <table class="tabla-principal">
                 <tr>
                     <th>ID Pedido</th>
                     <th>ID Usuario</th>
@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <td>
                             <form method="POST" action="revisarPedidos.php">
                                 <input type="hidden" name="idPedido" value="<?php echo $pedido['idPedido']; ?>">
-                                <select name="estado" class="status-select" onchange="this.form.submit()">
+                                <select name="estado" class="cambio-estado" onchange="this.form.submit()">
                                     <option value="Pendiente" <?php if ($pedido['estado'] === 'Pendiente') echo 'selected'; ?>>Pendiente</option>
                                     <option value="En proceso" <?php if ($pedido['estado'] === 'En proceso') echo 'selected'; ?>>En proceso</option>
                                     <option value="Completado" <?php if ($pedido['estado'] === 'Completado') echo 'selected'; ?>>Completado</option>
@@ -85,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <td>
                             <form method="POST" action="revisarPedidos.php">
                                 <input type="hidden" name="idPedidoCancelar" value="<?php echo $pedido['idPedido']; ?>">
-                                <button type="submit" class="cancel-button" onclick="return confirmarEliminacion(<?php echo $pedido['idPedido']; ?>)">Cancelar</button>
+                                <button type="submit" class="boton-eliminar" onclick="return confirmarEliminacion(<?php echo $pedido['idPedido']; ?>)">Cancelar</button>
                                 <input type="hidden" name="confirmacion_<?php echo $pedido['idPedido']; ?>" id="confirmacion_<?php echo $pedido['idPedido']; ?>" value="">
                             </form>
                         </td>

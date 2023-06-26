@@ -1,207 +1,206 @@
-body{
-    background-attachment: fixed;
-    margin:0;
-    background-size: 100%;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)), url(../fondos/fondoadmin.jpg);
-    color:white;
-    font-family: Arial, Helvetica, sans-serif;
+/* Estilisa el Body de todos los paneles de Administracion */
+body {
+  background-attachment: fixed;
+  margin: 0;
+  background-size: 100%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)),
+    url(../fondos/fondoadmin.jpg);
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
 }
-
+/* Inicio: Estiliza el Nav */
 .navbar {
-    background-color: rgba(242, 242, 242, 0.671);
-    padding: 10px;
+  background-color: rgba(242, 242, 242, 0.671);
+  padding: 10px;
 }
 
 .navbar ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
 }
 
 .navbar li {
-    margin-right: 20px;
+  margin-right: 20px;
 }
 
 .navbar li a {
-    text-decoration: none;
-    color: #111;
-    font-weight: bold;
-    padding: 10px 20px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+  text-decoration: none;
+  color: #111;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
 }
 
 .navbar li a:hover {
-    background-color: #ccc;
+  background-color: #ccc;
 }
 
-.container {
-    max-width: 600px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: rgba(242, 242, 242, 0.671);
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-    color: black;
-  }
-  
-  .heading {
-    text-align: center;
-    color: #333333;
-  }
-  
-  form {
-    margin-bottom: 20px;
-  }
-  
-  label {
-    display: block;
-    margin-bottom: 5px;
-    color: #333333;
-  }
-  
-  input,
-  select {
-    width: 100%;
-    padding: 5px;
-    margin-bottom: 10px;
-    border: 1px solid #cccccc;
-    border-radius: 3px;
-  }
-  
-  input[type="submit"] {
-    background-color: #333333;
-    color: #ffffff;
-    cursor: pointer;
-  }
-  
-  .sub-heading {
-    color: #333333;
-  }
-  
-  .user-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .user-table th,
-  .user-table td {
-    padding: 8px;
-    text-align: left;
-    border-bottom: 1px solid #cccccc;
-  } 
+/* Fin: Estiliza el Nav */
 
-  #roles{
-    color: rgb(0, 0, 0);
-    font-size: 16px;
-    font-weight: 600;
-  }
-
-
-  .heading {
-    text-align: center;
-    color: #333333;
-  }
-  
-  .edit-form {
-    margin-bottom: 20px;
-  }
-  
-  .form-group {
-    margin-bottom: 10px;
-  }
-  
-  .form-label {
-    display: block;
-    margin-bottom: 5px;
-    color: #333333;
-  }
-  
-  .form-input {
-    width: 100%;
-    padding: 5px;
-    margin-bottom: 10px;
-    border: 1px solid #cccccc;
-    border-radius: 3px;
-  }
-  
-  .submit-button {
-    background-color: #333333;
-    color: #ffffff;
-    cursor: pointer;
-  }
-  
-  .game-image {
-    display: block;
-    margin: 20px auto;
-    width: 300px;
-  }
-  
-  #imagen_juego{
-    border: 3px solid black;
-  }
-
-  .container1 {
-    max-width: 1300px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: rgba(242, 242, 242, 0.671);
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-    color: black;
+/* Inicio: Estilos Formularios */
+.contenedor {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: rgba(242, 242, 242, 0.671);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  color: black;
 }
 
-.heading {
-    text-align: center;
-    color: #333333;
+.titulo {
+  text-align: center;
+  color: #333333;
 }
 
-table.user-table {
-    width: 100%;
-    border-collapse: collapse;
+form {
+  margin-bottom: 20px;
 }
 
-table.user-table th,
-table.user-table td {
-    padding: 8px;
-    text-align: left;
-    border-bottom: 1px solid #cccccc;
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: #333333;
 }
 
-.status-select,
-.cancel-button {
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+input,select {
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #cccccc;
+  border-radius: 3px;
 }
 
-.status-select {
-    width: 100%;
-    font-size: 14px;
+input[type="submit"] { /* Estiliza los botones de Envio */
+  background-color: #333333;
+  color: #ffffff;
+  cursor: pointer;
 }
 
-.cancel-button {
-    background-color: #dc3545;
-    color: #fff;
-    cursor: pointer;
+.formulario-input {
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #cccccc;
+  border-radius: 3px;
+}
+/* Fin: Estilos Formularios */
+
+.titulo-registrados {
+  color: #333333;
+  text-align: center;
 }
 
-.cancel-button:hover {
-    background-color: #c82333;
+/* Inicio Estilos para la Tabla de Revisar Pedidos */
+/* Ajusta la tabla principal */
+.tabla-principal {
+  width: 100%;
+  border-collapse: collapse;
 }
 
+.tabla-principal th,.tabla-principal td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #cccccc;
+}
+/* Ajusta el mensaje en caso de no existir pedidos */
 p.no-pedidos {
-    text-align: center;
-    margin-top: 20px;
+  text-align: center;
+  margin-top: 20px;
 }
+
+/* Separa los Formularios dentro de Panel Jefe */
+.formularios {
+  margin-bottom: 10px;
+}
+/* Estilisa los label dentro del Panel Jefe */
+.formularios-label { 
+  display: block;
+  margin-bottom: 5px;
+  color: #333333;
+}
+
+/* Estila los botones de envio */
+.boton-envio {
+  background-color: #333333;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.game-image {
+  display: block;
+  margin: 20px auto;
+  width: 300px;
+}
+
+#imagen_juego {
+  border: 3px solid black;
+}
+
+.container1 {
+  max-width: 1300px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: rgba(242, 242, 242, 0.671);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  color: black;
+}
+
+
+table.tabla-principal {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table.tabla-principal th,
+table.tabla-principal td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #cccccc;
+}
+
+.cambio-estado,
+.boton-eliminar {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.cambio-estado {
+  width: 150px;
+  font-size: 14px;
+}
+
+.boton-eliminar {
+  background-color: #dc3545;
+  color: #fff;
+  padding: 15px 20px;
+  cursor: pointer;
+}
+
+.boton-eliminar:hover {
+  background-color: #c82333;
+}
+
+/* Final Estilos para la Tabla de Revisar Pedidos */
+
 /* Estilisa la imagen del juego del panel trabajador */
-#imagen-preview{
-    margin: 0 auto;
-    border: 1px solid black;
-    width: 500px;
+#imagen-preview {
+  margin: 0 auto;
+  border: 1px solid black;
+  width: 500px;
 }
-#pishiLogo{
-    width: 120px;
-    position: absolute;
-    left: 0;
+#pishiLogo {
+  width: 120px;
+  position: absolute;
+  left: 0;
+}
+
+#roles {
+  color: rgb(0, 0, 0);
+  font-size: 16px;
+  font-weight: 600;
 }

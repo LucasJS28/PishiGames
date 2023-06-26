@@ -33,17 +33,30 @@ document.getElementById('buscar').addEventListener('input', function() {
 
 // Manejador de evento clic para los botones "Agregar al Carrito"
 var agregarCarritoButtons = document.getElementsByClassName('agregar-carrito');
+
+// Recorrer todos los elementos obtenidos
 for (var i = 0; i < agregarCarritoButtons.length; i++) {
+    // Agregar un event listener para el evento 'click'
     agregarCarritoButtons[i].addEventListener('click', function(event) {
         event.preventDefault(); // Evitar que se envíe el formulario
 
+        // Obtener el ID del juego desde el atributo 'data-id'
         var idJuego = this.getAttribute('data-id');
+
+        // Crear una nueva solicitud XMLHttpRequest
         var xhr = new XMLHttpRequest();
-        xhr.open('POST', '', true);
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+        // Configurar la solicitud
+        xhr.open('POST', '', true); // Realizar una solicitud POST al mismo documento actual
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); // Establecer la cabecera 'Content-Type'
+
+        // Definir la función de retorno de llamada cuando cambie el estado de la solicitud
         xhr.onreadystatechange = function() {
+        /* xhr.readyState === 4 verifica si el estado de la solicitud es 4, lo cual significa que la solicitud ha sido completada.
+            xhr.status === 200 verifica si el estado de la respuesta del servidor es 200, lo cual indica que la solicitud se ha realizado 
+            correctamente y sin errores. El código de estado 200 en HTTP significa "OK" y se utiliza para indicar una respuesta exitosa del servidor. */
             if (xhr.readyState === 4 && xhr.status === 200) {
-                // Actualizar la interfaz de usuario si es necesario
+                // Procesar la respuesta recibida del servidor
                 var response = xhr.responseText;
                 var alertaDiv = document.getElementById('alerta');
 
@@ -62,6 +75,7 @@ for (var i = 0; i < agregarCarritoButtons.length; i++) {
                 }
             }
         };
+        // Enviar la solicitud al servidor con los datos necesarios
         xhr.send('agregarCarrito=true&idJuego=' + idJuego);
     });
 }

@@ -41,8 +41,8 @@ if ($_POST) {
   <link rel="stylesheet" href="../estilos/stylesAdm.css">
 </head>
 <body>
-  <div class="container">
-    <h1 class="heading">Registro de Trabajadores</h1>
+  <div class="contenedor">
+    <h1 class="titulo">Registro de Trabajadores</h1>
     <form action="panelAdministrador.php" method="POST">
       <label for="correo">Correo electrónico:</label>
       <input type="email" name="correo" id="correo" required>
@@ -57,12 +57,12 @@ if ($_POST) {
         <option value="2">Trabajador</option>
       </select>
       <br>
-      <input type="submit" value="Registrarse" class="submit-button">
+      <input type="submit" value="Registrarse">
     </form>
     <br>
     <br>
-    <h2 class="sub-heading">Usuarios Registrados</h2>
-    <table class="user-table">
+    <h2 class="titulo-registrados">Usuarios Registrados</h2>
+    <table class="tabla-principal">
       <thead>
         <tr>
           <th>Correo Electrónico</th>

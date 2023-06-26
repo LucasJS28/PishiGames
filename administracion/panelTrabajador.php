@@ -42,28 +42,28 @@ if (isset($_POST['titulo'], $_POST['descripcion'], $_POST['precio'], $_POST['sto
 </head>
 
 <body>
-    <div class="container">
-        <h1 class="heading">Agregar Productos</h1>
+    <div class="contenedor">
+        <h1 class="titulo">Agregar Productos</h1>
         <form action="panelTrabajador.php" method="post" enctype="multipart/form-data" class="product-form">
-            <div class="form-group">
-                <label for="titulo" class="form-label">Titulo:</label>
-                <input type="text" name="titulo" id="titulo" placeholder="Ingrese el Titulo del Juego..." class="form-input">
+            <div class="formularios">
+                <label for="titulo" class="formularios-label">Titulo:</label>
+                <input type="text" name="titulo" id="titulo" placeholder="Ingrese el Titulo del Juego..." class="formulario-input">
             </div>
-            <div class="form-group">
-                <label for="descripcion" class="form-label">Descripcion:</label>
-                <input type="text" name="descripcion" id="descripcion" placeholder="Ingrese la Descripcion del Juego..." class="form-input">
+            <div class="formularios">
+                <label for="descripcion" class="formularios-label">Descripcion:</label>
+                <input type="text" name="descripcion" id="descripcion" placeholder="Ingrese la Descripcion del Juego..." class="formulario-input">
             </div>
-            <div class="form-group">
-                <label for="precio" class="form-label">Precio:</label>
-                <input type="number" name="precio" id="precio" placeholder="Ingrese el Precio del Juego..." class="form-input">
+            <div class="formularios">
+                <label for="precio" class="formularios-label">Precio:</label>
+                <input type="number" name="precio" id="precio" placeholder="Ingrese el Precio del Juego..." class="formulario-input">
             </div>
-            <div class="form-group">
-                <label for="stock" class="form-label">Stock:</label>
-                <input type="number" name="stock" id="stock" placeholder="Ingrese el Stock del Juego..." class="form-input">
+            <div class="formularios">
+                <label for="stock" class="formularios-label">Stock:</label>
+                <input type="number" name="stock" id="stock" placeholder="Ingrese el Stock del Juego..." class="formulario-input">
             </div>
-            <div class="form-group">
-                <label for="imagen" class="form-label">Imagen:</label>
-                <input type="file" id="imagenes" name="imagenes" required class="form-input">
+            <div class="formularios">
+                <label for="imagen" class="formularios-label">Imagen:</label>
+                <input type="file" id="imagenes" name="imagenes" required class="formulario-input">
                 <img id="imagen-preview" src="" alt="Preview Image" style="max-width: 200px; display: none;">
             </div>
             <input type="submit" value="Publicar Videojuego" class="submit-button">

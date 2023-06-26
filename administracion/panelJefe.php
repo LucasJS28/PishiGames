@@ -67,10 +67,10 @@ if ($_POST) {
 
 <body>
     <div class="container1">
-        <h2 class="heading">Editar Juego</h2>
+        <h2 class="titulo">Editar Juego</h2>
         <form method="POST" action="panelJefe.php" class="edit-form">
-            <div class="form-group">
-                <label for="juego" class="form-label">Seleccione un juego:</label>
+            <div class="formularios">
+                <label for="juego" class="formularios-label">Seleccione un juego:</label>
                 <select name="juego" id="juego" class="form-select" onchange="fillForms()">
                     <?php
                     foreach ($listaProductos as $producto) {
@@ -81,39 +81,39 @@ if ($_POST) {
                 </select>
             </div>
             <!-- Formulario de Cambio de Stock -->
-            <div class="section">
+            <div>
                 <h3 class="section-heading">Cambiar Stock</h3>
-                <div class="form-group">
-                    <label for="stock_anterior" class="form-label">Stock anterior:</label>
-                    <input type="text" name="stock_anterior" id="stock_anterior" class="form-input" value="" readonly>
+                <div class="formularios">
+                    <label for="stock_anterior" class="formularios-label">Stock anterior:</label>
+                    <input type="text" name="stock_anterior" id="stock_anterior" class="formulario-input" value="" readonly>
                 </div>
-                <div class="form-group">
-                    <label for="stock_nuevo" class="form-label">Nuevo Stock:</label>
-                    <input type="text" name="stock_nuevo" id="stock_nuevo" class="form-input">
+                <div class="formularios">
+                    <label for="stock_nuevo" class="formularios-label">Nuevo Stock:</label>
+                    <input type="text" name="stock_nuevo" id="stock_nuevo" class="formulario-input">
                 </div>
-                <div class="form-group">
-                    <input type="submit" name="actualizar_stock" value="Actualizar Stock" class="submit-button">
+                <div class="formularios">
+                    <input type="submit" name="actualizar_stock" value="Actualizar Stock" class="boton-envio">
                 </div>
             </div>
             
             <!-- Formulario de Cambio de Precio -->
-            <div class="section">
+            <div>
                 <h3 class="section-heading">Cambiar Precio</h3>
-                <div class="form-group">
-                    <label for="precio_anterior" class="form-label">Precio anterior:</label>
-                    <input type="text" name="precio_anterior" id="precio_anterior" class="form-input" value="" readonly>
+                <div class="formularios">
+                    <label for="precio_anterior" class="formularios-label">Precio anterior:</label>
+                    <input type="text" name="precio_anterior" id="precio_anterior" class="formulario-input" value="" readonly>
                 </div>
-                <div class="form-group">
-                    <label for="precio_nuevo" class="form-label">Nuevo Precio:</label>
-                    <input type="text" name="precio_nuevo" id="precio_nuevo" class="form-input">
+                <div class="formularios">
+                    <label for="precio_nuevo" class="formularios-label">Nuevo Precio:</label>
+                    <input type="text" name="precio_nuevo" id="precio_nuevo" class="formulario-input">
                 </div>
-                <div class="form-group">
-                    <input type="submit" name="actualizar_precio" value="Actualizar Precio" class="submit-button">
+                <div class="formularios">
+                    <input type="submit" name="actualizar_precio" value="Actualizar Precio" class="boton-envio">
                 </div>
             </div>
         </form>
         <!-- Muestra una imagen del Juego Seleccionado -->
-        <div class="image-container">
+        <div>
             <img id="imagen_juego" src="" alt="Imagen del juego" class="game-image" hidden>
         </div>
 
