@@ -101,7 +101,27 @@ input[type="submit"] { /* Estiliza los botones de Envio */
   color: #333333;
   text-align: center;
 }
+#buscador {
+  width: 600px;
+  margin: 0 auto;
+  text-align: center; /* Añade esta propiedad para centrar el contenido */
+}
 
+#titulo-buscar {
+  font-size: 20px !important;
+  font-weight: 600;
+  font-style: italic;
+  color: black;
+}
+
+#buscar {
+  width: 300px;
+  margin: 10px auto;
+  font-size: 15px;
+  margin-bottom: 20px;
+  border-radius: 20px;
+  padding: 10px;
+}
 /* Inicio Estilos para la Tabla de Revisar Pedidos */
 /* Ajusta la tabla principal */
 

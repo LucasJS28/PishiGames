@@ -29,6 +29,20 @@ document.getElementById('buscar').addEventListener('input', function() {
 });
 
 
+//Funcion para el input de buscar por correo en el PanelAdministrador
+document.getElementById('buscar').addEventListener('input', function() {
+    var input = this.value.toLowerCase();
+    var usuarios = document.getElementsByClassName('usuario');
+    for (var i = 0; i < usuarios.length; i++) {
+        var correo = usuarios[i].getElementsByTagName('td')[0].textContent.toLowerCase();
+        if (correo.includes(input)) {
+            usuarios[i].style.display = 'table-row';
+        } else {
+            usuarios[i].style.display = 'none';
+        }
+    }
+});
+
 /* Ajax tienda.php */
 
 // Manejador de evento clic para los botones "Agregar al Carrito"

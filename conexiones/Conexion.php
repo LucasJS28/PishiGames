@@ -66,7 +66,7 @@ class Conexion extends PDO
         $consulta->bindParam(':rol', $rol);
         $consulta->bindParam(':correoUsuario', $correoUsuario);
         $consulta->execute();
-
+    
         return $consulta->rowCount() > 0;
     }
     
