@@ -61,6 +61,7 @@ if ($_POST) {
     <title>Editar Juego</title>
     <link rel="stylesheet" href="../estilos/stylesAdm.css"> 
     <script src="../scripts/scripts.js"></script>
+    <script src="../scripts/scriptsValidaciones.js"></script>
 </head>
 
 <body>
@@ -114,26 +115,6 @@ if ($_POST) {
         <div>
             <img id="imagen_juego" src="" alt="Imagen del juego" class="game-image" hidden>
         </div>
-
-        <script>
-            function fillForms() {
-                var select = document.getElementById('juego');
-                var selectedOption = select.options[select.selectedIndex];
-                var stockAnteriorInput = document.getElementById('stock_anterior');
-                var precioAnteriorInput = document.getElementById('precio_anterior');
-                var imagenJuego = document.getElementById('imagen_juego');
-
-                stockAnteriorInput.value = selectedOption.dataset.stock;
-                precioAnteriorInput.value = selectedOption.dataset.precio;
-                imagenJuego.src = selectedOption.dataset.imagen;
-                imagenJuego.removeAttribute('hidden');
-            }
-
-            // Llenar los formularios al cargar la página con el primer juego
-            window.addEventListener('load', function() {
-                fillForms();
-            });
-        </script>
     </div>
 </body>
 

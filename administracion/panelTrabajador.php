@@ -39,6 +39,7 @@ if (isset($_POST['titulo'], $_POST['descripcion'], $_POST['precio'], $_POST['sto
     <title>Agregar Productos</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="../estilos/stylesAdm.css">
+    <script src="../scripts/scriptsValidaciones.js"></script>
 </head>
 
 <body>
@@ -63,14 +64,14 @@ if (isset($_POST['titulo'], $_POST['descripcion'], $_POST['precio'], $_POST['sto
             </div>
             <div class="formularios">
                 <label for="imagen" class="formularios-label">Imagen:</label>
-                <input type="file" id="imagenes" name="imagenes" required class="formulario-input">
+                <input type="file" id="imagen" name="imagen" required class="formulario-input">
                 <img id="imagen-preview" src="" alt="Preview Image" style="max-width: 200px; display: none;">
             </div>
             <input type="submit" value="Publicar Videojuego" class="submit-button">
         </form>
     </div>
     <script>
-        document.getElementById('imagenes').addEventListener('change', function(event) { //Escucha el Cambio al seleccionar una imagen
+        document.getElementById('imagen').addEventListener('change', function(event) { //Escucha el Cambio al seleccionar una imagen
             var input = event.target;
             if (input.files && input.files[0]) {
                 var reader = new FileReader();

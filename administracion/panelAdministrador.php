@@ -19,9 +19,9 @@ if ($permiso !== "Administrador") {
 
 /* Realiza el Registro de Usuarios administradores, jefes o trabajadores en la Base de Datos */
 if ($_POST) {
-    $correo = $_POST["correo"];
-    $contrasena = $_POST["contrasena"];
-    $rol = $_POST["rol"];
+    $correo = isset($_POST["correo"]) ? $_POST["correo"] : "";
+    $contrasena = isset($_POST["contrasena"]) ? $_POST["contrasena"] : "";
+    $rol = isset($_POST["rol"]) ? $_POST["rol"] : "";
     $registroExitoso = $conexion->register($correo, $contrasena, $rol);
     if ($registroExitoso) {
         echo "<div id='alerta' class='AlertaBuena'>Registro Realizado con Exito</div>";
@@ -69,6 +69,7 @@ $usuarios = $conexion->obtenerUsuarios();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Trabajadores</title>
     <link rel="stylesheet" href="../estilos/stylesAdm.css">
+    <script src="../scripts/scriptsValidaciones.js"></script>
 </head>
 
 <body>
@@ -134,5 +135,4 @@ $usuarios = $conexion->obtenerUsuarios();
         </table>
     </div>
 </body>
-
 </html>

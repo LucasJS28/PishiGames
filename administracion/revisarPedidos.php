@@ -47,6 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Revisar Pedidos</title>
     <link rel="stylesheet" href="../estilos/stylesAdm.css">
     <script src="../scripts/scripts.js"></script>
+    <script src="../scripts/scriptsValidaciones.js"></script>
 </head>
 
 <body>
