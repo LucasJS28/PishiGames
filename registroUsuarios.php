@@ -1,21 +1,25 @@
 <?php
 require_once "conexiones/Conexion.php";
-include 'nav.php';  
+include 'nav.php';
 $conexion = new Conexion();
 if ($_POST) {
     $correo = $_POST["correo"];
     $contrasena = $_POST["contrasena"];
     $repecontra = $_POST["repecontra"];
     $rol = 4; /* Especifica que el registro es un usuario */
-    if ($contrasena == $repecontra) { //Verifica que las contraseñas sean iguales
-        $registroExitoso = $conexion->register($correo, $contrasena, $rol);
-        if ($registroExitoso) {
-            echo "<div id='alerta' class='AlertaBuena'>Registro exitoso</div>";
+    try {
+        if ($contrasena == $repecontra) { //Verifica que las contraseñas sean iguales
+            $registroExitoso = $conexion->register($correo, $contrasena, $rol);
+            if ($registroExitoso) {
+                echo "<div id='alerta' class='AlertaBuena'>Registro exitoso</div>";
+            } else {
+                echo "<div id='alerta' class='AlertaMala'>El correo está siendo usado por otro usuario</div>";
+            }
         } else {
-            echo "<div id='alerta' class='AlertaMala'>El correo esta siendo Usado por otro Usuario</div>";
+            echo "<div id='alerta' class='AlertaMala'>Ambas contraseñas deben ser idénticas.</div>";
         }
-    } else {
-        echo "<div id='alerta' class='AlertaMala'>Ambas Contraseñas deben ser Identicas.</div>";
+    } catch (PDOException $e) {
+        echo "<div id='alerta' class='AlertaMala'>El Correo ya se encuentra Registrado</div>";
     }
 }
 ?>

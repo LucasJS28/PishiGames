@@ -28,23 +28,23 @@ function validarFormularioRegistro() {
   // Validar la dirección de correo electrónico
   var correoRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!correoRegex.test(correo)) {
-    console.log("Ingrese un correo electrónico válido");
+    alert("Ingrese un correo electrónico válido");
     return false; // Evita que se envíe el formulario
   }
   // Validar contraseñas
   if (contrasena.length < 8) {
-    console.log("La contraseña debe tener al menos 8 caracteres");
+    alert("La contraseña debe tener al menos 8 caracteres");
     return false;
   }
 
   if (contrasena !== repecontra) {
-    console.log("Las contraseñas no coinciden");
+    alert("Las contraseñas no coinciden");
     return false;
   }
 
   // Validar aceptación de términos y condiciones
   if (!terminos) {
-    console.log("Debe aceptar los Términos y Condiciones");
+    alert("Debe aceptar los Términos y Condiciones");
     return false;
   }
 
@@ -58,13 +58,13 @@ function validarFormularioLogin() {
 
   // Verificar si los campos están vacíos
   if (correoUsuario === "" || passUsuario === "") {
-    console.log("Por favor, complete todos los campos.");
+    alert("Por favor, complete todos los campos.");
     return false; // Evita que se envíe el formulario
   }
   // Validar la dirección de correo electrónico
   var correoRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!correoRegex.test(correoUsuario)) {
-    console.log("Ingrese un correo electrónico válido");
+    alert("Ingrese un correo electrónico válido");
     return false; // Evita que se envíe el formulario
   }
   // Si todo es válido, se enviará el formulario

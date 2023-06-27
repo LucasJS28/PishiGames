@@ -6,12 +6,12 @@ if (isset($_POST['correoUsuario']) && isset($_POST['passUsuario'])) {
     $correoUsuario = $_POST['correoUsuario'];
     $passUsuario = $_POST['passUsuario'];
     $conexion = new Conexion();
-    $idRol = $conexion->login($correoUsuario, $passUsuario);
+    $idRol = $conexion->login($correoUsuario, $passUsuario); //Entrega directamente el idRol
     if ($idRol !== false) {
         $usuarios = $conexion->obtenerUsuarios();
         foreach ($usuarios as $usuario) {
-            if ($usuario['correoUsuario'] == $correoUsuario) {
-                $idUsuario = $usuario['idUsuario'];
+            if ($usuario['correoUsuario'] == $correoUsuario) { //Busca el idUsuario
+                $idUsuario = $usuario['idUsuario']; 
                 break;
             }
         }
