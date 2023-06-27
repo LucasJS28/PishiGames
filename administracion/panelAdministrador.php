@@ -22,13 +22,19 @@ if ($_POST) {
     $correo = isset($_POST["correo"]) ? $_POST["correo"] : "";
     $contrasena = isset($_POST["contrasena"]) ? $_POST["contrasena"] : "";
     $rol = isset($_POST["rol"]) ? $_POST["rol"] : "";
-    $registroExitoso = $conexion->register($correo, $contrasena, $rol);
-    if ($registroExitoso) {
-        echo "<div id='alerta' class='AlertaBuena'>Registro Realizado con Exito</div>";
-        header("Location: panelAdministrador.php"); // Redirecciona a la página actualizada
-        exit();
-    } else {
-        echo "<div id='alerta' class='AlertaMala'>Error al Registrar</div>";
+    try {
+        // Código que puede generar la excepción
+        $registroExitoso = $conexion->register($correo, $contrasena, $rol);
+        if ($registroExitoso) {
+            $_SESSION['alerta'] = "<div id='alerta' class='AlertaBuena'>Registro Realizado con Éxito</div>";
+            header("Location: panelAdministrador.php"); // Redirecciona a la página actualizada
+            exit();
+        } else {
+            $_SESSION['alerta'] = "<div id='alerta' class='AlertaMala'>Error al Registrar</div>";
+        }
+    } catch (PDOException $e) {
+        // Manejo de la excepción
+        $_SESSION['alerta'] = "<div id='alerta' class='AlertaMala'>El Correo ya se Encuentra Registrado</div>";
     }
 }
 
@@ -38,9 +44,9 @@ if (isset($_POST["correoUsuario"]) && isset($_POST["rol"])) {
     $rol = $_POST["rol"];
     $modificacionExitosa = $conexion->modificarRol($correoUsuario, $rol);
     if ($modificacionExitosa) {
-        echo "<div id='alerta' class='AlertaBuena'>Se Modifico el Rol de manera Exitosa</div>";
+        $_SESSION['alerta'] = "<div id='alerta' class='AlertaBuena'>Se Modificó el Rol de manera Exitosa</div>";
     } else {
-        echo "<div id='alerta' class='AlertaMala'>Error al Modificar el Rol</div>";
+        $_SESSION['alerta'] = "<div id='alerta' class='AlertaMala'>Error al Modificar el Rol</div>";
     }
     header("Location: panelAdministrador.php"); // Redirecciona a la página actualizada
     exit();
@@ -51,12 +57,18 @@ if (isset($_POST["eliminarUsuario"])) {
     $correoUsuario = $_POST["eliminarUsuario"];
     $eliminacionExitosa = $conexion->eliminarUsuario($correoUsuario);
     if ($eliminacionExitosa) {
-        echo "<div id='alerta' class='AlertaBuena'>Usuario eliminado exitosamente</div>";
+        $_SESSION['alerta'] = "<div id='alerta' class='AlertaBuena'>Usuario eliminado exitosamente</div>";
     } else {
-        echo "<div id='alerta' class='AlertaMala'>Error al eliminar el usuario</div>";
+        $_SESSION['alerta'] = "<div id='alerta' class='AlertaMala'>Error al eliminar el usuario</div>";
     }
     header("Location: panelAdministrador.php"); // Redirecciona a la página actualizada
     exit();
+}
+
+if (isset($_SESSION['alerta'])) {
+    $alerta = $_SESSION['alerta'];
+    echo $alerta;
+    unset($_SESSION['alerta']);
 }
 
 $usuarios = $conexion->obtenerUsuarios();
