@@ -75,7 +75,7 @@ $usuarios = $conexion->obtenerUsuarios();
 <body>
     <div class="contenedor">
         <h1 class="titulo">Registro de Trabajadores</h1>
-        <form action="panelAdministrador.php" method="POST">
+        <form action="panelAdministrador.php" method="POST" onsubmit="return validarFormularioRegistroAdmin()">
             <label for="correo">Correo electrónico:</label>
             <input type="email" name="correo" id="correo" required>
             <br>

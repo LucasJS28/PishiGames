@@ -57,14 +57,14 @@ if (isset($_POST['correoUsuario']) && isset($_POST['passUsuario'])) {
     <title>Tienda Principal</title>
     <link rel="stylesheet" href="estilos/style.css">
     <link rel="stylesheet" href="estilos/styles2.css">
-
+    <script src="scripts/scriptsValidaciones.js"></script>
 </head>
 
 <body>
     <section>
         <h2>Iniciar Sesion</h2>
         <p>Nuevo Usuario? <a href="registroUsuarios.php">!!Registrate!!</a></p>
-        <form action="index.php" method="POST">
+        <form action="index.php" method="POST" onsubmit="return validarFormularioLogin()">
         <input type="email" id="correoUsuario" name="correoUsuario" placeholder="Ingrese su Correo Electronico:" required><br><br>
             <input type="password" id="passUsuario" name="passUsuario" placeholder="Ingrese la Contraseña"><br><br>
             <br><input type="submit" id="iniciar" value="Iniciar Sesion">

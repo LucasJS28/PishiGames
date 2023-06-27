@@ -45,22 +45,22 @@ if (isset($_POST['titulo'], $_POST['descripcion'], $_POST['precio'], $_POST['sto
 <body>
     <div class="contenedor">
         <h1 class="titulo">Agregar Productos</h1>
-        <form action="panelTrabajador.php" method="post" enctype="multipart/form-data" class="product-form">
+        <form action="panelTrabajador.php" method="post" enctype="multipart/form-data" class="product-form" onsubmit="return validarFormularioJuegos()">
             <div class="formularios">
                 <label for="titulo" class="formularios-label">Titulo:</label>
-                <input type="text" name="titulo" id="titulo" placeholder="Ingrese el Titulo del Juego..." class="formulario-input">
+                <input type="text" name="titulo" id="titulo" placeholder="Ingrese el Titulo del Juego..." class="formulario-input" required>
             </div>
             <div class="formularios">
                 <label for="descripcion" class="formularios-label">Descripcion:</label>
-                <input type="text" name="descripcion" id="descripcion" placeholder="Ingrese la Descripcion del Juego..." class="formulario-input">
+                <input type="text" name="descripcion" id="descripcion" placeholder="Ingrese la Descripcion del Juego..." class="formulario-input" required>
             </div>
             <div class="formularios">
                 <label for="precio" class="formularios-label">Precio:</label>
-                <input type="number" name="precio" id="precio" placeholder="Ingrese el Precio del Juego..." class="formulario-input">
+                <input type="number" name="precio" id="precio" placeholder="Ingrese el Precio del Juego..." class="formulario-input" required>
             </div>
             <div class="formularios">
                 <label for="stock" class="formularios-label">Stock:</label>
-                <input type="number" name="stock" id="stock" placeholder="Ingrese el Stock del Juego..." class="formulario-input">
+                <input type="number" name="stock" id="stock" placeholder="Ingrese el Stock del Juego..." class="formulario-input" required>
             </div>
             <div class="formularios">
                 <label for="imagen" class="formularios-label">Imagen:</label>

@@ -67,7 +67,7 @@ if ($_POST) {
 <body>
     <div class="contenedor">
         <h2 class="titulo">Editar Juego</h2>
-        <form method="POST" action="panelJefe.php">
+        <form method="POST" action="panelJefe.php" onsubmit="return validarFormularioJefe()">
             <div class="formularios">
                 <label for="juego" class="formularios-label">Seleccione un juego:</label>
                 <select name="juego" id="juego" onchange="fillForms()">

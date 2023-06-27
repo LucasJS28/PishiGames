@@ -28,13 +28,14 @@ if ($_POST) {
     <title>Registro de Usuarios</title>
     <link rel="stylesheet" href="estilos/style.css">
     <link rel="stylesheet" href="estilos/styles2.css">
+    <script src="scripts/scriptsValidaciones.js"></script>
 </head>
 
 <body>
     <section>
         <h2>Registro de Usuarios</h2>
         <p>¿Ya tienes cuenta? <a href="index.php">¡Ir al inicio de sesión!</a></p>
-        <form action="registroUsuarios.php" method="POST" class="formu">
+        <form action="registroUsuarios.php" method="POST" class="formu" onsubmit="return validarFormularioRegistro()">
             <input type="email" id="correo" name="correo" placeholder="Ingrese su correo electrónico:" required><br>
             <input type="password" name="contrasena" id="contrasena" placeholder="Ingrese su contraseña:" required><br>
             <input type="password" id="repecontra" name="repecontra" placeholder="Repita su Contraseña:" required><br>
