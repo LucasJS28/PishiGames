@@ -49,7 +49,7 @@ if ($_POST) {
         </form>
     </section>
     <article>
-        <h2>Bienvenido al Registro</h2>
+        <h2>Bienvenido</h2>
     </article>
 </body>
 

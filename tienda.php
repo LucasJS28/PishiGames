@@ -66,6 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['agregarCarrito'])) {
     <title>Pishi Games</title>
     <link rel="stylesheet" href="estilos/style.css">
     <script src="scripts/scripts.js" defer></script>
+    <script src="scripts/ajax.js" defer></script>
 </head>
 
 <body>

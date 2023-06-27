@@ -28,14 +28,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif (isset($_POST['idPedidoCancelar'])) {
         $idPedidoCancelar = $_POST['idPedidoCancelar'];
         // Agrega una validación adicional antes de cancelar el pedido
-        if (isset($_POST['confirmacion_'.$idPedidoCancelar]) && $_POST['confirmacion_'.$idPedidoCancelar] === 'si') {
+        if (isset($_POST['confirmacion_' . $idPedidoCancelar]) && $_POST['confirmacion_' . $idPedidoCancelar] === 'si') {
             // Eliminar el pedido
             $pedidos->eliminarPedido($idPedidoCancelar);
-            
+
             // Obtener todos los pedidos actualizados
             $todosLosPedidos = $pedidos->mostrarPedidos();
         }
     }
+    exit();
 }
 ?>
 <!DOCTYPE html>
@@ -48,12 +49,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="../estilos/stylesAdm.css">
     <script src="../scripts/scripts.js"></script>
     <script src="../scripts/scriptsValidaciones.js"></script>
+    <script src="../scripts/ajax.js"></script>
 </head>
 
 <body>
     <div class="contenedor-tabla">
         <h1 class="titulo">Listado de Pedidos</h1>
-        <!-- Revisa si se realzaron encuentros en la base de datos para luego mostrarlos -->
+        <!-- Revisa si se realizaron encuentros en la base de datos para luego mostrarlos -->
         <?php if (count($todosLosPedidos) > 0) { ?>
             <table class="tabla-principal">
                 <tr>
@@ -67,14 +69,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </tr>
 
                 <?php foreach ($todosLosPedidos as $pedido) { ?>
-                    <tr>
+                    <!-- genera un atributo id único para cada fila 
+                    en la tabla de pedidos. El atributo id es utilizado para identificar y seleccionar esa fila específica mediante JavaScript. -->
+                    <tr id="fila-<?php echo $pedido['idPedido']; ?>"> 
                         <td><?php echo $pedido['idPedido']; ?></td>
                         <td><?php echo $pedido['idUsuario']; ?></td>
                         <td><?php echo $pedido['fechaPedido']; ?></td>
                         <td>
                             <form method="POST" action="revisarPedidos.php">
                                 <input type="hidden" name="idPedido" value="<?php echo $pedido['idPedido']; ?>">
-                                <select name="estado" class="cambio-estado" onchange="this.form.submit()">
+                                <select name="estado" class="cambio-estado" onchange="actualizarEstadoPedido(<?php echo $pedido['idPedido']; ?>, this.value)">
                                     <option value="Pendiente" <?php if ($pedido['estado'] === 'Pendiente') echo 'selected'; ?>>Pendiente</option>
                                     <option value="En proceso" <?php if ($pedido['estado'] === 'En proceso') echo 'selected'; ?>>En proceso</option>
                                     <option value="Completado" <?php if ($pedido['estado'] === 'Completado') echo 'selected'; ?>>Completado</option>
@@ -86,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <td>
                             <form method="POST" action="revisarPedidos.php">
                                 <input type="hidden" name="idPedidoCancelar" value="<?php echo $pedido['idPedido']; ?>">
-                                <button type="submit" class="boton-eliminar" onclick="return confirmarEliminacion(<?php echo $pedido['idPedido']; ?>)">Cancelar</button>
+                                <button type="button" class="boton-eliminar" onclick="eliminarPedido(<?php echo $pedido['idPedido']; ?>)">Cancelar</button>
                                 <input type="hidden" name="confirmacion_<?php echo $pedido['idPedido']; ?>" id="confirmacion_<?php echo $pedido['idPedido']; ?>" value="">
                             </form>
                         </td>

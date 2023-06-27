@@ -20,7 +20,6 @@ if (isset($_POST['titulo'], $_POST['descripcion'], $_POST['precio'], $_POST['sto
     $ruta_imagen = 'imagenesjuegos/' . $imagen;
     $ruta_destino = realpath('../') . '/' . $ruta_imagen;
     move_uploaded_file($imagen_temporal, $ruta_destino);
-
     $agregado = $productos->agregarProductos($titulo, $descripcion, $precio, $stock, $ruta_imagen);
     if ($agregado) {
         echo "<div id='alerta' class='AlertaBuena'>El Producto se Agregó Correctamente</div>";

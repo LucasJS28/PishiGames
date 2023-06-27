@@ -72,7 +72,7 @@ if (isset($_POST['correoUsuario']) && isset($_POST['passUsuario'])) {
         </form>
     </section>
     <article>
-        <h2>Bienvenido al Inicio de Sesion</h2>
+        <h2>Bienvenido</h2>
     </article>
 </body>
 
