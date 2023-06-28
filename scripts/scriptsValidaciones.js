@@ -178,6 +178,3 @@ function validarFormularioJuegos() {
 
   return true;
 }
-
-
-

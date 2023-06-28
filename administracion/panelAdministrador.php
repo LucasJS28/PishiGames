@@ -16,6 +16,10 @@ if ($permiso !== "Administrador") {
     header("Location:../index.php");
     exit();
 }
+// Desactivar la caché del servidor
+header("Cache-Control: no-cache, no-store, must-revalidate");
+header("Pragma: no-cache");
+header("Expires: 0");
 
 /* Realiza el Registro de Usuarios administradores, jefes o trabajadores en la Base de Datos */
 if ($_POST) {
@@ -38,30 +42,34 @@ if ($_POST) {
     }
 }
 
-/* Realiza la modificación del rol de un usuario */
-if (isset($_POST["correoUsuario"]) && isset($_POST["rol"])) {
-    $correoUsuario = $_POST["correoUsuario"];
-    $rol = $_POST["rol"];
-    $modificacionExitosa = $conexion->modificarRol($correoUsuario, $rol);
-    if ($modificacionExitosa) {
-        $_SESSION['alerta'] = "<div id='alerta' class='AlertaBuena'>Se Modificó el Rol de manera Exitosa</div>";
-    } else {
-        $_SESSION['alerta'] = "<div id='alerta' class='AlertaMala'>Error al Modificar el Rol</div>";
-    }
-    header("Location: panelAdministrador.php"); // Redirecciona a la página actualizada
-    exit();
-}
-
 /* Elimina un usuario */
 if (isset($_POST["eliminarUsuario"])) {
     $correoUsuario = $_POST["eliminarUsuario"];
     $eliminacionExitosa = $conexion->eliminarUsuario($correoUsuario);
     if ($eliminacionExitosa) {
         $_SESSION['alerta'] = "<div id='alerta' class='AlertaBuena'>Usuario eliminado exitosamente</div>";
+        echo "delete";
+        header("Location: panelAdministrador.php"); // Redirecciona a la página actualizada
+        exit();
     } else {
         $_SESSION['alerta'] = "<div id='alerta' class='AlertaMala'>Error al eliminar el usuario</div>";
+        echo "error";
     }
-    header("Location: panelAdministrador.php"); // Redirecciona a la página actualizada
+    exit();
+}
+
+/* Actualiza el rol de un usuario */
+if (isset($_POST["correoUsuario"]) && isset($_POST["rol"])) {
+    $correoUsuario = $_POST["correoUsuario"];
+    $rol = $_POST["rol"];
+    $actualizacionExitosa = $conexion->modificarRol($correoUsuario, $rol);
+    if ($actualizacionExitosa) {
+        $_SESSION['alerta'] = "<div id='alerta' class='AlertaBuena'>Se Modificó el Rol de manera Exitosa</div>";
+        echo "success";
+    } else {
+        $_SESSION['alerta'] = "<div id='alerta' class='AlertaMala'>Error al Modificar el Rol</div>";
+        echo "error";
+    }
     exit();
 }
 
@@ -73,6 +81,7 @@ if (isset($_SESSION['alerta'])) {
 
 $usuarios = $conexion->obtenerUsuarios();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -81,7 +90,9 @@ $usuarios = $conexion->obtenerUsuarios();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Trabajadores</title>
     <link rel="stylesheet" href="../estilos/stylesAdm.css">
+    <script src="../scripts/scripts.js"></script>
     <script src="../scripts/scriptsValidaciones.js"></script>
+    <script src="../scripts/ajax.js"></script>
 </head>
 
 <body>
@@ -120,26 +131,20 @@ $usuarios = $conexion->obtenerUsuarios();
             </thead>
             <tbody>
                 <?php foreach ($usuarios as $usuario) { ?>
-                    <tr class="usuario">
+                    <tr id="fila-<?php echo $usuario['correoUsuario']; ?>" class="correoUsuario">
                         <td>
                             <?php echo $usuario['correoUsuario']; ?>
                         </td>
-                        <td id="roles">
-                            <form action="panelAdministrador.php" method="POST">
-                                <input type="hidden" name="correoUsuario" value="<?php echo $usuario['correoUsuario']; ?>">
-                                <select name="rol" onchange="this.form.submit()">
-                                    <option value="1" <?php if ($usuario['ID_Rol'] == "1") echo 'selected'; ?>>Administrador</option>
-                                    <option value="3" <?php if ($usuario['ID_Rol'] == "3") echo 'selected'; ?>>Jefe</option>
-                                    <option value="2" <?php if ($usuario['ID_Rol'] == "2") echo 'selected'; ?>>Trabajador</option>
-                                    <option value="4" <?php if ($usuario['ID_Rol'] == "4") echo 'selected'; ?>>Usuario</option>
-                                </select>
-                            </form>
+                        <td data-correo="<?php echo $usuario['correoUsuario']; ?>">
+                            <select onchange="actualizarRol('<?php echo $usuario['correoUsuario']; ?>', this.value)">
+                                <option value="1" <?php if ($usuario['ID_Rol'] == "1") echo 'selected'; ?>>Administrador</option>
+                                <option value="3" <?php if ($usuario['ID_Rol'] == "3") echo 'selected'; ?>>Jefe</option>
+                                <option value="2" <?php if ($usuario['ID_Rol'] == "2") echo 'selected'; ?>>Trabajador</option>
+                                <option value="4" <?php if ($usuario['ID_Rol'] == "4") echo 'selected'; ?>>Usuario</option>
+                            </select>
                         </td>
                         <td>
-                            <form action="panelAdministrador.php" method="POST">
-                                <input type="hidden" name="eliminarUsuario" value="<?php echo $usuario['correoUsuario']; ?>">
-                                <button type="submit" class="button-eliminar">Eliminar</button>
-                            </form>
+                            <button type="button" class="button-eliminar" onclick="eliminarUsuario('<?php echo $usuario['correoUsuario']; ?>')">Eliminar</button>
                         </td>
                     </tr>
                 <?php } ?>

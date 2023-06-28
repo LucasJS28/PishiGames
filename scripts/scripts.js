@@ -13,7 +13,7 @@ setTimeout(function() {
     }
 }, 10000);
 
-//Funcion para el input de buscar
+//Funcion para el input de buscar en Tienda
 document.getElementById('buscar').addEventListener('input', function() {
     var input = this.value.toLowerCase();
     var juegos = document.getElementsByClassName('juego');
@@ -28,11 +28,10 @@ document.getElementById('buscar').addEventListener('input', function() {
     }
 });
 
-
-//Funcion para el input de buscar por correo en el PanelAdministrador
+//Funcion buscar input buscar panelAdminitrador
 document.getElementById('buscar').addEventListener('input', function() {
     var input = this.value.toLowerCase();
-    var usuarios = document.getElementsByClassName('usuario');
+    var usuarios = document.getElementsByClassName('correoUsuario');
     for (var i = 0; i < usuarios.length; i++) {
         var correo = usuarios[i].getElementsByTagName('td')[0].textContent.toLowerCase();
         if (correo.includes(input)) {
@@ -43,7 +42,19 @@ document.getElementById('buscar').addEventListener('input', function() {
     }
 });
 
-
+//Funcion buscar input buscar revisarPedidos
+document.getElementById('buscar').addEventListener('input', function() {
+    var input = this.value.toLowerCase();
+    var pedidos = document.getElementsByClassName('tabla-principal')[0].getElementsByTagName('tr');
+    for (var i = 1; i < pedidos.length; i++) { // Start from index 1 to exclude table header row
+        var idPedido = pedidos[i].getElementsByTagName('td')[0].textContent.toLowerCase();
+        if (idPedido.includes(input)) {
+            pedidos[i].style.display = 'table-row';
+        } else {
+            pedidos[i].style.display = 'none';
+        }
+    }
+});
 /* script para eliminar -1 de stock cuando se presiona agregar al carro */
 
 var botonesAgregarCarrito = document.getElementsByClassName("agregar-carrito");

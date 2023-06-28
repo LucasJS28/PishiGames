@@ -84,3 +84,46 @@ for (var i = 0; i < agregarCarritoButtons.length; i++) {
         xhr.send('agregarCarrito=true&idJuego=' + idJuego);
     });
 }
+
+
+
+//Ajax del panelAdministrador
+
+function eliminarUsuario(correoUsuario) { //No  se por que no funciona al 100 el borrar
+    var confirmacion = confirm("¿Estás seguro de que deseas eliminar este usuario?");
+    if (confirmacion) {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                if (this.responseText === "delete") {
+                    // Elimina la fila de usuario eliminado sin recargar la página
+                    var fila = document.getElementById("fila-" + correoUsuario);
+                    if (fila) {
+                        fila.remove();
+                    }
+                }
+            }
+        };
+        xhttp.open("POST", "panelAdministrador.php", true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("eliminarUsuario=" + correoUsuario);
+    }
+}
+
+function actualizarRol(correoUsuario, nuevoRol) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            if (this.responseText === "success") {
+                // Actualiza el campo de rol sin recargar la página
+                var campoRol = document.querySelector("td[data-correo='" + correoUsuario + "'] select");
+                if (campoRol) {
+                    campoRol.value = nuevoRol;
+                }
+            }
+        }
+    };
+    xhttp.open("POST", "panelAdministrador.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("correoUsuario=" + correoUsuario + "&rol=" + nuevoRol);
+}
