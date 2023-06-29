@@ -90,6 +90,7 @@ class Productos
         }
     }
 
+    
     // Función para restar la cantidad de stock de un producto
     public function restarStock($idJuego, $cantidad)
     {

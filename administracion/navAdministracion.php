@@ -35,7 +35,7 @@
             echo '
                 <ul>
                     <a href="#"><img id="pishiLogo" src="../iconos/iconpishi" alt=""></a>
-                    <li><a href="panelJefe.php"><i class="fas fa-money-bill-wave"></i> Ver Precios</a></li>
+                    <li><a href="panelJefe.php"><i class="fas fa-money-bill-wave"></i> Modificar Productos</a></li>
                     <li><a href="revisarPedidos.php"><i class="fas fa-clipboard-list"></i> Ver Pedidos</a></li>
                     <li><a href="../cerrarsesion.php"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
                     <li class="rango">Bienvenido: <span>Jefe</span></li>

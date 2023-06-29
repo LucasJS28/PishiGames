@@ -133,7 +133,6 @@ function actualizarRol(correoUsuario, nuevoRol) {
 
 
 /* AJax para el panel jefe */
-
 $(document).ready(function() {
     // Enviar los formularios usando AJAX
     $('.ajax-form').submit(function(e) {
@@ -149,7 +148,7 @@ $(document).ready(function() {
             data: data,
             success: function(response) {
                 // Actualizar la tabla o realizar otras acciones según sea necesario
-                alert('Accion Exitosa');
+                alert('Acción completada exitosamente');
                 // Por ejemplo, podrías recargar solo la tabla:
                 $('.tabla-principal').load('panelJefe.php .tabla-principal');
             },

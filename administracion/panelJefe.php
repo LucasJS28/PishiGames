@@ -33,6 +33,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stock = $_POST['stock'];
             $productos->actualizarStock($id, $stock);
         }
+
+        // Redireccionar a la misma página para actualizar la tabla
+        header('Location: panelJefe.php ');
         exit;
     }
 }
@@ -56,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="contenedor-tabla">
         <h1 class="titulo">Modificar Productos</h1>
         <div id="buscador">
-            <label for="buscar" id="titulo-buscar">Buscar Productos Segun Nombre</label>
+            <label for="buscar" id="titulo-buscar">Buscar Pedido</label>
             <input type="search" name="buscar" id="buscar" placeholder="Ingrese el ID del Pedido a buscar">
         </div>
         <table class="tabla-principal">
