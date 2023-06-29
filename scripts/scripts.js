@@ -13,6 +13,20 @@ setTimeout(function() {
     }
 }, 10000);
 
+
+//Funcion buscar input buscar panelAdminitrador
+document.getElementById('buscar').addEventListener('input', function() {
+    var input = this.value.toLowerCase();
+    var usuarios = document.getElementsByClassName('correoUsuario');
+    for (var i = 0; i < usuarios.length; i++) {
+        var correo = usuarios[i].getElementsByTagName('td')[0].textContent.toLowerCase();
+        if (correo.includes(input)) {
+            usuarios[i].style.display = 'table-row';
+        } else {
+            usuarios[i].style.display = 'none';
+        }
+    }
+});
 //Funcion para el input de buscar en Tienda
 document.getElementById('buscar').addEventListener('input', function() {
     var input = this.value.toLowerCase();
@@ -28,19 +42,6 @@ document.getElementById('buscar').addEventListener('input', function() {
     }
 });
 
-//Funcion buscar input buscar panelAdminitrador
-document.getElementById('buscar').addEventListener('input', function() {
-    var input = this.value.toLowerCase();
-    var usuarios = document.getElementsByClassName('correoUsuario');
-    for (var i = 0; i < usuarios.length; i++) {
-        var correo = usuarios[i].getElementsByTagName('td')[0].textContent.toLowerCase();
-        if (correo.includes(input)) {
-            usuarios[i].style.display = 'table-row';
-        } else {
-            usuarios[i].style.display = 'none';
-        }
-    }
-});
 
 //Funcion buscar input buscar revisarPedidos
 document.getElementById('buscar').addEventListener('input', function() {

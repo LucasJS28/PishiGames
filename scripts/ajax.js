@@ -1,40 +1,5 @@
 /* Este Documento JS busca poder juntar todo el Codigo AJAX para mayor entendimiento */
 
-/* Funciones AJAX para revisarPedidos.php */
-function actualizarEstadoPedido(idPedido, estado) {
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "revisarPedidos.php", true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-            alert("Pedido Actualizado con Exito");
-            console.log(xhr.responseText);
-        }
-    };
-    xhr.send("idPedido=" + encodeURIComponent(idPedido) + "&estado=" + encodeURIComponent(estado));
-}
-
-function eliminarPedido(idPedido) {
-    var confirmacion = confirm("¿Estás seguro de que deseas cancelar este pedido?");
-    if (confirmacion) {
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "revisarPedidos.php", true);
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-                alert("Producto Eliminado con Éxito");
-                console.log(xhr.responseText);
-                // Eliminar la fila del pedido de la tabla sin recargar la página
-                var fila = document.getElementById("fila-" + idPedido); //Elimina el tr con el ID que se genera con cada una de las tablas
-                if (fila) {
-                    fila.parentNode.removeChild(fila);
-                }
-            }
-        };
-        xhr.send("idPedidoCancelar=" + encodeURIComponent(idPedido) + "&confirmacion_" + idPedido + "=si");
-    }
-}
-
 /* Ajax tienda.php */
 
 // Manejador de evento clic para los botones "Agregar al Carrito"
@@ -85,6 +50,43 @@ for (var i = 0; i < agregarCarritoButtons.length; i++) {
     });
 }
 
+
+
+
+/* Funciones AJAX para revisarPedidos.php */
+function actualizarEstadoPedido(idPedido, estado) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "revisarPedidos.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+            alert("Pedido Actualizado con Exito");
+            console.log(xhr.responseText);
+        }
+    };
+    xhr.send("idPedido=" + encodeURIComponent(idPedido) + "&estado=" + encodeURIComponent(estado));
+}
+
+function eliminarPedido(idPedido) {
+    var confirmacion = confirm("¿Estás seguro de que deseas cancelar este pedido?");
+    if (confirmacion) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "revisarPedidos.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                alert("Producto Eliminado con Éxito");
+                console.log(xhr.responseText);
+                // Eliminar la fila del pedido de la tabla sin recargar la página
+                var fila = document.getElementById("fila-" + idPedido); //Elimina el tr con el ID que se genera con cada una de las tablas
+                if (fila) {
+                    fila.parentNode.removeChild(fila);
+                }
+            }
+        };
+        xhr.send("idPedidoCancelar=" + encodeURIComponent(idPedido) + "&confirmacion_" + idPedido + "=si");
+    }
+}
 
 
 //Ajax del panelAdministrador
