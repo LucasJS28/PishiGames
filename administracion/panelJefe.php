@@ -5,6 +5,7 @@ require_once "../conexiones/Productos.php";
 $productos = new Productos();
 $listaProductos = $productos->mostrarTodosProductos();
 
+
 /* Revisa que el Puesto sea segun los Permisos para entrar a la Pagina */
 if (!isset($_SESSION["Puesto"])) {
     header("Location:../index.php");
@@ -16,42 +17,27 @@ if ($permiso !== "Jefe") {
     exit();
 }
 
-$precioAnterior = '';
-$stockAnterior = '';
-$imagenJuegoSrc = '';
 
-/* Actualiza el precio segun lo recibido en el formulario */
-/* Recibe por Separado los diferentes valores Stock o Precio para que no se suban a la vez y remplacen valores de forma equivocada */
-if ($_POST) {
-    $idJuego = $_POST['juego'];
-    if (isset($_POST['actualizar_precio'])) {
-        $nuevoPrecio = $_POST['precio_nuevo'];
-        $resultadoPrecio = $productos->actualizarProducto($idJuego, $nuevoPrecio);
-        if ($resultadoPrecio) {
-            echo "<div id='alerta' class='AlertaBuena'>El precio se actualizó correctamente</div>";
-        } else {
-            echo "<div id='alerta' class='AlertaMala'>Hubo un error al actualizar el precio.</div>";
+// Actualizar el producto si se ha enviado el formulario de modificación
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['accion'])) {
+        $accion = $_POST['accion'];
+        $id = $_POST['id'];
+
+        if ($accion === 'modificar_precio') {
+            $precio = $_POST['precio'];
+            $productos->actualizarProducto($id, $precio);
+        } elseif ($accion === 'eliminar') {
+            $productos->eliminarProducto($id);
+        } elseif ($accion === 'modificar_stock') {
+            $stock = $_POST['stock'];
+            $productos->actualizarStock($id, $stock);
         }
-    }
-    if (isset($_POST['actualizar_stock'])) {
-        $nuevoStock = $_POST['stock_nuevo'];
-        $resultadoStock = $productos->actualizarStock($idJuego, $nuevoStock);
-        if ($resultadoStock) {
-            echo "<div id='alerta' class='AlertaBuena'>El stock se actualizó correctamente</div>";
-        } else {
-            echo "<div id='alerta' class='AlertaMala'>Hubo un error al actualizar el stock.</div>";
-        }
-    }
-/* Muestra un Objeto por defecto al iniciar el formulario */
-} else {
-    if (!empty($listaProductos)) {
-        $firstProduct = $listaProductos[0];
-        $precioAnterior = $firstProduct['precio'];
-        $stockAnterior = $firstProduct['stock'];
-        $imagenJuegoSrc = '../' . $firstProduct['imagen'];
+        exit;
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -59,62 +45,66 @@ if ($_POST) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Juego</title>
-    <link rel="stylesheet" href="../estilos/stylesAdm.css"> 
-    <script src="../scripts/scripts.js"></script>
+    <link rel="stylesheet" href="../estilos/stylesAdm.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Importar jQuery -->
     <script src="../scripts/scriptsValidaciones.js"></script>
+    <script src="../scripts/scripts.js"></script>
+    <script src="../scripts/ajax.js"></script>
 </head>
 
 <body>
-    <div class="contenedor">
-        <h2 class="titulo">Editar Juego</h2>
-        <form method="POST" action="panelJefe.php" onsubmit="return validarFormularioJefe()">
-            <div class="formularios">
-                <label for="juego" class="formularios-label">Seleccione un juego:</label>
-                <select name="juego" id="juego" onchange="fillForms()">
-                    <?php
-                    foreach ($listaProductos as $producto) {
-                        $rutaImagen = "../" . $producto['imagen'];
-                        echo '<option value="' . $producto['idJuego'] . '" data-precio="' . $producto['precio'] . '" data-stock="' . $producto['stock'] . '" data-imagen="' . $rutaImagen . '">' . $producto['titulo'] . '</option>';
-                    }
-                    ?>
-                </select>
-            </div>
-            <!-- Formulario de Cambio de Stock -->
-            <div>
-                <h3 class="section-heading">Cambiar Stock</h3>
-                <div class="formularios">
-                    <label for="stock_anterior" class="formularios-label">Stock anterior:</label>
-                    <input type="text" name="stock_anterior" id="stock_anterior" class="formulario-input" value="" readonly>
-                </div>
-                <div class="formularios">
-                    <label for="stock_nuevo" class="formularios-label">Nuevo Stock:</label>
-                    <input type="text" name="stock_nuevo" id="stock_nuevo" class="formulario-input">
-                </div>
-                <div class="formularios">
-                    <input type="submit" name="actualizar_stock" value="Actualizar Stock" class="boton-envio">
-                </div>
-            </div>
-            
-            <!-- Formulario de Cambio de Precio -->
-            <div>
-                <h3 class="section-heading">Cambiar Precio</h3>
-                <div class="formularios">
-                    <label for="precio_anterior" class="formularios-label">Precio anterior:</label>
-                    <input type="text" name="precio_anterior" id="precio_anterior" class="formulario-input" value="" readonly>
-                </div>
-                <div class="formularios">
-                    <label for="precio_nuevo" class="formularios-label">Nuevo Precio:</label>
-                    <input type="text" name="precio_nuevo" id="precio_nuevo" class="formulario-input">
-                </div>
-                <div class="formularios">
-                    <input type="submit" name="actualizar_precio" value="Actualizar Precio" class="boton-envio">
-                </div>
-            </div>
-        </form>
-        <!-- Muestra una imagen del Juego Seleccionado -->
-        <div>
-            <img id="imagen_juego" src="" alt="Imagen del juego" class="game-image" hidden>
+    <div class="contenedor-tabla">
+        <h1 class="titulo">Modificar Productos</h1>
+        <div id="buscador">
+            <label for="buscar" id="titulo-buscar">Buscar Productos Segun Nombre</label>
+            <input type="search" name="buscar" id="buscar" placeholder="Ingrese el ID del Pedido a buscar">
         </div>
+        <table class="tabla-principal">
+            <tr>
+                <th>ID</th>
+                <th>Título</th>
+                <th>Imagen</th>
+                <th>Descripción</th>
+                <th>Precio</th>
+                <th>Stock</th>
+                <th>Acciones</th>
+            </tr>
+            <?php foreach ($listaProductos as $producto) { ?>
+                <tr>
+                    <td><?php echo $producto['idJuego']; ?></td>
+                    <td><?php echo $producto['titulo']; ?></td>
+                    <td><img width="150px" style="border: 3px solid red;" id="imgtabla" src="<?php echo "../" . $producto['imagen']; ?>" alt=""></td>
+                    <td><?php echo $producto['descripcion']; ?></td>
+                    <td>
+                        <!-- Formulario para modificar el precio del producto -->
+                        <form class="ajax-form" method="POST" action="panelJefe.php">
+                            <input type="hidden" name="id" value="<?php echo $producto['idJuego']; ?>">
+                            <input class="input-panelJefe" type="number" name="precio" value="<?php echo $producto['precio']; ?>">
+                            <input type="hidden" name="accion" value="modificar_precio">
+                            <button class="btn-panelJefe" type="submit">Cambiar Precio</button>
+                        </form>
+                    </td>
+
+                    <td>
+                        <!-- Formulario para modificar el stock del producto -->
+                        <form class="ajax-form" method="POST" action="panelJefe.php">
+                            <input type="hidden" name="id" value="<?php echo $producto['idJuego']; ?>">
+                            <input class="input-panelJefe" type="number" name="stock" value="<?php echo $producto['stock']; ?>">
+                            <input type="hidden" name="accion" value="modificar_stock">
+                            <button class="btn-panelJefe" type="submit">Cambiar Stock</button>
+                        </form>
+                    </td>
+                    <td class="acciones">
+                        <!-- Formulario para eliminar el producto -->
+                        <form class="ajax-form" method="POST" action="panelJefe.php" onsubmit="return confirm('¿Estás seguro de eliminar este producto?');">
+                            <input type="hidden" name="id" value="<?php echo $producto['idJuego']; ?>">
+                            <input type="hidden" name="accion" value="eliminar">
+                            <button type="submit" class="boton-eliminar">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+            <?php } ?>
+        </table>
     </div>
 </body>
 

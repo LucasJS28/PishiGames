@@ -36,7 +36,7 @@ class Productos
         $consulta->execute();
         return $consulta->fetchAll(PDO::FETCH_ASSOC);
     }
-    
+
     // Función para mostrar todos los productos disponibles en stock
     public function mostrarProductos()
     {
@@ -58,7 +58,7 @@ class Productos
     // Función para eliminar un producto (no utilizada en ninguna parte del documento)
     public function eliminarProducto($id)
     {
-        $sql = "DELETE FROM videojuego WHERE id = :id";
+        $sql = "DELETE FROM videojuego WHERE idJuego = :id";
         $consulta = $this->conexion->prepare($sql);
         $consulta->bindParam(':id', $id, PDO::PARAM_INT);
         $consulta->execute();

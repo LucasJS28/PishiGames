@@ -95,11 +95,12 @@ function eliminarUsuario(correoUsuario) { //No  se por que no funciona al 100 el
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                if (this.responseText === "delete") {
+                console.log(this.responseText); // Agregar esta línea para imprimir la respuesta en la consola
+                if (this.responseText.trim() === "success") {
                     // Elimina la fila de usuario eliminado sin recargar la página
                     var fila = document.getElementById("fila-" + correoUsuario);
                     if (fila) {
-                        fila.remove();
+                        fila.parentNode.removeChild(fila);
                     }
                 }
             }
@@ -127,3 +128,35 @@ function actualizarRol(correoUsuario, nuevoRol) {
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send("correoUsuario=" + correoUsuario + "&rol=" + nuevoRol);
 }
+
+
+
+
+/* AJax para el panel jefe */
+
+$(document).ready(function() {
+    // Enviar los formularios usando AJAX
+    $('.ajax-form').submit(function(e) {
+        e.preventDefault(); // Evitar el envío del formulario normalmente
+
+        var form = $(this);
+        var url = form.attr('action');
+        var data = form.serialize();
+
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: data,
+            success: function(response) {
+                // Actualizar la tabla o realizar otras acciones según sea necesario
+                alert('Accion Exitosa');
+                // Por ejemplo, podrías recargar solo la tabla:
+                $('.tabla-principal').load('panelJefe.php .tabla-principal');
+            },
+            error: function(xhr, status, error) {
+                console.error(xhr.responseText);
+                alert('Ha ocurrido un error al procesar la acción');
+            }
+        });
+    });
+});

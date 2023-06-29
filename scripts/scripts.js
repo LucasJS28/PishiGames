@@ -55,6 +55,20 @@ document.getElementById('buscar').addEventListener('input', function() {
         }
     }
 });
+
+//Funcion buscar input buscar panelJefe 
+document.getElementById('buscar').addEventListener('input', function() {
+    var input = this.value.toLowerCase();
+    var pedidos = document.getElementsByClassName('tabla-principal')[0].getElementsByTagName('tr');
+    for (var i = 1; i < pedidos.length; i++) { // Start from index 1 to exclude table header row
+        var segundoValor = pedidos[i].getElementsByTagName('td')[1].textContent.toLowerCase();
+        if (segundoValor.includes(input)) {
+            pedidos[i].style.display = 'table-row';
+        } else {
+            pedidos[i].style.display = 'none';
+        }
+    }
+});
 /* script para eliminar -1 de stock cuando se presiona agregar al carro */
 
 var botonesAgregarCarrito = document.getElementsByClassName("agregar-carrito");
@@ -76,23 +90,3 @@ var botonesAgregarCarrito = document.getElementsByClassName("agregar-carrito");
     });
   }
 
-
-// PanelJefe.php
-// Funcion para mostrar los datos en el formulario por defecto
-  function fillForms() {
-    var select = document.getElementById('juego');
-    var selectedOption = select.options[select.selectedIndex];
-    var stockAnteriorInput = document.getElementById('stock_anterior');
-    var precioAnteriorInput = document.getElementById('precio_anterior');
-    var imagenJuego = document.getElementById('imagen_juego');
-
-    stockAnteriorInput.value = selectedOption.dataset.stock;
-    precioAnteriorInput.value = selectedOption.dataset.precio;
-    imagenJuego.src = selectedOption.dataset.imagen;
-    imagenJuego.removeAttribute('hidden');
-}
-
-// Llenar los formularios al cargar la página con el primer juego
-window.addEventListener('load', function() {
-    fillForms();
-});

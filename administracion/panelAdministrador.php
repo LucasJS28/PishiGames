@@ -16,11 +16,6 @@ if ($permiso !== "Administrador") {
     header("Location:../index.php");
     exit();
 }
-// Desactivar la caché del servidor
-header("Cache-Control: no-cache, no-store, must-revalidate");
-header("Pragma: no-cache");
-header("Expires: 0");
-
 /* Realiza el Registro de Usuarios administradores, jefes o trabajadores en la Base de Datos */
 if ($_POST) {
     $correo = isset($_POST["correo"]) ? $_POST["correo"] : "";
@@ -48,9 +43,7 @@ if (isset($_POST["eliminarUsuario"])) {
     $eliminacionExitosa = $conexion->eliminarUsuario($correoUsuario);
     if ($eliminacionExitosa) {
         $_SESSION['alerta'] = "<div id='alerta' class='AlertaBuena'>Usuario eliminado exitosamente</div>";
-        echo "delete";
-        header("Location: panelAdministrador.php"); // Redirecciona a la página actualizada
-        exit();
+        echo "success";
     } else {
         $_SESSION['alerta'] = "<div id='alerta' class='AlertaMala'>Error al eliminar el usuario</div>";
         echo "error";
