@@ -27,6 +27,9 @@ if (isset($_POST['titulo'], $_POST['descripcion'], $_POST['precio'], $_POST['sto
         echo "<div id='alerta' class='AlertaMala'>Ha ocurrido un error al agregar el producto.</div>";
     }
 }
+
+$juegos = $productos->mostrarTodosProductos();
+
 ?>
 
 <!DOCTYPE html>
@@ -40,7 +43,22 @@ if (isset($_POST['titulo'], $_POST['descripcion'], $_POST['precio'], $_POST['sto
     <link rel="stylesheet" href="../estilos/stylesAdm.css">
     <script src="../scripts/scriptsValidaciones.js"></script>
 </head>
-
+<style>
+    .contenedor{
+        float: left;
+        width: 500px;
+        margin-left: 100px;
+        height: 70%;
+    }
+    .contenedor-tabla{
+        float: right;
+        width: 500px;
+        margin-right: 5%;
+        overflow-y: scroll;
+        height: 500px;
+        
+    }
+</style>
 <body>
     <div class="contenedor">
         <h1 class="titulo">Agregar Productos</h1>
@@ -68,6 +86,31 @@ if (isset($_POST['titulo'], $_POST['descripcion'], $_POST['precio'], $_POST['sto
             </div>
             <input type="submit" value="Publicar Videojuego" class="submit-button">
         </form>
+    </div>
+    <div class="contenedor-tabla">
+        <h1 class="titulo">Listado de Juegos</h1>
+        
+        <!-- Agrega el código para mostrar los juegos en una tabla -->
+        <?php if (!empty($juegos)) { ?>
+            <table class="tabla-principal">
+                <tr>
+                    <th>ID</th>
+                    <th>Imagen</th>
+                    <th>Nombre</th>
+                    <th>Stock</th>
+                </tr>
+                <?php foreach ($juegos as $juego) { ?>
+                    <tr>
+                        <td><?php echo $juego['idJuego']; ?></td>
+                        <td><img src="../<?php echo $juego['imagen']; ?>" width="150px" alt="Imagen del Juego"></td>
+                        <td><?php echo $juego['titulo']; ?></td>
+                        <td><?php echo $juego['stock']; ?></td>
+                    </tr>
+                <?php } ?>
+            </table>
+        <?php } else { ?>
+            <p class="no-pedidos">No se encontraron juegos.</p>
+        <?php } ?>
     </div>
     <script>
         document.getElementById('imagen').addEventListener('change', function(event) { //Escucha el Cambio al seleccionar una imagen
