@@ -51,7 +51,6 @@ $juegos = $productos->mostrarTodosProductosAsc();
         height: 70%;
     }
     .contenedor-tabla{
-        position: absolute;
         top: 90px;
         right: 20px;
         width: 40%;
