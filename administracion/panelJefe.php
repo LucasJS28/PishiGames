@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <h1 class="titulo">Modificar Productos</h1>
         <div id="buscador">
             <label for="buscar" id="titulo-buscar">Buscar Pedido</label>
-            <input type="search" name="buscar" id="buscar" placeholder="Ingrese el ID del Pedido a buscar">
+            <input type="search" name="buscar" id="buscar" placeholder="Ingrese ID del Juego a Buscar">
         </div>
         <table class="tabla-principal">
             <tr>

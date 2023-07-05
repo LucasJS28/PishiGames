@@ -37,6 +37,15 @@ class Productos
         return $consulta->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    // Funcion para Mostrar todos los Productos registrados Segun el ID de forma Descendente para el PanelTrabajador
+    public function mostrarTodosProductosAsc()
+    {
+        $sql = "SELECT * FROM videojuego ORDER BY idJuego DESC";
+        $consulta = $this->conexion->prepare($sql);
+        $consulta->execute();
+        return $consulta->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     // Función para mostrar todos los productos disponibles en stock
     public function mostrarProductos()
     {

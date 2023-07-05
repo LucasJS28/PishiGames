@@ -90,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             </form>
                         </td>
                         <td><?php echo $pedido['detalles']; ?></td>
-                        <td><?php echo $pedido['total']; ?></td>
+                        <td><?php echo number_format($pedido['total'], 0, '', '.'); ?></td>
                         <td>
                             <form method="POST" action="revisarPedidos.php">
                                 <input type="hidden" name="idPedidoCancelar" value="<?php echo $pedido['idPedido']; ?>">

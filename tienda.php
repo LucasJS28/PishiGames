@@ -82,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['agregarCarrito'])) {
                     <h4 class="titulo"><?php echo $juego['titulo']; ?></h4>
                     <p class="descripcion"><?php echo $juego['descripcion']; ?></p>
                     <img class="imagen" src="<?php echo $juego['imagen']; ?>" alt="Imagen del juego">
-                    <p class="precio">Precio: <?php echo $juego['precio']; ?></p>
+                    <p class="precio">Precio: <?php echo number_format($juego['precio'], 0, '', '.'); ?></p>
                     <p class="stock">Stock: <?php echo $juego['stock']; ?></p>
                     <button class="agregar-carrito" data-id="<?php echo $juego['idJuego']; ?>">Agregar al Carrito</button>
                 </div>
@@ -99,7 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['agregarCarrito'])) {
                     <h4 class="titulo"><?php echo $juego['titulo']; ?></h4>
                     <p class="descripcion"><?php echo $juego['descripcion']; ?></p>
                     <img class="imagen" src="<?php echo $juego['imagen']; ?>" alt="Imagen del juego">
-                    <p class="precio">Precio: <?php echo $juego['precio']; ?></p>
+                    <p class="precio">Precio: <?php echo number_format($juego['precio'], 0, '', '.'); ?></p>
                     <p class="stock">Stock: 0</p>
                     <button class="agregar-carrito" data-id="<?php echo $juego['idJuego']; ?>">Producto sin Stock</button>
                 </div>

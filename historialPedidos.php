@@ -43,7 +43,7 @@
                         <td class="table-cell"><?php echo $pedido['fechaPedido']; ?></td>
                         <td class="table-cell"><?php echo $pedido['estado']; ?></td>
                         <td class="table-cell"><?php echo $pedido['detalles']; ?></td>
-                        <td class="table-cell"><?php echo $pedido['total']; ?></td>
+                        <td class="table-cell"><?php echo number_format($pedido['total'], 0, '', '.'); ?></td>
                     </tr>
                 <?php } ?>
             </tbody>

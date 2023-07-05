@@ -28,7 +28,7 @@ if (isset($_POST['titulo'], $_POST['descripcion'], $_POST['precio'], $_POST['sto
     }
 }
 
-$juegos = $productos->mostrarTodosProductos();
+$juegos = $productos->mostrarTodosProductosAsc();
 
 ?>
 
@@ -46,17 +46,18 @@ $juegos = $productos->mostrarTodosProductos();
 <style>
     .contenedor{
         float: left;
-        width: 500px;
-        margin-left: 100px;
+        width: 40%;
+        margin-left: 50px;
         height: 70%;
     }
     .contenedor-tabla{
-        float: right;
-        width: 500px;
-        margin-right: 5%;
+        position: absolute;
+        top: 90px;
+        right: 20px;
+        width: 40%;
+        margin-right: 50px;
         overflow-y: scroll;
         height: 500px;
-        
     }
 </style>
 <body>
@@ -89,7 +90,10 @@ $juegos = $productos->mostrarTodosProductos();
     </div>
     <div class="contenedor-tabla">
         <h1 class="titulo">Listado de Juegos</h1>
-        
+        <div id="buscador">
+            <label for="buscar" id="titulo-buscar">Buscar Pedido</label>
+            <input type="search" name="buscar" id="buscar" placeholder="Ingrese ID del Juego a Buscar">
+        </div>
         <!-- Agrega el código para mostrar los juegos en una tabla -->
         <?php if (!empty($juegos)) { ?>
             <table class="tabla-principal">
@@ -98,6 +102,7 @@ $juegos = $productos->mostrarTodosProductos();
                     <th>Imagen</th>
                     <th>Nombre</th>
                     <th>Stock</th>
+                    <th>Precio</th>
                 </tr>
                 <?php foreach ($juegos as $juego) { ?>
                     <tr>
@@ -105,6 +110,7 @@ $juegos = $productos->mostrarTodosProductos();
                         <td><img src="../<?php echo $juego['imagen']; ?>" width="150px" alt="Imagen del Juego"></td>
                         <td><?php echo $juego['titulo']; ?></td>
                         <td><?php echo $juego['stock']; ?></td>
+                        <td><?php echo number_format($juego['precio'], 0, '', '.'); ?></td>
                     </tr>
                 <?php } ?>
             </table>

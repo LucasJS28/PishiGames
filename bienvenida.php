@@ -37,7 +37,7 @@ $listaJuegos  = $productos->mostrarProductosmasBaratos();
                     <h4 class="titulo"><?php echo $juego['titulo']; ?></h4>
                     <p class="descripcion"><?php echo $juego['descripcion']; ?></p>
                     <img class="imagen" src="<?php echo $juego['imagen']; ?>" alt="Imagen del juego">
-                    <p class="precio">Precio: <?php echo $juego['precio']; ?></p>
+                    <p class="precio">Precio: <?php echo number_format($juego['precio'], 0, '', '.'); ?></p>
                 </div>
             </li>
         <?php } ?>

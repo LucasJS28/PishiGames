@@ -62,7 +62,7 @@ document.getElementById('buscar').addEventListener('input', function() {
     var input = this.value.toLowerCase();
     var pedidos = document.getElementsByClassName('tabla-principal')[0].getElementsByTagName('tr');
     for (var i = 1; i < pedidos.length; i++) { // Start from index 1 to exclude table header row
-        var segundoValor = pedidos[i].getElementsByTagName('td')[1].textContent.toLowerCase();
+        var segundoValor = pedidos[i].getElementsByTagName('td')[0].textContent.toLowerCase();
         if (segundoValor.includes(input)) {
             pedidos[i].style.display = 'table-row';
         } else {
