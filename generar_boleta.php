@@ -1,7 +1,6 @@
 <?php
 session_start();
-require_once "conexiones/Productos.php";
-$productos = new Productos();
+
 if (isset($_SESSION['pedido'])) {
     $pedido = $_SESSION['pedido'];
 
@@ -69,11 +68,13 @@ if (isset($_SESSION['pedido'])) {
 </html>";
 
 //header('Content-Type: application/octet-stream');: Establece el tipo de contenido como binario para la descarga del archivo.
-//header('Content-Disposition: attachment; filename="boleta.html"');: Configura la descarga del archivo con el nombre "boleta.html".
+//header('Content-Disposition: attachment; filename="boleta.html"');: Configura la descarga del archivo con el nombre "boleta.html"
     // Descargar la boleta como un archivo
     header('Content-Type: application/octet-stream');
     header('Content-Disposition: attachment; filename="boleta.html"');
+
     echo $boletaHTML;
 } else {
     echo "No se encontró el pedido.";
 }
+?>

@@ -18,6 +18,20 @@ nav {
   border-bottom: 1px solid rgb(126, 6, 6);
 }
 
+#filtroForm{
+  position: absolute;
+  right: 5%;
+  top: 120px;
+}
+
+#tituloordenar{
+  font-size: 18px;
+}
+#filtroForm input,select{
+  padding: 5px;
+  font-size: 15px;
+}
+
 .agregar-carrito {
   display: inline-block;
   padding: 8px 16px;
@@ -296,6 +310,9 @@ img {
   background-color: #f44336;
 }
 
+#butons{
+  display: flex;
+}
 .product-image {
   width: 100px;
   height: auto;

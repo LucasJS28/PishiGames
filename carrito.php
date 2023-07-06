@@ -57,12 +57,16 @@ include 'nav.php';
                         <td class="table-cell"><?php echo number_format($juego['precio'], 0, '', '.'); ?></td>
                         <td class="table-cell">
                             <!-- se envía una solicitud a "acciones_carrito.php" con los parámetros "id" y "action" establecidos en los valores correspondientes -->
-                            <a class="button remove" href="acciones_carrito.php?id=<?php echo $idJuego; ?>&action=remove">-</a>
-                            <?php echo $juego['cantidad']; ?>
-                            <a class="button add" href="acciones_carrito.php?id=<?php echo $idJuego; ?>&action=add">+</a>
+                            <span style="color: yellow; font-weight: 600;"> <?php echo $juego['cantidad']; ?></span>
                         </td>
                         <td class="table-cell"><?php echo number_format($subtotal, 0, '', '.'); ?></td>
-                        <td class="table-cell"><a class="button delete" href="acciones_carrito.php?id=<?php echo $idJuego; ?>&action=delete">Eliminar</a></td>
+                        <td class="table-cell">
+                            <div id="butons">
+                            <a class="button add" href="acciones_carrito.php?id=<?php echo $idJuego; ?>&action=add">+</a>
+                            <a class="button remove" href="acciones_carrito.php?id=<?php echo $idJuego; ?>&action=remove">-</a>
+                            <a class="button delete" href="acciones_carrito.php?id=<?php echo $idJuego; ?>&action=delete">Eliminar</a>
+                            </div>
+                        </td>
                     </tr>
                 <?php } ?>
             </tbody>
