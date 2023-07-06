@@ -62,9 +62,9 @@ include 'nav.php';
                         <td class="table-cell"><?php echo number_format($subtotal, 0, '', '.'); ?></td>
                         <td class="table-cell">
                             <div id="butons">
-                            <a class="button add" href="acciones_carrito.php?id=<?php echo $idJuego; ?>&action=add">+</a>
-                            <a class="button remove" href="acciones_carrito.php?id=<?php echo $idJuego; ?>&action=remove">-</a>
-                            <a class="button delete" href="acciones_carrito.php?id=<?php echo $idJuego; ?>&action=delete">Eliminar</a>
+                                <a class="button add" href="acciones_carrito.php?id=<?php echo $idJuego; ?>&action=add">+</a>
+                                <a class="button remove" href="acciones_carrito.php?id=<?php echo $idJuego; ?>&action=remove">-</a>
+                                <a class="button delete" href="acciones_carrito.php?id=<?php echo $idJuego; ?>&action=delete">Eliminar</a>
                             </div>
                         </td>
                     </tr>

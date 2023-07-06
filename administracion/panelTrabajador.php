@@ -87,6 +87,7 @@ $juegos = $productos->mostrarTodosProductosAsc();
             <input type="submit" value="Publicar Videojuego" class="submit-button">
         </form>
     </div>
+    
     <div class="contenedor-tabla">
         <h1 class="titulo">Listado de Juegos</h1>
         <div id="buscador">
