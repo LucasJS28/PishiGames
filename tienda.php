@@ -130,7 +130,6 @@ switch ($ordenarPor) {
             </li>
         <?php } ?>
     </ul>
-
     <h2 id="titulosinStock">Juegos sin Stock</h2>
     <ul class="listaJuegos">
         <?php foreach ($listaJuegosSinStock as $juego) { ?>
