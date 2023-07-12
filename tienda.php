@@ -119,6 +119,7 @@ switch ($ordenarPor) {
         <?php foreach ($listaJuegos as $juego) { ?>
             <!-- Verifica si hay stock y en caso de no tener le genera la clase juego-sin-stock -->
             <li class="Juegos juego <?php echo ($juego['stock'] == 0); ?>">
+            <a href="detalles_juego.php?id=<?php echo $juego['idJuego']; ?>">
                 <div class="juego-container">
                     <h4 class="titulo"><?php echo $juego['titulo']; ?></h4>
                     <p class="descripcion"><?php echo $juego['descripcion']; ?></p>
@@ -127,6 +128,7 @@ switch ($ordenarPor) {
                     <p class="stock">Stock: <?php echo $juego['stock']; ?></p>
                     <button class="agregar-carrito" data-id="<?php echo $juego['idJuego']; ?>">Agregar al Carrito</button>
                 </div>
+                </a>
             </li>
         <?php } ?>
     </ul>

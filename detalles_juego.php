@@ -95,6 +95,16 @@ if (!$juego) {
         margin-top: 50px;
         margin-left: 400px;
     }
+
+    .btn-volver{
+        padding: 10px 15px;
+        color: yellow;
+        background-color: red;
+    }
+    .btn-volver a{
+        color: yellow;
+        text-decoration: none;
+    }
 </style>
 <body>
     <div class="contenedorjuegoxd">
@@ -108,6 +118,7 @@ if (!$juego) {
             <form action="detalles_juego.php" method="POST">
                 <input type="hidden" name="idJuego" value="<?php echo $juego['idJuego']; ?>">
                 <button class="agregar-carrito" name="agregarCarrito" type="submit">Agregar al Carrito</button>
+                <button class="btn-volver"><a href="tienda.php">Volver a la Tienda</a></button>
             </form>
             </div>
         </div>
