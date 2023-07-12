@@ -122,7 +122,7 @@ switch ($ordenarPor) {
                 <div class="juego-container">
                     <h4 class="titulo"><?php echo $juego['titulo']; ?></h4>
                     <p class="descripcion"><?php echo $juego['descripcion']; ?></p>
-                    <img class="imagen" src="<?php echo $juego['imagen']; ?>" alt="Imagen del juego">
+                    <a href="detalles_juego.php?id=<?php echo $juego['idJuego']; ?>"><img class="imagen" src="<?php echo $juego['imagen']; ?>" alt="Imagen del juego"></a>
                     <p class="precio"><span style="color:#3A84F4">Precio:</span>  <?php echo number_format($juego['precio'], 0, '', '.'); ?></p>
                     <p class="stock">Stock: <?php echo $juego['stock']; ?></p>
                     <button class="agregar-carrito" data-id="<?php echo $juego['idJuego']; ?>">Agregar al Carrito</button>

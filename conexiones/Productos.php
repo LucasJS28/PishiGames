@@ -142,7 +142,7 @@ class Productos
     // Función para mostrar los productos más baratos (limitado a 3 productos) esta Funcion la usaremos para mostrar los productos en el lobby
     public function mostrarProductosmasBaratos()
     {
-        $sql = "SELECT * FROM videojuego WHERE stock > 0 ORDER BY precio ASC LIMIT 3";
+        $sql = "SELECT * FROM videojuego WHERE stock > 0 ORDER BY precio ASC LIMIT 4";
         $consulta = $this->conexion->prepare($sql);
         $consulta->execute();
         return $consulta->fetchAll(PDO::FETCH_ASSOC);
